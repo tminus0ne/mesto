@@ -17,10 +17,10 @@
 }
 
 @font-face {
-  src: url("./_inter/Inter-Bold.woff") format("woff2"),
-    url("./_inter/Inter-Bold.woff") format("woff"),
-    url("./_inter/Inter-Bold.ttf") format("truetype");
+  src: url("./_inter/Inter-Medium.woff2") format("woff2"),
+    url("./_inter/Inter-Medium.woff") format("woff"),
+    url("./_inter/Inter-Medium.ttf") format("truetype");
   font-family: "Inter";
-  font-weight: 700;
+  font-weight: 500;
   font-style: normal;
 }
