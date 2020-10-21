@@ -4,3 +4,12 @@
 @import url(../profile/__info/profile__info.css);
 @import url(../profile/__name/profile__name.css);
 @import url(../profile/__occupation/profile__occupation.css);
+@import url(../profile/__main/profile__main.css);
+
+.profile {
+  max-width: 882px;
+  margin: 0 auto 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
