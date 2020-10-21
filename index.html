@@ -9,6 +9,102 @@
   </head>
 
   <body class="page">
-      <div class="se">123</div>
+    <header class="header">
+      <img src="./images/logo.svg" alt="" class="header__logo" />
+    </header>
+
+    <main>
+      <section class="profile">
+        <div class="profile__info">
+          <img
+            src="./images/Cousteau.jpg"
+            alt="Фотография Жака-Ива Кусто"
+            class="profile__avatar"
+          />
+          <h1 class="profile__name">Жак-Ив Кусто</h1>
+          <p class="profile__occupation">Исследователь океана</p>
+          <div class="profile__edit-button"></div>
+        </div>
+        <div class="profile__add-button"></div>
+      </section>
+
+      <section class="popup popup_opened">
+        <div class="popup__overlay">
+          <div class="popup__container">
+            <div class="close__button"></div>
+            <h2 class="popup__title">Редактировать профиль</h2>
+            <input type="Жак-Ив Кусто" class="popup__name" />
+            <input type="Исследователь океана" class="popup__occupation" />
+            <button class="submit-button"></button>
+          </div>
+        </div>
+      </section>
+
+      <section class="places">
+        <div class="places__item">
+          <img
+            src="./images/Khrebet_Nurgush.jpg"
+            alt="Фото хребта Нургуш"
+            class="places__image"
+          />
+          <h2 class="places__name"></h2>
+          <div class="places__like-button"></div>
+        </div>
+
+        <div class="places__item">
+          <img
+            src="./images/Elbrus.jpg"
+            alt="Фото горы Эльбрус"
+            class="places__image"
+          />
+          <h2 class="places__name"></h2>
+          <div class="places__like-button"></div>
+        </div>
+
+        <div class="places__item">
+          <img
+            src="./images/Dombai.jpg"
+            alt="Фото вершины Домбай-Ульген"
+            class="places__image"
+          />
+          <h2 class="places__name"></h2>
+          <div class="places__like-button"></div>
+        </div>
+
+        <div class="places__item">
+          <img
+            src="./images/Poperechnaya_Gora.jpg"
+            alt="Фото горы Поперечная"
+            class="places__image"
+          />
+          <h2 class="places__name"></h2>
+          <div class="places__like-button"></div>
+        </div>
+
+        <div class="places__item">
+          <img
+            src="./images/Olkhon_Island.jpg"
+            alt="Фото острова Ольхон"
+            class="places__image"
+          />
+          <h2 class="places__name"></h2>
+          <div class="places__like-button"></div>
+        </div>
+
+        <div class="places__item">
+          <img
+            src="./images/Karachaevo-Cherkesiya.jpg"
+            alt="Фото Сентинского храма"
+            class="places__image"
+          />
+          <h2 class="places__name"></h2>
+          <div class="places__like-button"></div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
+    </footer>
   </body>
 </html>

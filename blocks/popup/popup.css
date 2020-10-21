@@ -6,3 +6,7 @@
 @import url(../popup/__submit-button/popup__submit-button.css);
 @import url(../popup/__title/popup__title.css);
 @import url(../popup/_opened/popup_opened.css);
+
+.popup {
+  display: none;
+}
