@@ -6,3 +6,11 @@
   width: 21px;
   height: 19px;
 }
+
+.places__like-button:hover {
+  transform: scale(1.2);
+}
+
+.places__like-button:focus {
+  outline: none;
+}

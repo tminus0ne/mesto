@@ -1,10 +1,20 @@
 .profile__edit-button {
+  background-image: url(../../../images/Edit.svg);
+  background-position: center;
+  align-items: center;
+  border: none;
+  background-color: transparent;
   cursor: pointer;
-  align-self: start;
-  padding-top: 20px;
+  width: 24px;
+  height: 24px;
+  margin-top: 32px;
 }
 
 .profile__edit-button:hover {
   opacity: 0.6;
   transition: opacity 0.3s ease-in-out;
+}
+
+.profile__edit-button:focus {
+  outline: none;
 }
