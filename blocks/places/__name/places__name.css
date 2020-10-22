@@ -9,3 +9,7 @@
   white-space: nowrap;
   overflow: hidden;
 }
+
+.places__name:hover {
+  white-space: normal;
+}
