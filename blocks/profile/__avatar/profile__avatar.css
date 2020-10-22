@@ -3,3 +3,9 @@
   width: 120px;
   border-radius: 50%;
 }
+
+@media screen and (max-width: 550px) and (min-width: 320px) {
+  .profile__avatar {
+    align-self: center;
+  }
+}
