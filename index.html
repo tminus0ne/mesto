@@ -36,20 +36,6 @@
         <button type="button" class="profile__add-button"></button>
       </section>
 
-      <section class="popup">
-        <div class="popup__container">
-          <button type="button" class="popup__close-button"></button>
-          <h2 class="popup__title">Редактировать профиль</h2>
-          <input type="text" placeholder="Жак-Ив Кусто" class="popup__name" />
-          <input
-            type="text"
-            placeholder="Исследователь океана"
-            class="popup__occupation"
-          />
-          <button type="submit" class="popup__submit-button">Сохранить</button>
-        </div>
-      </section>
-
       <section class="places">
         <div class="places__item">
           <img
@@ -128,6 +114,27 @@
     <footer class="footer">
       <h3 class="footer__copyright">&copy; 2020 Mesto Russia</h3>
     </footer>
+
+    <section class="popup">
+      <form class="popup__container">
+        <button type="button" class="popup__close-button"></button>
+        <h2 class="popup__title">Редактировать профиль</h2>
+        <input
+          type="text"
+          placeholder="Жак-Ив Кусто"
+          required=""
+          class="popup__name"
+        />
+        <input
+          type="text"
+          placeholder="Исследователь океана"
+          required=""
+          class="popup__occupation"
+        />
+        <button type="submit" class="popup__submit-button">Сохранить</button>
+      </form>
+    </section>
+
     <script src="./scripts/index.js"></script>
   </body>
 </html>
