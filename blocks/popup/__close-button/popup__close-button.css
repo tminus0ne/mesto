@@ -12,6 +12,10 @@
   cursor: pointer;
 }
 
+.popup__close-button:focus {
+  outline: none;
+}
+
 @media screen and (max-width: 460px) and (min-width: 320px) {
   .popup__close-button {
     right: 0;
