@@ -20,7 +20,7 @@ function popupClosed() {
 popupClose.addEventListener('click', popupClosed);
 
 //? Хотел сделать это еще до того, как посмотрел вебинар,
-// но немного не мог понять реализацию
+//? но немного не мог понять реализацию
 function popupWindowClose(event) {
   if (event.target.classList.contains('popup')) {
     popupClosed();
@@ -29,8 +29,7 @@ function popupWindowClose(event) {
 
 popup.addEventListener('mousedown', popupWindowClose);
 
-//!Изменение текста
-
+//!Редактирование профиля
 let formElement = popup.querySelector('.popup__container');
 let nameInput = popup.querySelector('.popup__name');
 let jobInput = popup.querySelector('.popup__occupation');
@@ -42,7 +41,7 @@ function formSubmitHandler(event) {
   event.preventDefault();
   profileName.textContent = nameInput.value;
   profileOccupation.textContent = jobInput.value;
-  popup.classList.remove('popup_opened');
+  popupClosed();
 }
 
 formElement.addEventListener('submit', formSubmitHandler);
