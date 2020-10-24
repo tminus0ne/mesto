@@ -1,6 +1,7 @@
 .profile__edit-button {
   background-image: url(../../../images/Edit.svg);
   background-position: center;
+  background-repeat: no-repeat;
   align-items: center;
   border: none;
   background-color: transparent;
