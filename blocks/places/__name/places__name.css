@@ -12,7 +12,6 @@
 
 .places__name:hover {
   white-space: normal;
-  max-width: 250px;
 }
 
 @media screen and (max-width: 900px) and (min-width: 340px) {
