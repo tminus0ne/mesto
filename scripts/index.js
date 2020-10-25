@@ -19,8 +19,6 @@ function popupClosed() {
 
 popupClose.addEventListener('click', popupClosed);
 
-//? Хотел сделать это еще до того, как посмотрел вебинар,
-//? но немного не мог понять реализацию
 function popupWindowClose(event) {
   if (event.target.classList.contains('popup')) {
     popupClosed();
@@ -46,7 +44,7 @@ function formSubmitHandler(event) {
 
 formElement.addEventListener('submit', formSubmitHandler);
 
-//! Закрытие по нажатью Escape
+//! Закрытие по нажатию Escape
 function formSubmitClose(event) {
   if (event.key === 'Escape') {
     popupClosed();

@@ -1,11 +1,10 @@
-
-
 .places {
   max-width: 882px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(282px, 1fr));
+  grid-template-columns: repeat(auto-fill, 282px);
   gap: 18px;
+  justify-content: center;
 }
 
 @media screen and (max-width: 900px) and (min-width: 400px) {
