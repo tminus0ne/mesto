@@ -15,6 +15,7 @@ profileEdit.addEventListener('click', popupOpened);
 
 function popupClosed() {
   popup.classList.remove('popup_opened');
+  formElement.reset();
 }
 
 popupClose.addEventListener('click', popupClosed);
@@ -48,6 +49,7 @@ formElement.addEventListener('submit', formSubmitHandler);
 function formSubmitClose(event) {
   if (event.key === 'Escape') {
     popupClosed();
+    formElement.reset();
   }
 }
 
