@@ -45,3 +45,12 @@ function formSubmitHandler(event) {
 }
 
 formElement.addEventListener('submit', formSubmitHandler);
+
+//! Закрытие по нажатью Escape
+function formSubmitClose(event) {
+  if (event.key === 'Escape') {
+    popupClosed();
+  }
+}
+
+window.addEventListener('keydown', formSubmitClose);

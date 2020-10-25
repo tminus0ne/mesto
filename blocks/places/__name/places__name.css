@@ -10,10 +10,6 @@
   overflow: hidden;
 }
 
-.places__name:hover {
-  white-space: normal;
-}
-
 @media screen and (max-width: 900px) and (min-width: 340px) {
   .places__name {
     max-width: 250px;

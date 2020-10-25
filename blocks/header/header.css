@@ -2,7 +2,11 @@
   max-width: 882px;
   margin: 45px auto 40px;
   padding-bottom: 40px;
-  border-bottom: 1px solid #545454;
+  border-bottom: 1px solid rgba(54, 54, 54, 0.7);
 }
 
-
+@media screen and (max-width: 700px) and (min-width: 320px) {
+  .header {
+    padding-bottom: 30px;
+  }
+}
