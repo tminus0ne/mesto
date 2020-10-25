@@ -29,8 +29,8 @@ popup.addEventListener('mousedown', popupWindowClose);
 
 //!Редактирование профиля
 let formElement = popup.querySelector('.popup__container');
-let nameInput = popup.querySelector('.popup__name');
-let jobInput = popup.querySelector('.popup__occupation');
+let nameInput = popup.querySelector('.popup__input_name');
+let jobInput = popup.querySelector('.popup__input_occupation');
 
 let profileName = profile.querySelector('.profile__name');
 let profileOccupation = profile.querySelector('.profile__occupation');
