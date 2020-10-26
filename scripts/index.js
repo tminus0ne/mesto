@@ -11,14 +11,11 @@ let popupClose = popup.querySelector('.popup__close-button');
 
 //Редактирование
 let formElement = popup.querySelector('.popup__container');
-let nameInput = popup.querySelector('.popup__input_name');
-let jobInput = popup.querySelector('.popup__input_occupation');
+let nameInput = popup.querySelector('.popup__input_type_name');
+let jobInput = popup.querySelector('.popup__input_type_occupation');
 
 let profileName = profile.querySelector('.profile__name');
 let profileOccupation = profile.querySelector('.profile__occupation');
-
-nameInput.value = profileName.textContent;
-jobInput.value = profileOccupation.textContent;
 
 //! Функция открытия попапа
 function popupOpened() {

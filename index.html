@@ -45,7 +45,7 @@
       </section>
 
       <section class="places">
-        <div class="place">
+        <article class="place">
           <img
             src="./images/Khrebet_Nurgush.jpg"
             alt="Фото хребта Нургуш"
@@ -59,9 +59,9 @@
               class="place__like-button"
             ></button>
           </div>
-        </div>
+        </article>
 
-        <div class="place">
+        <article class="place">
           <img
             src="./images/Elbrus.jpg"
             alt="Фото горы Эльбрус"
@@ -75,9 +75,9 @@
               class="place__like-button"
             ></button>
           </div>
-        </div>
+        </article>
 
-        <div class="place">
+        <article class="place">
           <img
             src="./images/Dombai.jpg"
             alt="Фото вершины Домбай-Ульген"
@@ -91,9 +91,9 @@
               class="place__like-button"
             ></button>
           </div>
-        </div>
+        </article>
 
-        <div class="place">
+        <article class="place">
           <img
             src="./images/Poperechnaya_Gora.jpg"
             alt="Фото горы Поперечная"
@@ -107,9 +107,9 @@
               class="place__like-button"
             ></button>
           </div>
-        </div>
+        </article>
 
-        <div class="place">
+        <article class="place">
           <img
             src="./images/Olkhon_Island.jpg"
             alt="Фото острова Ольхон"
@@ -123,9 +123,9 @@
               class="place__like-button"
             ></button>
           </div>
-        </div>
+        </article>
 
-        <div class="place">
+        <article class="place">
           <img
             src="./images/Kamchatka.jpg"
             alt="Фото термальных источников вулкана Ходутка"
@@ -139,7 +139,7 @@
               class="place__like-button"
             ></button>
           </div>
-        </div>
+        </article>
       </section>
     </main>
 
@@ -148,7 +148,7 @@
     </footer>
 
     <section class="popup">
-      <form class="popup__container">
+      <form name="profile-info" class="popup__container">
         <button
           type="button"
           aria-label="Закрыть"
@@ -158,14 +158,18 @@
         <input
           type="text"
           placeholder="Имя"
+          name="Name"
+          value="Жак-Ив Кусто"
           required=""
-          class="popup__input popup__input_name"
+          class="popup__input popup__input_type_name"
         />
         <input
           type="text"
           placeholder="Род занятий"
+          name="Job"
+          value="Исследователь океана"
           required=""
-          class="popup__input popup__input_occupation"
+          class="popup__input popup__input_type_occupation"
         />
         <button class="popup__submit-button">Сохранить</button>
       </form>
