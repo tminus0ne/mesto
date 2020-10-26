@@ -4,7 +4,7 @@
   margin-left: 33px;
   font-size: 24px;
   font-weight: 900;
-  line-height: 29px;
+  line-height: 23px;
 }
 
 @media screen and (max-width: 520px) and (min-width: 320px) {
@@ -13,3 +13,5 @@
     line-height: 22px;
   }
 }
+
+/* Тут что-то странное, inspect в Фигме показывает line-height у тайтла 29, а сам элемент 23, я сделал на 23, теперь укладываюсь в макет */
