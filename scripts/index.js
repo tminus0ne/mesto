@@ -59,7 +59,7 @@ popupClose.addEventListener('click', popupClosed);
 // Закрытие папапа по нажатию на любую точку окна
 popup.addEventListener('mousedown', popupWindowClose);
 
-// Закрытие попапа по наджатию Escape
+// Закрытие попапа по нажатию Escape
 window.addEventListener('keydown', formSubmitClose);
 
 // Сабмит попапа по нажатию кнопки Сохранить
