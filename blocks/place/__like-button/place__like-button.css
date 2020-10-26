@@ -6,11 +6,11 @@
   cursor: pointer;
   width: 21px;
   height: 19px;
+  transition: opacity 0.3s ease-in-out;
 }
 
 .place__like-button:hover {
-  opacity: 0.7;
-  transition: opacity 0.3s ease-in-out;
+  opacity: 0.6;
 }
 
 .place__like-button:focus {
