@@ -1,4 +1,4 @@
-.places__name {
+.place__name {
   color: #000;
   font-size: 24px;
   font-weight: 900;
@@ -12,7 +12,7 @@
 }
 
 @media screen and (max-width: 900px) and (min-width: 340px) {
-  .places__name {
+  .place__name {
     max-width: 250px;
     white-space: normal;
   }

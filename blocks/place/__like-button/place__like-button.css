@@ -1,4 +1,4 @@
-.places__like-button {
+.place__like-button {
   background-image: url(../../../images/like.svg);
   background-color: transparent;
   background-repeat: no-repeat;
@@ -8,11 +8,11 @@
   height: 19px;
 }
 
-.places__like-button:hover {
+.place__like-button:hover {
   opacity: 0.7;
   transition: opacity 0.3s ease-in-out;
 }
 
-.places__like-button:focus {
+.place__like-button:focus {
   outline: none;
 }

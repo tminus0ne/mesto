@@ -17,9 +17,8 @@ let jobInput = popup.querySelector('.popup__input_occupation');
 let profileName = profile.querySelector('.profile__name');
 let profileOccupation = profile.querySelector('.profile__occupation');
 
-// nameInput.value = profileName.textContent;
-// jobInput.value = profileOccupation.textContent;
-// Целесообразно ли я отключил конструкцию выше?
+nameInput.value = profileName.textContent;
+jobInput.value = profileOccupation.textContent;
 
 //! Функция открытия попапа
 function popupOpened() {

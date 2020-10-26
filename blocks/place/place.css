@@ -1,7 +1,6 @@
-.places__item {
+.place {
   max-width: 282px;
   background-color: #fff;
   border-radius: 3%;
   overflow: hidden;
 }
-
