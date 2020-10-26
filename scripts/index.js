@@ -1,8 +1,6 @@
 'use strict';
 
 //! Объявление переменных
-//? Я решил все переменные вынести из своих блоков и объявить одной группой, правильно ли это?
-//? Или лучше каждую группу переменных объявлять радом с блоком, где они используются?
 
 //Попап
 let profile = document.querySelector('.profile');
@@ -19,31 +17,24 @@ let jobInput = popup.querySelector('.popup__input_occupation');
 let profileName = profile.querySelector('.profile__name');
 let profileOccupation = profile.querySelector('.profile__occupation');
 
-nameInput.value = profileName.textContent;
-jobInput.value = profileOccupation.textContent;
+// nameInput.value = profileName.textContent;
+// jobInput.value = profileOccupation.textContent;
+// Целесообразно ли я отключил конструкцию выше?
 
 //! Функция открытия попапа
 function popupOpened() {
   popup.classList.add('popup_opened');
 }
 
-profileEdit.addEventListener('click', popupOpened);
-
 function popupClosed() {
   popup.classList.remove('popup_opened');
-  nameInput.value = profileName.textContent;
-  jobInput.value = profileOccupation.textContent;
 }
-
-popupClose.addEventListener('click', popupClosed);
 
 function popupWindowClose(event) {
   if (event.target.classList.contains('popup')) {
     popupClosed();
   }
 }
-
-popup.addEventListener('mousedown', popupWindowClose);
 
 //! Функция редактирования профиля
 
@@ -54,15 +45,35 @@ function formSubmitHandler(event) {
   popupClosed();
 }
 
-formElement.addEventListener('submit', formSubmitHandler);
-
 //! Функция закрытия окна по нажатию Escape
 function formSubmitClose(event) {
   if (event.key === 'Escape') {
     popupClosed();
-    nameInput.value = profileName.textContent;
-    jobInput.value = profileOccupation.textContent;
   }
 }
 
+//! Эвентлисенеры
+
+// Открытие попапа
+profileEdit.addEventListener('click', popupOpened);
+
+// Закрытие попапа по нажатию на крестик
+popupClose.addEventListener('click', popupClosed);
+
+// Закрытие папапа по нажатию на любую точку окна
+popup.addEventListener('mousedown', popupWindowClose);
+
+// Закрытие попапа по наджатию Escape
 window.addEventListener('keydown', formSubmitClose);
+
+// Сабмит попапа по нажатию кнопки Сохранить
+formElement.addEventListener('submit', formSubmitHandler);
+
+/* Немного не понял про копирование, у меня было сделано так что все время в окне попапа были прописаны тексты, 
+которые сохранялись при нажатии Сохранить
+Нажатие по крестику, окну или Esc сбрасывало любой набранный текст в окне, помимо сохраненного и 
+при следующем открытии попапа там был текст, который остался от последнего Сохранить
+Также у меня была идея прописать FormElement.reset эскейпу, крестику и клику по окну, имккт ли смысл? 
+
+Объясните, пожалуйста, мне кажется я немного не понял необходимую логику
+ */
