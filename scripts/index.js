@@ -20,6 +20,8 @@ let profileOccupation = profile.querySelector('.profile__occupation');
 //! Функция открытия попапа
 function popupOpened() {
   popup.classList.add('popup_opened');
+  nameInput.value = profileName.textContent;
+  jobInput.value = profileOccupation.textContent;
 }
 
 function popupClosed() {
@@ -64,13 +66,3 @@ window.addEventListener('keydown', formSubmitClose);
 
 // Сабмит попапа по нажатию кнопки Сохранить
 formElement.addEventListener('submit', formSubmitHandler);
-
-/* Немного не понял про копирование, у меня было сделано так что все время в окне попапа были прописаны тексты, 
-которые сохранялись при нажатии Сохранить
-Нажатие по крестику, окну или Esc сбрасывало любой набранный текст в окне, помимо сохраненного и 
-при следующем открытии попапа там был текст, который остался от последнего Сохранить
-Также у меня была идея прописать FormElement.reset эскейпу, крестику и клику по окну, имккт ли смысл? 
-
-Объясните, пожалуйста, мне кажется я немного не понял необходимую логику
-Как я понял, это связано с value инпутов
- */
