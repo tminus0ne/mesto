@@ -23,6 +23,7 @@ function popupOpened() {
   nameInput.value = profileName.textContent;
   jobInput.value = profileOccupation.textContent;
 }
+// Я разобрался сегодня днем, на самом деле все выглядит достаточно просто, а я почему-то очень плотно завис на этом моменте
 
 function popupClosed() {
   popup.classList.remove('popup_opened');
