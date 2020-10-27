@@ -12,8 +12,6 @@
 .popup__input:last-of-type {
   margin-top: 30px;
 }
-/* ласт чайлд у меня тут не работает http://puu.sh/GGZxG/8d5d6ab218.png 
-и в филдсете тоже*/
 
 .popup__input:focus {
   outline: none;

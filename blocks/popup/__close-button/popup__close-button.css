@@ -30,7 +30,6 @@
   }
 }
 
-/* 375 это горизонтальная ориентация экрана, на вертикальной всё ок :) */
 @media screen and (max-height: 430px) {
   .popup__close-button {
     right: -35px;

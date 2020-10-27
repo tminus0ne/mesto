@@ -19,11 +19,10 @@ let profileOccupation = profile.querySelector('.profile__occupation');
 
 //! Функция открытия попапа
 function popupOpened() {
-  popup.classList.add('popup_opened');
   nameInput.value = profileName.textContent;
   jobInput.value = profileOccupation.textContent;
+  popup.classList.add('popup_opened');
 }
-// Я разобрался сегодня днем, на самом деле все выглядит достаточно просто, а я почему-то очень плотно завис на этом моменте
 
 function popupClosed() {
   popup.classList.remove('popup_opened');
