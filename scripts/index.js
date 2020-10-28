@@ -2,20 +2,23 @@
 
 //! Объявление переменных
 
-//Попап
+// Попап
 let profile = document.querySelector('.profile');
 let popup = document.querySelector('.popup');
 
 let profileEdit = profile.querySelector('.profile__edit-button');
 let popupClose = popup.querySelector('.popup__close-button');
 
-//Редактирование
+// Редактирование
 let formElement = popup.querySelector('.popup__container');
 let nameInput = popup.querySelector('.popup__input_type_name');
 let jobInput = popup.querySelector('.popup__input_type_occupation');
 
 let profileName = profile.querySelector('.profile__name');
 let profileOccupation = profile.querySelector('.profile__occupation');
+
+// Лайк
+let likeButtons = document.querySelectorAll('.place__like-button');
 
 //! Функция открытия попапа
 function popupOpened() {
@@ -35,7 +38,6 @@ function popupWindowClose(event) {
 }
 
 //! Функция редактирования профиля
-
 function formSubmitHandler(event) {
   event.preventDefault();
   profileName.textContent = nameInput.value;
@@ -51,7 +53,6 @@ function formSubmitClose(event) {
 }
 
 //! Эвентлисенеры
-
 // Открытие попапа
 profileEdit.addEventListener('click', popupOpened);
 
@@ -66,3 +67,10 @@ window.addEventListener('keydown', formSubmitClose);
 
 // Сабмит попапа по нажатию кнопки Сохранить
 formElement.addEventListener('submit', formSubmitHandler);
+
+//! Функция переключения лайка
+likeButtons.forEach(function (btn) {
+  btn.addEventListener('click', function () {
+    btn.classList.toggle('place__like-button_active');
+  });
+});
