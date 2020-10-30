@@ -4,15 +4,17 @@
 
 // Попап
 let profile = document.querySelector('.profile');
-let popup = document.querySelector('.popup');
+let profilePopup = document.querySelector('.popup');
 
-let profileEdit = profile.querySelector('.profile__edit-button');
-let popupClose = popup.querySelector('.popup__close-button');
+let profilePopupOpenButton = profile.querySelector('.profile__edit-button');
+let profilePopupCloseButton = profilePopup.querySelector(
+  '.popup__close-button'
+);
 
 // Редактирование
-let formElement = popup.querySelector('.popup__container');
-let nameInput = popup.querySelector('.popup__input_type_name');
-let jobInput = popup.querySelector('.popup__input_type_occupation');
+let profileFormSubmit = profilePopup.querySelector('.popup__container');
+let nameInput = profilePopup.querySelector('.popup__input_type_name');
+let jobInput = profilePopup.querySelector('.popup__input_type_occupation');
 
 let profileName = profile.querySelector('.profile__name');
 let profileOccupation = profile.querySelector('.profile__occupation');
@@ -21,52 +23,53 @@ let profileOccupation = profile.querySelector('.profile__occupation');
 let likeButtons = document.querySelectorAll('.place__like-button');
 
 //! Функция открытия попапа
-function popupOpened() {
+function openProfilePopup() {
   nameInput.value = profileName.textContent;
   jobInput.value = profileOccupation.textContent;
-  popup.classList.add('popup_opened');
+  profilePopup.classList.add('popup_opened');
 }
 
-function popupClosed() {
-  popup.classList.remove('popup_opened');
+function closeProfilePopup() {
+  profilePopup.classList.remove('popup_opened');
 }
 
-function popupWindowClose(event) {
+//! Функция закрытия окна попапа профиля по нажатию Escape
+function closeProfilePopupOnEsc(event) {
+  if (event.key === 'Escape') {
+    closeProfilePopup();
+  }
+}
+
+//! Функция закрытия окна попапа профиля по нажатию на пустое место окна
+function closeProfilePopupOnWindowClick(event) {
   if (event.target.classList.contains('popup')) {
-    popupClosed();
+    closeProfilePopup();
   }
 }
 
 //! Функция редактирования профиля
-function formSubmitHandler(event) {
+function profileEditFormSubmitHandler(event) {
   event.preventDefault();
   profileName.textContent = nameInput.value;
   profileOccupation.textContent = jobInput.value;
-  popupClosed();
-}
-
-//! Функция закрытия окна по нажатию Escape
-function formSubmitClose(event) {
-  if (event.key === 'Escape') {
-    popupClosed();
-  }
+  closeProfilePopup();
 }
 
 //! Эвентлисенеры
 // Открытие попапа
-profileEdit.addEventListener('click', popupOpened);
+profilePopupOpenButton.addEventListener('click', openProfilePopup);
 
 // Закрытие попапа по нажатию на крестик
-popupClose.addEventListener('click', popupClosed);
+profilePopupCloseButton.addEventListener('click', closeProfilePopup);
 
 // Закрытие папапа по нажатию на любую точку окна
-popup.addEventListener('mousedown', popupWindowClose);
+profilePopup.addEventListener('mousedown', closeProfilePopupOnWindowClick);
 
 // Закрытие попапа по нажатию Escape
-window.addEventListener('keydown', formSubmitClose);
+window.addEventListener('keydown', closeProfilePopupOnEsc);
 
 // Сабмит попапа по нажатию кнопки Сохранить
-formElement.addEventListener('submit', formSubmitHandler);
+profileFormSubmit.addEventListener('submit', profileEditFormSubmitHandler);
 
 //! Функция переключения лайка
 likeButtons.forEach(function (btn) {
