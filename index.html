@@ -147,8 +147,11 @@
       <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
     </footer>
 
-    <section class="popup">
-      <form name="profile-info" class="popup__container">
+    <section class="popup popup_profile">
+      <form
+        name="profile-info"
+        class="popup__container popup__container_profile"
+      >
         <button
           type="button"
           aria-label="Закрыть"
@@ -169,6 +172,34 @@
             name="Job"
             required=""
             class="popup__input popup__input_type_occupation"
+          />
+        </fieldset>
+        <button class="popup__submit-button">Сохранить</button>
+      </form>
+    </section>
+
+    <section class="popup popup_place">
+      <form name="places" class="popup__container popup__container_place">
+        <button
+          type="button"
+          aria-label="Закрыть"
+          class="popup__close-button"
+        ></button>
+        <h2 class="popup__title">Новое место</h2>
+        <fieldset name="place" class="popup__info">
+          <input
+            type="text"
+            placeholder="Название"
+            name="Title"
+            required=""
+            class="popup__input popup__input_type_title"
+          />
+          <input
+            type="url"
+            placeholder="Ссылка на картинку"
+            name="Link"
+            required=""
+            class="popup__input popup__input_type_url"
           />
         </fieldset>
         <button class="popup__submit-button">Сохранить</button>
