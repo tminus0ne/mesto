@@ -135,20 +135,8 @@ placeFormSubmit.addEventListener('submit', placeFormSubmitHandler);
 let likeButtons = document.querySelectorAll('.place__like-button');
 
 //! Функция переключения лайков
-// likeButtons.forEach(function (btn) {
-//   btn.addEventListener('click', function () {
-//     btn.classList.toggle('place__like-button_active');
-//   });
-// });
-
-//! Та же функция, но мне кажется, она более читаема
-// Решил оставить ее как основную
 likeButtons.forEach((btn) => {
-  btn.addEventListener('click', function () {
-    toggleLikeActive(btn);
+  btn.addEventListener('click', () => {
+    btn.classList.toggle('place__like-button_active');
   });
 });
-
-function toggleLikeActive(btn) {
-  btn.classList.toggle('place__like-button_active');
-}
