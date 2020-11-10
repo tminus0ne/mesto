@@ -1,5 +1,7 @@
 'use strict';
 
+//! MESTO project ch.1
+
 //! Попап редактирования данных профиля
 
 //! Объявление переменных
@@ -69,6 +71,8 @@ window.addEventListener('keydown', closeProfilePopupOnEsc);
 // Сабмит попапа по нажатию кнопки Сохранить
 profileFormSubmit.addEventListener('submit', profileEditFormSubmitHandler);
 
+//! MESTO project ch.2
+
 //! Попап добавления нового места
 
 //! Объявление переменных
@@ -81,12 +85,9 @@ let placePopupCloseButton = placePopup.querySelector('.popup__close-button');
 // Редактирвоание
 let placeFormSubmit = placePopup.querySelector('.popup__container_place');
 
-// TODO здесь нужно добавить переменные для полей ввода
-
 //! Функция открытия попапа добавления нового места
 function openPlacePopup() {
   placePopup.classList.add('popup_opened');
-  // TODO здесь нужно добавить данные из заполненных полей
 }
 
 function closePlacePopup() {
@@ -105,13 +106,6 @@ function closePlacePopupOnWindowClick(event) {
   if (event.target.classList.contains('popup_place')) {
     closePlacePopup();
   }
-}
-
-//! Функция сохранения нового места
-function placeFormSubmitHandler(event) {
-  event.preventDefault();
-  // TODO узнать (придумать) куда сабмитить
-  closePlacePopup();
 }
 
 //! Эвентлисенеры попапа нового места
