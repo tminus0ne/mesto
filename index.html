@@ -45,107 +45,24 @@
       </section>
 
       <section class="places">
-        <article class="place">
-          <button type="button" class="place__remove"></button>
-          <img
-            src="./images/Khrebet_Nurgush.jpg"
-            alt="Фото хребта Нургуш"
-            class="place__image"
-          />
-          <div class="place__description">
-            <h2 class="place__name">Хребет Нургуш</h2>
+        <template class="place__template">
+          <article class="place">
             <button
               type="button"
-              aria-label="Нравится"
-              class="place__like-button"
+              class="place__remove"
+              aria-label="Удалить"
             ></button>
-          </div>
-        </article>
-
-        <article class="place">
-          <button type="button" class="place__remove"></button>
-          <img
-            src="./images/Elbrus.jpg"
-            alt="Фото горы Эльбрус"
-            class="place__image"
-          />
-          <div class="place__description">
-            <h2 class="place__name">Эльбрус</h2>
-            <button
-              type="button"
-              aria-label="Нравится"
-              class="place__like-button"
-            ></button>
-          </div>
-        </article>
-
-        <article class="place">
-          <button type="button" class="place__remove"></button>
-          <img
-            src="./images/Dombai.jpg"
-            alt="Фото вершины Домбай-Ульген"
-            class="place__image"
-          />
-          <div class="place__description">
-            <h2 class="place__name">Домбай</h2>
-            <button
-              type="button"
-              aria-label="Нравится"
-              class="place__like-button"
-            ></button>
-          </div>
-        </article>
-
-        <article class="place">
-          <button type="button" class="place__remove"></button>
-          <img
-            src="./images/Poperechnaya_Gora.jpg"
-            alt="Фото горы Поперечная"
-            class="place__image"
-          />
-          <div class="place__description">
-            <h2 class="place__name">Поперечная гора</h2>
-            <button
-              type="button"
-              aria-label="Нравится"
-              class="place__like-button"
-            ></button>
-          </div>
-        </article>
-
-        <article class="place">
-          <button type="button" class="place__remove"></button>
-          <img
-            src="./images/Olkhon_Island.jpg"
-            alt="Фото острова Ольхон"
-            class="place__image"
-          />
-          <div class="place__description">
-            <h2 class="place__name">Ольхон</h2>
-            <button
-              type="button"
-              aria-label="Нравится"
-              class="place__like-button"
-            ></button>
-          </div>
-        </article>
-
-        <article class="place">
-          <button type="button" class="place__remove"></button>
-          <img
-            src="./images/Kamchatka.jpg"
-            alt="Фото термальных источников вулкана Ходутка"
-            class="place__image"
-          />
-          <div class="place__description">
-            <h2 class="place__name">Камчатка</h2>
-            <button
-              type="button"
-              aria-label="Нравится"
-              class="place__like-button"
-            ></button>
-          </div>
-        </article>
+            <img alt="Фотография места" class="place__image" />
+            <div class="place__description">
+              <h2 class="place__title"></h2>
+              <button
+                type="button"
+                aria-label="Нравится"
+                class="place__like-button"
+              ></button>
+            </div>
+          </article>
+        </template>
       </section>
     </main>
 
@@ -210,6 +127,18 @@
         </fieldset>
         <button class="popup__submit-button">Сохранить</button>
       </form>
+    </section>
+
+    <section class="popup popup_image">
+      <div class="popup__image-container">
+        <button
+          type="button"
+          aria-label="Закрыть"
+          class="popup__close-button"
+        ></button>
+        <img src="http://" class="popup__photo" />
+        <h3 class="popup__place-title"></h3>
+      </div>
     </section>
 
     <script src="./scripts/index.js"></script>
