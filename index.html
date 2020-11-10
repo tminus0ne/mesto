@@ -49,7 +49,7 @@
           <article class="place">
             <button
               type="button"
-              class="place__remove"
+              class="place__remove-button"
               aria-label="Удалить"
             ></button>
             <img alt="Фотография места" class="place__image" />
@@ -119,7 +119,7 @@
           />
           <input
             type="url"
-            placeholder="Ссылка на картинку"
+            placeholder="Ссылка на изображение"
             name="Link"
             required=""
             class="popup__input popup__input_type_url"
@@ -136,8 +136,9 @@
           aria-label="Закрыть"
           class="popup__close-button"
         ></button>
+        <!-- лайк - заглушка для валидатора -->
         <img
-          src="http://example.com"
+          src="./images/like.svg"
           alt="Фотография выбранного места"
           class="popup__photo"
         />

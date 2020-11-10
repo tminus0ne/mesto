@@ -1,5 +1,5 @@
 .place__image {
-  height: 100%;
-  max-width: 282px;
-  max-height: 282px;
+  width: 282px;
+  height: 282px;
+  cursor: pointer;
 }
