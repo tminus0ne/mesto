@@ -159,10 +159,12 @@ function createCard(name, link) {
   }
   placeImage.addEventListener('click', openImagePopup);
 
-  placesList.prepend(placeElement);
+  return placeElement;
 }
 
-initialCards.forEach((card) => createCard(card.name, card.link));
+initialCards.forEach((card) =>
+  placesList.append(createCard(card.name, card.link))
+);
 
 //! Функция открытия попапа добавления нового места
 function openPlacePopup() {
@@ -178,7 +180,7 @@ function createCustomCard(event) {
   const placeTitle = placePopup.querySelector('.popup__input_type_title').value;
   const placeUrl = placePopup.querySelector('.popup__input_type_url').value;
 
-  createCard(placeTitle, placeUrl);
+  placesList.prepend(createCard(placeTitle, placeUrl));
   closePlacePopup();
 }
 
