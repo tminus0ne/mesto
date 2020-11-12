@@ -36,8 +36,6 @@ const initialCards = [
 
 //! MESTO project ch.1
 
-//! Попап редактирования данных профиля
-
 //! Объявление переменных
 // Открытие и закрытие попапа
 const profile = document.querySelector('.profile');
@@ -58,29 +56,42 @@ const jobInput = profilePopup.querySelector('.popup__input_type_occupation');
 const profileName = profile.querySelector('.profile__name');
 const profileOccupation = profile.querySelector('.profile__occupation');
 
+//! Общие функции для открытия и закрытия попапов
+
+function openPopup(popup) {
+  popup.classList.add('popup_opened');
+  document.addEventListener('keydown', closePopupOnEsc);
+}
+
+function closePopup(popup) {
+  popup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', closePopupOnEsc);
+}
+
+//! Функция закрытия попапа при нажатии на Esc
+function closePopupOnEsc(event) {
+  if (event.key === 'Escape') {
+    const openedPopup = document.querySelector('.popup_opened');
+    closePopup(openedPopup);
+  }
+}
+
+//! Функция закрытия попапа при нажатии на любое место окна просмотра
+function closePopupOnWindowClick(event) {
+  if (event.target.classList.contains('popup')) {
+    closePopup(event.target);
+  }
+}
+
 //! Функция открытия попапа редактированяи профиля
 function openProfilePopup() {
   nameInput.value = profileName.textContent;
   jobInput.value = profileOccupation.textContent;
-  profilePopup.classList.add('popup_opened');
+  openPopup(profilePopup);
 }
 
 function closeProfilePopup() {
-  profilePopup.classList.remove('popup_opened');
-}
-
-//! Функция закрытия окна попапа профиля по нажатию Escape
-function closeProfilePopupOnEsc(event) {
-  if (event.key === 'Escape') {
-    closeProfilePopup();
-  }
-}
-
-//! Функция закрытия окна попапа профиля по нажатию на пустое место окна
-function closeProfilePopupOnWindowClick(event) {
-  if (event.target.classList.contains('popup')) {
-    closeProfilePopup();
-  }
+  closePopup(profilePopup);
 }
 
 //! Функция сохранения новых данных профиля
@@ -88,7 +99,7 @@ function profileEditFormSubmitHandler(event) {
   event.preventDefault();
   profileName.textContent = nameInput.value;
   profileOccupation.textContent = jobInput.value;
-  closeProfilePopup();
+  closePopup(profilePopup);
 }
 
 //! Эвентлисенеры
@@ -100,8 +111,7 @@ profileFormSubmit.addEventListener('submit', profileEditFormSubmitHandler);
 
 // Закрытие попапа редактирования профиля
 profilePopupCloseButton.addEventListener('click', closeProfilePopup);
-profilePopup.addEventListener('mousedown', closeProfilePopupOnWindowClick);
-window.addEventListener('keydown', closeProfilePopupOnEsc);
+profilePopup.addEventListener('mousedown', closePopupOnWindowClick);
 
 //! MESTO project ch.2
 
@@ -153,7 +163,7 @@ function createCard(name, link) {
 
   // Функция открытия попапа с картинкой
   function openImagePopup(event) {
-    imagePopup.classList.add('popup_opened');
+    openPopup(imagePopup);
     imagePopupPlacePhoto.src = event.target.src;
     imagePopupPlaceTitle.textContent = name;
   }
@@ -168,7 +178,7 @@ initialCards.forEach((card) =>
 
 //! Функция открытия попапа добавления нового места
 function openPlacePopup() {
-  placePopup.classList.add('popup_opened');
+  openPopup(placePopup);
   placePopupTitleInput.value = '';
   placePopupUrlInput.value = '';
 }
@@ -181,41 +191,17 @@ function createCustomCard(event) {
   const placeUrl = placePopup.querySelector('.popup__input_type_url').value;
 
   placesList.prepend(createCard(placeTitle, placeUrl));
-  closePlacePopup();
+  closePopup(placePopup);
 }
 
 //? Закрытие попапа нового места
 function closePlacePopup() {
-  placePopup.classList.remove('popup_opened');
-}
-
-function closePlacePopupOnEsc(event) {
-  if (event.key === 'Escape') {
-    closePlacePopup();
-  }
-}
-
-function closePlacePopupOnWindowClick(event) {
-  if (event.target.classList.contains('popup_place')) {
-    closePlacePopup();
-  }
+  closePopup(placePopup);
 }
 
 //? Закрытие попапа с картинкой
 function closeImagePopup() {
-  imagePopup.classList.remove('popup_opened');
-}
-
-function closeImagePopupOnWindowClick(event) {
-  if (event.target.classList.contains('popup_image')) {
-    closeImagePopup();
-  }
-}
-
-function closeImagePopupOnEsc(event) {
-  if (event.key === 'Escape') {
-    closeImagePopup();
-  }
+  closePopup(imagePopup);
 }
 
 //! Эвентлисенеры
@@ -228,10 +214,8 @@ placePopup.addEventListener('submit', createCustomCard);
 
 // Закрытие попапа добавления нового места
 placePopupCloseButton.addEventListener('click', closePlacePopup);
-placePopup.addEventListener('mousedown', closePlacePopupOnWindowClick);
-window.addEventListener('keydown', closePlacePopupOnEsc);
+placePopup.addEventListener('mousedown', closePopupOnWindowClick);
 
 // Закрытие попапа с картинкой
 imagePopupCloseButton.addEventListener('click', closeImagePopup);
-imagePopup.addEventListener('mousedown', closeImagePopupOnWindowClick);
-window.addEventListener('keydown', closeImagePopupOnEsc);
+imagePopup.addEventListener('mousedown', closePopupOnWindowClick);
