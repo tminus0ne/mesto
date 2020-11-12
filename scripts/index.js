@@ -90,10 +90,6 @@ function openProfilePopup() {
   openPopup(profilePopup);
 }
 
-function closeProfilePopup() {
-  closePopup(profilePopup);
-}
-
 //! Функция сохранения новых данных профиля
 function profileEditFormSubmitHandler(event) {
   event.preventDefault();
@@ -110,7 +106,9 @@ profilePopupOpenButton.addEventListener('click', openProfilePopup);
 profileFormSubmit.addEventListener('submit', profileEditFormSubmitHandler);
 
 // Закрытие попапа редактирования профиля
-profilePopupCloseButton.addEventListener('click', closeProfilePopup);
+profilePopupCloseButton.addEventListener('click', () => {
+  closePopup(profilePopup);
+});
 profilePopup.addEventListener('mousedown', closePopupOnWindowClick);
 
 //! MESTO project ch.2
@@ -194,16 +192,6 @@ function createCustomCard(event) {
   closePopup(placePopup);
 }
 
-//? Закрытие попапа нового места
-function closePlacePopup() {
-  closePopup(placePopup);
-}
-
-//? Закрытие попапа с картинкой
-function closeImagePopup() {
-  closePopup(imagePopup);
-}
-
 //! Эвентлисенеры
 
 // Открытие попапа добавления нового места
@@ -213,9 +201,13 @@ placePopupOpenButton.addEventListener('click', openPlacePopup);
 placePopup.addEventListener('submit', createCustomCard);
 
 // Закрытие попапа добавления нового места
-placePopupCloseButton.addEventListener('click', closePlacePopup);
+placePopupCloseButton.addEventListener('click', () => {
+  closePopup(placePopup);
+});
 placePopup.addEventListener('mousedown', closePopupOnWindowClick);
 
 // Закрытие попапа с картинкой
-imagePopupCloseButton.addEventListener('click', closeImagePopup);
+imagePopupCloseButton.addEventListener('click', () => {
+  closePopup(imagePopup);
+});
 imagePopup.addEventListener('mousedown', closePopupOnWindowClick);
