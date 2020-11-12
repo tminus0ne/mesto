@@ -44,26 +44,7 @@
         ></button>
       </section>
 
-      <section class="places">
-        <template class="place__template">
-          <article class="place">
-            <button
-              type="button"
-              class="place__remove-button"
-              aria-label="Удалить"
-            ></button>
-            <img alt="Фотография места" class="place__image" />
-            <div class="place__description">
-              <h2 class="place__title"></h2>
-              <button
-                type="button"
-                aria-label="Нравится"
-                class="place__like-button"
-              ></button>
-            </div>
-          </article>
-        </template>
-      </section>
+      <section class="places"></section>
     </main>
 
     <footer class="footer">
@@ -136,15 +117,30 @@
           aria-label="Закрыть"
           class="popup__close-button"
         ></button>
-        <!-- лайк - заглушка для валидатора -->
-        <img
-          src="./images/like.svg"
-          alt="Фотография выбранного места"
-          class="popup__photo"
-        />
+        <img src="#" alt="Фотография выбранного места" class="popup__photo" />
         <h3 class="popup__place-title">Название выбранного места</h3>
       </div>
     </section>
+
+    <template class="place__template">
+      <article class="place">
+        <button
+          type="button"
+          class="place__remove-button"
+          aria-label="Удалить"
+        ></button>
+        <img alt="Фотография места" class="place__image" />
+        <div class="place__description">
+          <h2 class="place__title"></h2>
+          <button
+            type="button"
+            aria-label="Нравится"
+            class="place__like-button"
+          ></button>
+        </div>
+      </article>
+    </template>
+    <!--я думал, что валидатор будет ругаться на пустую секцию, даже проверять не стал, а он оказывается даже внимания не обратил-->
 
     <script src="./scripts/index.js"></script>
   </body>
