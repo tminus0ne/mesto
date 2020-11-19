@@ -47,9 +47,6 @@ const profilePopupCloseButton = profilePopup.querySelector(
 );
 
 // Редактирование
-const profileFormSubmit = profilePopup.querySelector(
-  '.popup__container_profile'
-);
 const nameInput = profilePopup.querySelector('.popup__input_type_name');
 const jobInput = profilePopup.querySelector('.popup__input_type_occupation');
 
@@ -103,7 +100,7 @@ function profileEditFormSubmitHandler(event) {
 profilePopupOpenButton.addEventListener('click', openProfilePopup);
 
 // Сабмит попапа редактирования профиля
-profileFormSubmit.addEventListener('submit', profileEditFormSubmitHandler);
+profilePopup.addEventListener('submit', profileEditFormSubmitHandler);
 
 // Закрытие попапа редактирования профиля
 profilePopupCloseButton.addEventListener('click', () => {
