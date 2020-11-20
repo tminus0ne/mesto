@@ -1,13 +1,5 @@
 'use strict';
 
-const formProfile = document.querySelector('.popup__container_profile');
-const inputList = formProfile.querySelectorAll('.popup__input');
-const submitButton = formProfile.querySelector('.popup__submit-button');
-
-formProfile.addEventListener('submit', (event) => {
-  event.preventDefault();
-});
-
 function showError(form, input) {
   const error = form.querySelector(`#${input.id}-error`);
   error.textContent = input.validationMessage;
@@ -38,9 +30,31 @@ function switchButtonState(button, isEnable) {
   }
 }
 
-inputList.forEach((input) => {
-  input.addEventListener('input', () => {
-    chackValidity(formProfile, input);
-    switchButtonState(submitButton, formProfile.checkValidity());
+function addEventListeners(form) {
+  const inputList = form.querySelectorAll('.popup__input');
+  const submitButton = form.querySelector('.popup__submit-button');
+
+  inputList.forEach((input) => {
+    input.addEventListener('input', () => {
+      chackValidity(form, input);
+      switchButtonState(submitButton, form.checkValidity());
+    });
   });
-});
+}
+
+function enableValidation() {
+  const forms = document.querySelectorAll('.popup__container');
+
+  forms.forEach((form) => {
+    addEventListeners(form);
+
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+    });
+
+    const submitButton = form.querySelector('.popup__submit-button');
+    switchButtonState(submitButton, form.checkValidity());
+  });
+}
+
+enableValidation();
