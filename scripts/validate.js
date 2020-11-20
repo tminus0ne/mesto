@@ -1,60 +1,68 @@
 'use strict';
 
-function showError(form, input) {
+function showError(form, input, object) {
   const error = form.querySelector(`#${input.id}-error`);
   error.textContent = input.validationMessage;
-  input.classList.add('popup__input_invalid');
+  input.classList.add(object.inputErrorClass);
 }
 
-function hideError(form, input) {
+function hideError(form, input, object) {
   const error = form.querySelector(`#${input.id}-error`);
   error.textContent = '';
-  input.classList.remove('popup__input_invalid');
+  input.classList.remove(object.inputErrorClass);
 }
 
-function chackValidity(form, input) {
-  if (!input.validity.valid) {
-    showError(form, input);
+function checkInputValidation(form, input, object) {
+  if (input.validity.valid) {
+    hideError(form, input, object);
   } else {
-    hideError(form, input);
+    showError(form, input, object);
   }
 }
 
-function switchButtonState(button, isEnable) {
+function switchButtonState(button, isEnable, object) {
   if (isEnable) {
-    button.classList.remove('popup__submit-button_disabled');
+    button.classList.remove(object.inactiveButtonClass);
     button.disabled = false;
   } else {
-    button.classList.add('popup__submit-button_disabled');
+    button.classList.add(object.inactiveButtonClass);
     button.disabled = true;
   }
 }
 
-function addEventListeners(form) {
-  const inputList = form.querySelectorAll('.popup__input');
-  const submitButton = form.querySelector('.popup__submit-button');
+function addEventListeners(form, object) {
+  const inputList = form.querySelectorAll(object.inputSelector);
+  const submitButton = form.querySelector(object.submitButtonSelector);
 
   inputList.forEach((input) => {
     input.addEventListener('input', () => {
-      chackValidity(form, input);
-      switchButtonState(submitButton, form.checkValidity());
+      checkInputValidation(form, input, object);
+      switchButtonState(submitButton, form.checkValidity(), object);
     });
   });
 }
 
-function enableValidation() {
-  const forms = document.querySelectorAll('.popup__container');
+function addFormValidation(object) {
+  const forms = document.querySelectorAll(object.formSelector);
 
   forms.forEach((form) => {
-    addEventListeners(form);
+    addEventListeners(form, object);
 
     form.addEventListener('submit', (event) => {
       event.preventDefault();
     });
 
-    const submitButton = form.querySelector('.popup__submit-button');
-    switchButtonState(submitButton, form.checkValidity());
+    const submitButton = form.querySelector(object.submitButtonSelector);
+    switchButtonState(submitButton, form.checkValidity(), object);
   });
 }
 
-enableValidation();
+const enableValidation = {
+  formSelector: '.popup__container',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__submit-button',
+  inactiveButtonClass: 'popup__submit-button_disabled',
+  inputErrorClass: 'popup__input_invalid',
+};
+
+addFormValidation(enableValidation);
