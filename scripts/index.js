@@ -58,13 +58,13 @@ const profileOccupation = profile.querySelector('.profile__occupation');
 function openPopup(popup) {
   popup.classList.add('popup_opened');
   document.addEventListener('keydown', closePopupOnEsc);
-  clearErrorMessage();
-  removeInvalidInputClass();
 }
 
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
   document.removeEventListener('keydown', closePopupOnEsc);
+  clearErrorMessage();
+  removeInvalidInputClass();
 }
 
 //! Функция закрытия попапа при нажатии на Esc
