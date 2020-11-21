@@ -72,4 +72,5 @@ function addFormValidation(object) {
   });
 }
 
+//! Вызов функции валидации
 addFormValidation(enableValidation);

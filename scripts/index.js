@@ -232,6 +232,7 @@ function removeInvalidInputClass() {
   });
 }
 
+//! Функция переключения активной кнопки сабмита
 function toggleButtonActivity() {
   buttons.forEach((event) => {
     event.classList.add('popup__submit-button_disabled');
