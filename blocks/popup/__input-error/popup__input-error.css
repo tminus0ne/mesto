@@ -12,3 +12,9 @@
   margin-bottom: -20px;
   word-wrap: break-word;
 }
+
+@media screen and (max-width: 520px) and (min-width: 320px) {
+  .popup__input-error {
+    max-width: 238px;
+  }
+}
