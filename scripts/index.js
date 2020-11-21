@@ -58,6 +58,8 @@ const profileOccupation = profile.querySelector('.profile__occupation');
 function openPopup(popup) {
   popup.classList.add('popup_opened');
   document.addEventListener('keydown', closePopupOnEsc);
+  clearErrorMessage();
+  removeInvalidInputClass();
 }
 
 function closePopup(popup) {
@@ -208,3 +210,22 @@ imagePopupCloseButton.addEventListener('click', () => {
   closePopup(imagePopup);
 });
 imagePopup.addEventListener('mousedown', closePopupOnWindowClick);
+
+//! MESTO project ch.3
+
+// Очистка ошибок валидации
+const errorMessage = document.querySelectorAll('.popup__input-error');
+const popupInput = document.querySelectorAll('.popup__input');
+
+//! Функции очистки ошибок валидации
+function clearErrorMessage() {
+  errorMessage.forEach((event) => {
+    event.textContent = '';
+  });
+}
+
+function removeInvalidInputClass() {
+  popupInput.forEach((event) => {
+    event.classList.remove('popup__input_invalid');
+  });
+}
