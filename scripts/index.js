@@ -58,6 +58,7 @@ const profileOccupation = profile.querySelector('.profile__occupation');
 function openPopup(popup) {
   popup.classList.add('popup_opened');
   document.addEventListener('keydown', closePopupOnEsc);
+  toggleButtonActivity();
 }
 
 function closePopup(popup) {
@@ -214,18 +215,26 @@ imagePopup.addEventListener('mousedown', closePopupOnWindowClick);
 //! MESTO project ch.3
 
 // Очистка ошибок валидации
-const errorMessage = document.querySelectorAll('.popup__input-error');
-const popupInput = document.querySelectorAll('.popup__input');
+const errorMessages = document.querySelectorAll('.popup__input-error');
+const popupInputs = document.querySelectorAll('.popup__input');
+const buttons = document.querySelectorAll('.popup__submit-button');
 
 //! Функции очистки ошибок валидации
 function clearErrorMessage() {
-  errorMessage.forEach((event) => {
+  errorMessages.forEach((event) => {
     event.textContent = '';
   });
 }
 
 function removeInvalidInputClass() {
-  popupInput.forEach((event) => {
+  popupInputs.forEach((event) => {
     event.classList.remove('popup__input_invalid');
+  });
+}
+
+function toggleButtonActivity() {
+  buttons.forEach((event) => {
+    event.classList.add('popup__submit-button_disabled');
+    event.disabled = true;
   });
 }
