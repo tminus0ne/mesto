@@ -53,6 +53,9 @@ const jobInput = profilePopup.querySelector('.popup__input_type_occupation');
 const profileName = profile.querySelector('.profile__name');
 const profileOccupation = profile.querySelector('.profile__occupation');
 
+// Переменная для кнопки Escape
+const escapeKey = 'Escape';
+
 //! Общие функции для открытия и закрытия попапов
 
 function openPopup(popup) {
@@ -70,7 +73,7 @@ function closePopup(popup) {
 
 //! Функция закрытия попапа при нажатии на Esc
 function closePopupOnEsc(event) {
-  if (event.key === 'Escape') {
+  if (event.key === escapeKey) {
     const openedPopup = document.querySelector('.popup_opened');
     closePopup(openedPopup);
   }
