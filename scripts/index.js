@@ -34,8 +34,6 @@ const initialCards = [
   },
 ];
 
-//! MESTO project ch.1
-
 //! Объявление переменных
 // Открытие и закрытие попапа
 const profile = document.querySelector('.profile');
@@ -53,73 +51,7 @@ const jobInput = profilePopup.querySelector('.popup__input_type_occupation');
 const profileName = profile.querySelector('.profile__name');
 const profileOccupation = profile.querySelector('.profile__occupation');
 
-// Переменная для кнопки Escape
-const escapeKey = 'Escape';
-
-//! Общие функции для открытия и закрытия попапов
-
-function openPopup(popup) {
-  popup.classList.add('popup_opened');
-  document.addEventListener('keydown', closePopupOnEsc);
-  toggleButtonActivity();
-}
-
-function closePopup(popup) {
-  popup.classList.remove('popup_opened');
-  document.removeEventListener('keydown', closePopupOnEsc);
-
-  clearPopupInputs(); // Очистка инпутов попапа (ресет формы)
-  clearErrorMessage(); // Очистка текстов ошибок
-  removeInvalidInputClass(); // Удаление класса красного подчеркивания
-}
-
-//! Функция закрытия попапа при нажатии на Esc
-function closePopupOnEsc(event) {
-  if (event.key === escapeKey) {
-    const openedPopup = document.querySelector('.popup_opened');
-    closePopup(openedPopup);
-  }
-}
-
-//! Функция закрытия попапа при нажатии на любое место окна просмотра
-function closePopupOnWindowClick(event) {
-  if (event.target.classList.contains('popup')) {
-    closePopup(event.target);
-  }
-}
-
-//! Функция открытия попапа редактированяи профиля
-function openProfilePopup() {
-  nameInput.value = profileName.textContent;
-  jobInput.value = profileOccupation.textContent;
-  openPopup(profilePopup);
-}
-
-//! Функция сохранения новых данных профиля
-function profileEditFormSubmitHandler(event) {
-  event.preventDefault();
-  profileName.textContent = nameInput.value;
-  profileOccupation.textContent = jobInput.value;
-  closePopup(profilePopup);
-}
-
-//! Эвентлисенеры
-// Открытие попапа редактирования профиля
-profilePopupOpenButton.addEventListener('click', openProfilePopup);
-
-// Сабмит попапа редактирования профиля
-profilePopup.addEventListener('submit', profileEditFormSubmitHandler);
-
-// Закрытие попапа редактирования профиля
-profilePopupCloseButton.addEventListener('click', () => {
-  closePopup(profilePopup);
-});
-profilePopup.addEventListener('mousedown', closePopupOnWindowClick);
-
-//! MESTO project ch.2
-
-//! Объявление переменных
-// Открытие и закрытие попапа
+// Открытие и закрытие попапа нового места
 const placePopup = document.querySelector('.popup_place');
 const placePopupOpenButton = profile.querySelector('.profile__add-button');
 const placePopupCloseButton = placePopup.querySelector('.popup__close-button');
@@ -139,6 +71,81 @@ const imagePopup = document.querySelector('.popup_image');
 const imagePopupCloseButton = imagePopup.querySelector('.popup__close-button');
 const imagePopupPlacePhoto = imagePopup.querySelector('.popup__photo');
 const imagePopupPlaceTitle = imagePopup.querySelector('.popup__place-title');
+
+// Очистка ошибок валидации
+const errorMessages = document.querySelectorAll('.popup__input-error');
+const popupInputs = document.querySelectorAll('.popup__input');
+
+//Очистка инпутов
+const popupForm = document.querySelectorAll('.popup__container');
+
+// Тоггл состояния кнопки
+const buttons = document.querySelectorAll('.popup__submit-button');
+
+// Переменная для кнопки Escape
+const escapeKey = 'Escape';
+
+//! Валидация
+
+//! Функции очистки инпутов попапов
+function clearPopupInputs() {
+  popupForm.forEach((form) => {
+    form.reset();
+  });
+}
+
+//! Функции очистки ошибок валидации
+function clearErrorMessage() {
+  errorMessages.forEach((event) => {
+    event.textContent = '';
+  });
+}
+
+function removeInvalidInputClass() {
+  popupInputs.forEach((event) => {
+    event.classList.remove('popup__input_invalid');
+  });
+}
+
+//! Функция переключения активной кнопки сабмита
+function toggleButtonActivity() {
+  buttons.forEach((event) => {
+    event.classList.add('popup__submit-button_disabled');
+    event.disabled = true;
+  });
+}
+
+//! Общие функции для открытия и закрытия попапов
+
+function openPopup(popup) {
+  popup.classList.add('popup_opened');
+  document.addEventListener('keydown', closePopupOnEsc);
+  toggleButtonActivity();
+}
+
+function closePopup(popup) {
+  popup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', closePopupOnEsc);
+
+  clearPopupInputs(); // Очистка инпутов попапа (ресет формы)
+  clearErrorMessage(); // Очистка текстов ошибок
+  removeInvalidInputClass(); // Удаление класса красного подчеркивания
+}
+
+//! Функция открытия попапа редактированяи профиля
+function openProfilePopup() {
+  nameInput.value = profileName.textContent;
+  jobInput.value = profileOccupation.textContent;
+  openPopup(profilePopup);
+}
+
+//! Функция сохранения новых данных профиля
+function profileEditFormSubmitHandler(event) {
+  event.preventDefault();
+  profileName.textContent = nameInput.value;
+  profileOccupation.textContent = jobInput.value;
+  closePopup(profilePopup);
+}
 
 //! Функция создания исходного массива карточек
 function createCard(name, link) {
@@ -175,6 +182,7 @@ function createCard(name, link) {
   return placeElement;
 }
 
+//! Перебор исходного массива карточек
 initialCards.forEach((card) =>
   placesList.append(createCard(card.name, card.link))
 );
@@ -190,7 +198,34 @@ function createCustomCard(event) {
   closePopup(placePopup);
 }
 
+//! Функция закрытия попапа при нажатии на Esc
+function closePopupOnEsc(event) {
+  if (event.key === escapeKey) {
+    const openedPopup = document.querySelector('.popup_opened');
+    closePopup(openedPopup);
+  }
+}
+
+//! Функция закрытия попапа при нажатии на любое место окна просмотра
+function closePopupOnWindowClick(event) {
+  if (event.target.classList.contains('popup')) {
+    closePopup(event.target);
+  }
+}
+
 //! Эвентлисенеры
+
+// Открытие попапа редактирования профиля
+profilePopupOpenButton.addEventListener('click', openProfilePopup);
+
+// Сабмит попапа редактирования профиля
+profilePopup.addEventListener('submit', profileEditFormSubmitHandler);
+
+// Закрытие попапа редактирования профиля
+profilePopupCloseButton.addEventListener('click', () => {
+  closePopup(profilePopup);
+});
+profilePopup.addEventListener('mousedown', closePopupOnWindowClick);
 
 // Открытие попапа добавления нового места
 placePopupOpenButton.addEventListener('click', () => {
@@ -211,44 +246,3 @@ imagePopupCloseButton.addEventListener('click', () => {
   closePopup(imagePopup);
 });
 imagePopup.addEventListener('mousedown', closePopupOnWindowClick);
-
-//! MESTO project ch.3
-
-//! Объявление переменных
-// Очистка ошибок валидации
-const errorMessages = document.querySelectorAll('.popup__input-error');
-const popupInputs = document.querySelectorAll('.popup__input');
-
-// Тоггл состояния кнопки
-const buttons = document.querySelectorAll('.popup__submit-button');
-
-//Очистка инпутов
-const popupForm = document.querySelectorAll('.popup__container');
-
-//! Функции очистки инпутов попапов
-function clearPopupInputs() {
-  popupForm.forEach((form) => {
-    form.reset();
-  });
-}
-
-//! Функции очистки ошибок валидации
-function clearErrorMessage() {
-  errorMessages.forEach((event) => {
-    event.textContent = '';
-  });
-}
-
-function removeInvalidInputClass() {
-  popupInputs.forEach((event) => {
-    event.classList.remove('popup__input_invalid');
-  });
-}
-
-//! Функция переключения активной кнопки сабмита
-function toggleButtonActivity() {
-  buttons.forEach((event) => {
-    event.classList.add('popup__submit-button_disabled');
-    event.disabled = true;
-  });
-}
