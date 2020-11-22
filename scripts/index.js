@@ -67,8 +67,10 @@ function openPopup(popup) {
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
   document.removeEventListener('keydown', closePopupOnEsc);
-  clearErrorMessage();
-  removeInvalidInputClass();
+
+  clearPopupInputs(); // Очистка инпутов попапа (ресет формы)
+  clearErrorMessage(); // Очистка текстов ошибок
+  removeInvalidInputClass(); // Удаление класса красного подчеркивания
 }
 
 //! Функция закрытия попапа при нажатии на Esc
@@ -177,13 +179,6 @@ initialCards.forEach((card) =>
   placesList.append(createCard(card.name, card.link))
 );
 
-//! Функция открытия попапа добавления нового места
-function openPlacePopup() {
-  openPopup(placePopup);
-  placePopupTitleInput.value = '';
-  placePopupUrlInput.value = '';
-}
-
 //! Функция добавленяи карточки пользователем
 function createCustomCard(event) {
   event.preventDefault();
@@ -198,7 +193,9 @@ function createCustomCard(event) {
 //! Эвентлисенеры
 
 // Открытие попапа добавления нового места
-placePopupOpenButton.addEventListener('click', openPlacePopup);
+placePopupOpenButton.addEventListener('click', () => {
+  openPopup(placePopup);
+});
 
 // Сабмит попапа нового места
 placePopup.addEventListener('submit', createCustomCard);
@@ -217,10 +214,23 @@ imagePopup.addEventListener('mousedown', closePopupOnWindowClick);
 
 //! MESTO project ch.3
 
+//! Объявление переменных
 // Очистка ошибок валидации
 const errorMessages = document.querySelectorAll('.popup__input-error');
 const popupInputs = document.querySelectorAll('.popup__input');
+
+// Тоггл состояния кнопки
 const buttons = document.querySelectorAll('.popup__submit-button');
+
+//Очистка инпутов
+const popupForm = document.querySelectorAll('.popup__container');
+
+//! Функции очистки инпутов попапов
+function clearPopupInputs() {
+  popupForm.forEach((form) => {
+    form.reset();
+  });
+}
 
 //! Функции очистки ошибок валидации
 function clearErrorMessage() {
