@@ -88,31 +88,23 @@ const escapeKey = 'Escape';
 //! Валидация
 
 //! Функции очистки инпутов попапов
-function clearPopupInputs() {
-  popupForm.forEach((form) => {
-    form.reset();
-  });
+function clearPopupInputs(popup) {
+  popup.reset();
 }
 
 //! Функции очистки ошибок валидации
-function clearErrorMessage() {
-  errorMessages.forEach((event) => {
-    event.textContent = '';
-  });
+function clearErrorMessage(popup) {
+  popup.textContent = '';
 }
 
-function removeInvalidInputClass() {
-  popupInputs.forEach((event) => {
-    event.classList.remove('popup__input_invalid');
-  });
+function removeInvalidInputClass(popup) {
+  popup.classList.remove('popup__input_invalid');
 }
 
 //! Функция переключения активной кнопки сабмита
-function toggleButtonActivity() {
-  buttons.forEach((event) => {
-    event.classList.add('popup__submit-button_disabled');
-    event.disabled = true;
-  });
+function toggleButtonActivity(popup) {
+  popup.classList.add('popup__submit-button_disabled');
+  popup.disabled = true;
 }
 
 //! Общие функции для открытия и закрытия попапов
@@ -120,16 +112,29 @@ function toggleButtonActivity() {
 function openPopup(popup) {
   popup.classList.add('popup_opened');
   document.addEventListener('keydown', closePopupOnEsc);
-  toggleButtonActivity();
+
+  buttons.forEach((popup) => {
+    toggleButtonActivity(popup);
+  });
 }
 
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
   document.removeEventListener('keydown', closePopupOnEsc);
 
-  clearPopupInputs(); // Очистка инпутов попапа (ресет формы)
-  clearErrorMessage(); // Очистка текстов ошибок
-  removeInvalidInputClass(); // Удаление класса красного подчеркивания
+  popupForm.forEach((popup) => {
+    clearPopupInputs(popup);
+  });
+
+  errorMessages.forEach((popup) => {
+    clearErrorMessage(popup);
+  });
+
+  popupInputs.forEach((popup) => {
+    removeInvalidInputClass(popup);
+  });
+
+  // Я правильно понял комментарии "можно лучше"?
 }
 
 //! Функция открытия попапа редактированяи профиля
