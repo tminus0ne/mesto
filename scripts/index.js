@@ -108,7 +108,6 @@ function toggleButtonActivity(popup) {
 }
 
 //! Общие функции для открытия и закрытия попапов
-
 function openPopup(popup) {
   popup.classList.add('popup_opened');
   document.addEventListener('keydown', closePopupOnEsc);
@@ -133,8 +132,6 @@ function closePopup(popup) {
   popupInputs.forEach((popup) => {
     removeInvalidInputClass(popup);
   });
-
-  // Я правильно понял комментарии "можно лучше"?
 }
 
 //! Функция открытия попапа редактированяи профиля
@@ -161,6 +158,7 @@ function createCard(name, link) {
   placeElement.querySelector('.place__title').textContent = name;
   placeElement.querySelector('.place__image').src = link;
 
+  // Форма карточки
   placeElement
     .querySelector('.place__remove-button')
     .addEventListener('click', (event) => {
