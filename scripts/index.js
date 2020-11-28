@@ -154,20 +154,19 @@ function createCard(name, link) {
   const placeElement = placeTemplate.content.cloneNode(true);
   const likeButton = placeElement.querySelector('.place__like-button');
   const placeImage = placeElement.querySelector('.place__image');
+  const removeButton = placeElement.querySelector('.place__remove-button');
 
   placeElement.querySelector('.place__title').textContent = name;
   placeElement.querySelector('.place__image').src = link;
 
-  // Форма карточки
-  placeElement
-    .querySelector('.place__remove-button')
-    .addEventListener('click', (event) => {
-      const place = event.target.closest('.place');
+  // Удаление карточки
+  removeButton.addEventListener('click', (event) => {
+    const place = event.target.closest('.place');
 
-      if (place) {
-        place.remove();
-      }
-    });
+    if (place) {
+      place.remove();
+    }
+  });
 
   // Лайк
   likeButton.addEventListener('click', (event) => {
