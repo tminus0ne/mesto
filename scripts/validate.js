@@ -63,10 +63,6 @@ function addFormValidation(object) {
   forms.forEach((form) => {
     addEventListeners(form, object);
 
-    form.addEventListener('submit', (event) => {
-      event.preventDefault();
-    });
-
     const submitButton = form.querySelector(object.submitButtonSelector);
     toggleButtonState(submitButton, form.checkValidity(), object);
   });
