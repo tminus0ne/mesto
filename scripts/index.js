@@ -151,46 +151,7 @@ function profileEditFormSubmitHandler(event) {
   closePopup(profilePopup);
 }
 
-// //! Функция создания исходного массива карточек
-// function createCard(name, link) {
-//   const placeElement = placeTemplate.content.cloneNode(true);
-//   const likeButton = placeElement.querySelector('.place__like-button');
-//   const placeImage = placeElement.querySelector('.place__image');
-//   const removeButton = placeElement.querySelector('.place__remove-button');
-
-//   placeElement.querySelector('.place__title').textContent = name;
-//   placeElement.querySelector('.place__image').src = link;
-
-//   // Удаление карточки
-//   removeButton.addEventListener('click', (event) => {
-//     const place = event.target.closest('.place');
-
-//     if (place) {
-//       place.remove();
-//     }
-//   });
-
-//   // Лайк
-//   likeButton.addEventListener('click', (event) => {
-//     event.target.classList.toggle('place__like-button_active');
-//   });
-
-//   // Функция открытия попапа с картинкой
-//   function openImagePopup(event) {
-//     openPopup(imagePopup);
-//     imagePopupPlacePhoto.src = event.target.src;
-//     imagePopupPlaceTitle.textContent = name;
-//   }
-//   placeImage.addEventListener('click', openImagePopup);
-
-//   return placeElement;
-// }
-
-// //! Перебор исходного массива карточек
-// initialCards.forEach((card) =>
-//   placesList.append(createCard(card.name, card.link))
-// );
-
+//! Функция создания исходного массива карточек
 initialCards.forEach((card) => {
   const place = new Card(card.name, card.link);
   const placeElement = place.generatePlace();
