@@ -15,6 +15,18 @@ export default class Card {
     return placeElement;
   }
 
+  _handleOpenPopup() {
+    const popupImageElement = document.querySelector('.popup_image');
+    const popupImage = popupImageElement.querySelector('.popup__photo');
+    const popupImageTitle = popupImageElement.querySelector(
+      '.popup__place-title'
+    );
+    popupImage.src = this._image;
+    popupImageTitle.textContent = this._title;
+
+    popupImageElement.classList.add('popup_opened');
+  }
+
   _setEventListeners() {
     const likeButton = this._place.querySelector('.place__like-button');
     likeButton.addEventListener('click', () => {
@@ -22,36 +34,25 @@ export default class Card {
     });
 
     const removeButton = this._place.querySelector('.place__remove-button');
-    removeButton.addEventListener('click', (event) => {
+    removeButton.addEventListener('click', () => {
       if (this._place) {
         this._place.remove();
       }
     });
 
-    this._place
-      .querySelector('.place__image')
-      .addEventListener('click', (event) => {
-        const imagePopup = document.querySelector('.popup_image');
-
-        imagePopup.querySelector('.popup__photo').src = this._image;
-        imagePopup.querySelector(
-          '.popup__place-title'
-        ).textContent = this._title;
+    const imagePopup = this._place.querySelector('.place__image');
+    imagePopup.addEventListener('click', () => {
+      this._handleOpenPopup();
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') {
+          const popupImageElement = document.querySelector('.popup_image');
+          popupImageElement.classList.remove('popup_opened');
+        }
       });
-
-    // imagePopupCloseButton.addEventListener('click', () => {
-    //   this._handleClosePopup();
-    // });
-
-    //   function openImagePopup(event) {
-    //     openPopup(imagePopup);
-    //     imagePopupPlacePhoto.src = event.target.src;
-    //     imagePopupPlaceTitle.textContent = name;
-    //   }
-    //   placeImage.addEventListener('click', openImagePopup);
+    });
   }
 
-  generatePlace(imagePopup) {
+  generatePlace() {
     this._place = this._getTemplate();
     this._setEventListeners();
 
