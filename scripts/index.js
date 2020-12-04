@@ -1,6 +1,6 @@
 'use strict';
 
-import Card from '../scripts/Card.js';
+import Card from './Card.js';
 
 //! Исходный массив карточек
 const initialCards = [
@@ -66,7 +66,7 @@ const placePopupUrlInput = placePopup.querySelector('.popup__input_type_url');
 const placesList = document.querySelector('.places');
 
 // Темплейт формы карточки
-const placeTemplate = document.querySelector('.place__template');
+// const placeTemplate = document.querySelector('.place__template'); // todo
 
 // Попап с выбранной картинкой
 const imagePopup = document.querySelector('.popup_image');
