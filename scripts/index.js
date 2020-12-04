@@ -1,5 +1,7 @@
 'use strict';
 
+import Card from '../scripts/Card.js';
+
 //! Исходный массив карточек
 const initialCards = [
   {
@@ -149,45 +151,52 @@ function profileEditFormSubmitHandler(event) {
   closePopup(profilePopup);
 }
 
-//! Функция создания исходного массива карточек
-function createCard(name, link) {
-  const placeElement = placeTemplate.content.cloneNode(true);
-  const likeButton = placeElement.querySelector('.place__like-button');
-  const placeImage = placeElement.querySelector('.place__image');
-  const removeButton = placeElement.querySelector('.place__remove-button');
+// //! Функция создания исходного массива карточек
+// function createCard(name, link) {
+//   const placeElement = placeTemplate.content.cloneNode(true);
+//   const likeButton = placeElement.querySelector('.place__like-button');
+//   const placeImage = placeElement.querySelector('.place__image');
+//   const removeButton = placeElement.querySelector('.place__remove-button');
 
-  placeElement.querySelector('.place__title').textContent = name;
-  placeElement.querySelector('.place__image').src = link;
+//   placeElement.querySelector('.place__title').textContent = name;
+//   placeElement.querySelector('.place__image').src = link;
 
-  // Удаление карточки
-  removeButton.addEventListener('click', (event) => {
-    const place = event.target.closest('.place');
+//   // Удаление карточки
+//   removeButton.addEventListener('click', (event) => {
+//     const place = event.target.closest('.place');
 
-    if (place) {
-      place.remove();
-    }
-  });
+//     if (place) {
+//       place.remove();
+//     }
+//   });
 
-  // Лайк
-  likeButton.addEventListener('click', (event) => {
-    event.target.classList.toggle('place__like-button_active');
-  });
+//   // Лайк
+//   likeButton.addEventListener('click', (event) => {
+//     event.target.classList.toggle('place__like-button_active');
+//   });
 
-  // Функция открытия попапа с картинкой
-  function openImagePopup(event) {
-    openPopup(imagePopup);
-    imagePopupPlacePhoto.src = event.target.src;
-    imagePopupPlaceTitle.textContent = name;
-  }
-  placeImage.addEventListener('click', openImagePopup);
+//   // Функция открытия попапа с картинкой
+//   function openImagePopup(event) {
+//     openPopup(imagePopup);
+//     imagePopupPlacePhoto.src = event.target.src;
+//     imagePopupPlaceTitle.textContent = name;
+//   }
+//   placeImage.addEventListener('click', openImagePopup);
 
-  return placeElement;
-}
+//   return placeElement;
+// }
 
-//! Перебор исходного массива карточек
-initialCards.forEach((card) =>
-  placesList.append(createCard(card.name, card.link))
-);
+// //! Перебор исходного массива карточек
+// initialCards.forEach((card) =>
+//   placesList.append(createCard(card.name, card.link))
+// );
+
+initialCards.forEach((card) => {
+  const place = new Card(card.name, card.link);
+  const placeElement = place.generatePlace();
+
+  placesList.append(placeElement);
+});
 
 //! Функция добавленяи карточки пользователем
 function createCustomCard(event) {
