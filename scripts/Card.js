@@ -27,9 +27,31 @@ export default class Card {
         this._place.remove();
       }
     });
+
+    this._place
+      .querySelector('.place__image')
+      .addEventListener('click', (event) => {
+        const imagePopup = document.querySelector('.popup_image');
+
+        imagePopup.querySelector('.popup__photo').src = this._image;
+        imagePopup.querySelector(
+          '.popup__place-title'
+        ).textContent = this._title;
+      });
+
+    // imagePopupCloseButton.addEventListener('click', () => {
+    //   this._handleClosePopup();
+    // });
+
+    //   function openImagePopup(event) {
+    //     openPopup(imagePopup);
+    //     imagePopupPlacePhoto.src = event.target.src;
+    //     imagePopupPlaceTitle.textContent = name;
+    //   }
+    //   placeImage.addEventListener('click', openImagePopup);
   }
 
-  generatePlace() {
+  generatePlace(imagePopup) {
     this._place = this._getTemplate();
     this._setEventListeners();
 

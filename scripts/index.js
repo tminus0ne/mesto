@@ -204,8 +204,9 @@ function createCustomCard(event) {
 
   const placeTitle = placePopup.querySelector('.popup__input_type_title').value;
   const placeUrl = placePopup.querySelector('.popup__input_type_url').value;
+  const place = new Card(placeTitle, placeUrl);
 
-  placesList.prepend(createCard(placeTitle, placeUrl));
+  placesList.prepend(place.generatePlace());
   closePopup(placePopup);
 }
 
