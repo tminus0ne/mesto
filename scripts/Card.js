@@ -28,6 +28,18 @@ export default class Card {
     popupImageElement.classList.add('popup_opened');
   }
 
+  // Закрытие по нажаьтию Esc
+  _handleEscClick() {
+    document.addEventListener('keydown', (event) => {
+      const escapeKey = 'Escape';
+      if (event.key === escapeKey) {
+        const popupImageElement = document.querySelector('.popup_image');
+        popupImageElement.classList.remove('popup_opened');
+        // не понял, как иначе реализовать для этого попапа закрытие по Esc
+      }
+    });
+  }
+
   _setEventListeners() {
     // Лайк
     const likeButton = this._place.querySelector('.place__like-button');
@@ -47,14 +59,7 @@ export default class Card {
     const imagePopup = this._place.querySelector('.place__image');
     imagePopup.addEventListener('click', () => {
       this._handleOpenPopup();
-      document.addEventListener('keydown', (event) => {
-        const escapeKey = 'Escape';
-        if (event.key === escapeKey) {
-          const popupImageElement = document.querySelector('.popup_image');
-          popupImageElement.classList.remove('popup_opened');
-          // не понял, как иначе реализовать для этого попапа закрытие по Esc
-        }
-      });
+      this._handleEscClick();
     });
   }
 
