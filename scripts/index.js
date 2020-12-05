@@ -1,6 +1,7 @@
 'use strict';
 
 import Card from './Card.js';
+import FormValidator from './FormValidator.js';
 
 //! Исходный массив карточек
 const initialCards = [
@@ -90,13 +91,17 @@ const escapeKey = 'Escape';
 //! Валидация
 
 //! Объект с классами форм
-const enableValidation = {
+const formValidationData = {
   formSelector: '.popup__container',
   inputSelector: '.popup__input',
   submitButtonSelector: '.popup__submit-button',
   inactiveButtonClass: 'popup__submit-button_disabled',
   inputInvalidClass: 'popup__input_invalid',
 };
+
+//! Вызов валидации для каждой формы
+new FormValidator(formValidationData, profilePopup).enableValidation();
+new FormValidator(formValidationData, placePopup).enableValidation();
 
 //! Функции очистки инпутов попапов
 function clearPopupInputs(popup) {
