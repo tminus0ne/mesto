@@ -58,7 +58,7 @@ const placePopup = document.querySelector('.popup_place');
 const placePopupOpenButton = profile.querySelector('.profile__add-button');
 const placePopupCloseButton = placePopup.querySelector('.popup__close-button');
 const placePopupTitleInput = placePopup.querySelector(
-  '.popup__input_type_title'
+  '.popup__input_type_title' // todo
 );
 const placePopupUrlInput = placePopup.querySelector('.popup__input_type_url');
 
@@ -71,8 +71,8 @@ const placesList = document.querySelector('.places');
 // Попап с выбранной картинкой
 const imagePopup = document.querySelector('.popup_image');
 const imagePopupCloseButton = imagePopup.querySelector('.popup__close-button');
-const imagePopupPlacePhoto = imagePopup.querySelector('.popup__photo');
-const imagePopupPlaceTitle = imagePopup.querySelector('.popup__place-title');
+const imagePopupPlacePhoto = imagePopup.querySelector('.popup__photo'); // todo
+const imagePopupPlaceTitle = imagePopup.querySelector('.popup__place-title'); // todo
 
 // Очистка ошибок валидации
 const errorMessages = document.querySelectorAll('.popup__input-error');
@@ -88,6 +88,15 @@ const buttons = document.querySelectorAll('.popup__submit-button');
 const escapeKey = 'Escape';
 
 //! Валидация
+
+//! Объект с классами форм
+const enableValidation = {
+  formSelector: '.popup__container',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__submit-button',
+  inactiveButtonClass: 'popup__submit-button_disabled',
+  inputInvalidClass: 'popup__input_invalid',
+};
 
 //! Функции очистки инпутов попапов
 function clearPopupInputs(popup) {
@@ -153,7 +162,7 @@ function profileEditFormSubmitHandler(event) {
 
 //! Функция создания исходного массива карточек
 initialCards.forEach((card) => {
-  const place = new Card(card.name, card.link);
+  const place = new Card(card.name, card.link, '.place__template');
   const placeElement = place.generatePlace();
 
   placesList.append(placeElement);
@@ -165,7 +174,7 @@ function createCustomCard(event) {
 
   const placeTitle = placePopup.querySelector('.popup__input_type_title').value;
   const placeUrl = placePopup.querySelector('.popup__input_type_url').value;
-  const place = new Card(placeTitle, placeUrl);
+  const place = new Card(placeTitle, placeUrl, '.place__template');
 
   placesList.prepend(place.generatePlace());
   closePopup(placePopup);

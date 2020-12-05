@@ -1,14 +1,15 @@
 'use strict';
 
 export default class Card {
-  constructor(name, link) {
+  constructor(name, link, template) {
     this._title = name;
     this._image = link;
+    this._template = template;
   }
 
   _getTemplate() {
     const placeElement = document
-      .querySelector('.place__template')
+      .querySelector(this._template)
       .content.querySelector('.place')
       .cloneNode(true);
 
@@ -28,14 +29,13 @@ export default class Card {
     popupImageElement.classList.add('popup_opened');
   }
 
-  // Закрытие по нажаьтию Esc
+  // Закрытие по нажатию Esc
   _handleEscClick() {
     document.addEventListener('keydown', (event) => {
       const escapeKey = 'Escape';
       if (event.key === escapeKey) {
         const popupImageElement = document.querySelector('.popup_image');
         popupImageElement.classList.remove('popup_opened');
-        // не понял, как иначе реализовать для этого попапа закрытие по Esc
       }
     });
   }
