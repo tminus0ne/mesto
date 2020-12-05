@@ -58,22 +58,13 @@ const profileOccupation = profile.querySelector('.profile__occupation');
 const placePopup = document.querySelector('.popup_place');
 const placePopupOpenButton = profile.querySelector('.profile__add-button');
 const placePopupCloseButton = placePopup.querySelector('.popup__close-button');
-const placePopupTitleInput = placePopup.querySelector(
-  '.popup__input_type_title' // todo
-);
-const placePopupUrlInput = placePopup.querySelector('.popup__input_type_url');
 
 // Список карточек
 const placesList = document.querySelector('.places');
 
-// Темплейт формы карточки
-// const placeTemplate = document.querySelector('.place__template'); // todo
-
 // Попап с выбранной картинкой
 const imagePopup = document.querySelector('.popup_image');
 const imagePopupCloseButton = imagePopup.querySelector('.popup__close-button');
-const imagePopupPlacePhoto = imagePopup.querySelector('.popup__photo'); // todo
-const imagePopupPlaceTitle = imagePopup.querySelector('.popup__place-title'); // todo
 
 // Очистка ошибок валидации
 const errorMessages = document.querySelectorAll('.popup__input-error');
