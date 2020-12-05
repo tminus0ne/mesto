@@ -18,6 +18,7 @@ export default class FormValidator {
     input.classList.remove(this._data.inputInvalidClass);
   }
 
+  // Функция проверки валидации
   _checkInputValidity(input) {
     if (!input.validity.valid) {
       this._showInputError(input);
@@ -26,6 +27,7 @@ export default class FormValidator {
     }
   }
 
+  // Переключение состояния кнопки
   _toggleButtonState() {
     const button = this._form.querySelector(this._data.submitButtonSelector);
     if (!this._form.checkValidity()) {
@@ -37,6 +39,7 @@ export default class FormValidator {
     }
   }
 
+  // Эвентлисенеры
   _addEventListeners() {
     const inputList = this._form.querySelectorAll(this._data.inputSelector);
     inputList.forEach((input) => {
