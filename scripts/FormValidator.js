@@ -26,9 +26,9 @@ export default class FormValidator {
     }
   }
 
-  _toggleButtonState(isEnable) {
+  _toggleButtonState() {
     const button = this._form.querySelector(this._data.submitButtonSelector);
-    if (!isEnable) {
+    if (!this._form.checkValidity()) {
       button.classList.add(this._data.inactiveButtonClass);
       button.disabled = true;
     } else {
@@ -42,7 +42,7 @@ export default class FormValidator {
     inputList.forEach((input) => {
       input.addEventListener('input', () => {
         this._checkInputValidity(input);
-        this._toggleButtonState(input.checkValidity());
+        this._toggleButtonState();
       });
     });
   }
