@@ -160,7 +160,7 @@ function profileEditFormSubmitHandler(event) {
 
 //! Функция создания исходного массива карточек
 initialCards.forEach((card) => {
-  const place = new Card(card.name, card.link, '.template__place');
+  const place = new Card(card.name, card.link, '.template');
   const placeElement = place.generatePlace();
 
   placesList.append(placeElement);
@@ -172,7 +172,7 @@ function createCustomCard(event) {
 
   const placeTitle = placePopup.querySelector('.popup__input_type_title').value;
   const placeUrl = placePopup.querySelector('.popup__input_type_url').value;
-  const place = new Card(placeTitle, placeUrl, '.template__place');
+  const place = new Card(placeTitle, placeUrl, '.template');
 
   placesList.prepend(place.generatePlace());
   closePopup(placePopup);
