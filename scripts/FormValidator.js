@@ -28,31 +28,26 @@ export default class FormValidator {
 
   _toggleButtonState(isEnable) {
     const button = this._form.querySelector(this._data.submitButtonSelector);
-    if (isEnable) {
-      button.classList.remove(this._data.inactiveButtonClass);
-      button.disabled = false;
-    } else {
+    if (!isEnable) {
       button.classList.add(this._data.inactiveButtonClass);
       button.disabled = true;
+    } else {
+      button.classList.remove(this._data.inactiveButtonClass);
+      button.disabled = false;
     }
   }
 
   _addEventListeners() {
     const inputList = this._form.querySelectorAll(this._data.inputSelector);
-
     inputList.forEach((input) => {
       input.addEventListener('input', () => {
         this._checkInputValidity(input);
-        this._toggleButtonState(
-          input.checkValidity(),
-          this._data.submitButtonSelector
-        );
+        this._toggleButtonState(input.checkValidity());
       });
     });
   }
 
   enableValidation() {
     this._addEventListeners();
-    this._toggleButtonState(this._data.submitButtonSelector);
   }
 }
