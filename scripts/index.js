@@ -81,7 +81,7 @@ const escapeKey = 'Escape';
 
 //! Формы попапов для валидации
 const profileEditForm = document.querySelector('.popup__container_profile');
-const placeAddForm = document.querySelector('.popup__container_profile');
+const placeAddForm = document.querySelector('.popup__container_place');
 
 //! Объект с классами форм
 const formValidationData = {
