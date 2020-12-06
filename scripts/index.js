@@ -79,9 +79,10 @@ const buttons = document.querySelectorAll('.popup__submit-button');
 // Переменная для кнопки Escape
 const escapeKey = 'Escape';
 
-//! Формы попапов для валидации
-const profileEditForm = document.querySelector('.popup__container_profile');
-const placeAddForm = document.querySelector('.popup__container_place');
+//! Объект с классами карточки
+// const cardClassData = {
+
+// }
 
 //! Объект с классами форм
 const formValidationData = {
@@ -91,6 +92,10 @@ const formValidationData = {
   inactiveButtonClass: 'popup__submit-button_disabled',
   inputInvalidClass: 'popup__input_invalid',
 };
+
+//! Формы попапов для валидации
+const profileEditForm = document.querySelector('.popup__container_profile');
+const placeAddForm = document.querySelector('.popup__container_place');
 
 //! Вызов валидации для каждой формы
 new FormValidator(formValidationData, profileEditForm).enableValidation();

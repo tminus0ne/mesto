@@ -25,6 +25,7 @@ export default class Card {
     );
     popupImage.src = this._image;
     popupImageTitle.textContent = this._title;
+    popupImage.alt = this._title;
 
     popupImageElement.classList.add('popup_opened');
   }
@@ -69,6 +70,7 @@ export default class Card {
 
     this._place.querySelector('.place__title').textContent = this._title;
     this._place.querySelector('.place__image').src = this._image;
+    this._place.querySelector('.place__image').setAttribute('alt', this._title);
 
     return this._place;
   }
