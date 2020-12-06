@@ -25,6 +25,10 @@ const placePopup = document.querySelector('.popup_place');
 const placePopupOpenButton = profile.querySelector('.profile__add-button');
 const placePopupCloseButton = placePopup.querySelector('.popup__close-button');
 
+// Инпуты добавления нового места
+const placeTitle = placePopup.querySelector('.popup__input_type_title');
+const placeUrl = placePopup.querySelector('.popup__input_type_url');
+
 // Список карточек
 const placesList = document.querySelector('.places');
 
@@ -157,33 +161,27 @@ function profileEditFormSubmitHandler(event) {
   closePopup(profilePopup);
 }
 
+//! Функция создания карточки
+function createCard(name, link) {
+  const placeElement = new Card(
+    cardClassData,
+    name,
+    link,
+    '.place-template'
+  ).generatePlace();
+
+  return placeElement;
+}
+
 //! Функция создания исходного массива карточек
 initialCards.forEach((card) => {
-  const place = new Card(
-    cardClassData,
-    card.name,
-    card.link,
-    '.place-template'
-  );
-  const placeElement = place.generatePlace();
-
-  placesList.append(placeElement);
+  placesList.append(createCard(card.name, card.link));
 });
 
 //! Функция добавленяи карточки пользователем
 function createCustomCard(event) {
   event.preventDefault();
-
-  const placeTitle = placePopup.querySelector('.popup__input_type_title').value;
-  const placeUrl = placePopup.querySelector('.popup__input_type_url').value;
-  const place = new Card(
-    cardClassData,
-    placeTitle,
-    placeUrl,
-    '.place-template'
-  );
-
-  placesList.prepend(place.generatePlace());
+  placesList.prepend(createCard(placeTitle.value, placeUrl.value));
   closePopup(placePopup);
 }
 
