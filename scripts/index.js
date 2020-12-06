@@ -75,8 +75,19 @@ const profileEditForm = document.querySelector('.popup__container_profile');
 const placeAddForm = document.querySelector('.popup__container_place');
 
 //! Вызов валидации для каждой формы
-new FormValidator(formValidationData, profileEditForm).enableValidation();
-new FormValidator(formValidationData, placeAddForm).enableValidation();
+// Профиль
+const profileEditFormValidator = new FormValidator(
+  formValidationData,
+  profileEditForm
+);
+profileEditFormValidator.enableValidation();
+
+// Новое место
+const placeAddFormValidator = new FormValidator(
+  formValidationData,
+  placeAddForm
+);
+placeAddFormValidator.enableValidation();
 
 //! Функции очистки инпутов попапов
 function clearPopupInputs(popup) {
