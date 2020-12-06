@@ -103,28 +103,7 @@ function removeInvalidInputClass(popup) {
   popup.classList.remove('popup__input_invalid');
 }
 
-//! Функция переключения активной кнопки сабмита
-function toggleButtonActivity(popup) {
-  popup.classList.add('popup__submit-button_disabled');
-  popup.disabled = true;
-}
-
-//! Общие функции для открытия и закрытия попапов
-function openPopup(popup) {
-  popup.classList.add('popup_opened');
-  document.addEventListener('keydown', closePopupOnEsc);
-  document.addEventListener('mousedown', closePopupOnWindowClick);
-
-  buttons.forEach((popup) => {
-    toggleButtonActivity(popup);
-  });
-}
-
-function closePopup(popup) {
-  popup.classList.remove('popup_opened');
-  document.removeEventListener('keydown', closePopupOnEsc);
-  document.removeEventListener('mousedown', closePopupOnWindowClick);
-
+function clearInputErrors() {
   popupForm.forEach((popup) => {
     clearPopupInputs(popup);
   });
@@ -136,6 +115,31 @@ function closePopup(popup) {
   popupInputs.forEach((popup) => {
     removeInvalidInputClass(popup);
   });
+}
+
+//! Функция переключения активной кнопки сабмита
+function toggleButtonActivity(popup) {
+  popup.classList.add('popup__submit-button_disabled');
+  popup.disabled = true;
+}
+
+function toggleCurrentButtons() {
+  buttons.forEach((event) => {
+    toggleButtonActivity(event);
+  });
+}
+
+//! Общие функции для открытия и закрытия попапов
+function openPopup(popup) {
+  popup.classList.add('popup_opened');
+  document.addEventListener('keydown', closePopupOnEsc);
+  document.addEventListener('mousedown', closePopupOnWindowClick);
+}
+
+function closePopup(popup) {
+  popup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', closePopupOnEsc);
+  document.removeEventListener('mousedown', closePopupOnWindowClick);
 }
 
 //! Функция открытия попапа редактированяи профиля
@@ -188,6 +192,7 @@ function closePopupOnEsc(event) {
   if (event.key === escapeKey) {
     const openedPopup = document.querySelector('.popup_opened');
     closePopup(openedPopup);
+    clearInputErrors();
   }
 }
 
@@ -195,24 +200,31 @@ function closePopupOnEsc(event) {
 function closePopupOnWindowClick(event) {
   if (event.target.classList.contains('popup')) {
     closePopup(event.target);
+    clearInputErrors();
   }
 }
 
 //! Эвентлисенеры
 
 // Открытие попапа редактирования профиля
-profilePopupOpenButton.addEventListener('click', openProfilePopup);
+profilePopupOpenButton.addEventListener('click', () => {
+  toggleCurrentButtons();
+  openProfilePopup();
+});
 
 // Сабмит попапа редактирования профиля
 profilePopup.addEventListener('submit', profileEditFormSubmitHandler);
 
 // Закрытие попапа редактирования профиля
 profilePopupCloseButton.addEventListener('click', () => {
+  clearInputErrors();
   closePopup(profilePopup);
 });
 
 // Открытие попапа добавления нового места
 placePopupOpenButton.addEventListener('click', () => {
+  toggleCurrentButtons();
+  clearInputErrors();
   openPopup(placePopup);
 });
 
@@ -221,6 +233,7 @@ placePopup.addEventListener('submit', createCustomCard);
 
 // Закрытие попапа добавления нового места
 placePopupCloseButton.addEventListener('click', () => {
+  clearInputErrors();
   closePopup(placePopup);
 });
 

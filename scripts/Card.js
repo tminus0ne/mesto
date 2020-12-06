@@ -35,6 +35,7 @@ export default class Card {
     popupImageElement.classList.add(this._data.imagePopupOpenedClass);
   }
 
+  // Функция закрытия попапа
   _handleClosePopup() {
     const popupImageElement = document.querySelector(
       this._data.imagePopupSelector
