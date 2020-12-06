@@ -208,6 +208,7 @@ function closePopupOnWindowClick(event) {
 // Открытие попапа редактирования профиля
 profilePopupOpenButton.addEventListener('click', () => {
   toggleCurrentButtons();
+  clearInputErrors();
   openProfilePopup();
 });
 
@@ -216,7 +217,6 @@ profilePopup.addEventListener('submit', profileEditFormSubmitHandler);
 
 // Закрытие попапа редактирования профиля
 profilePopupCloseButton.addEventListener('click', () => {
-  clearInputErrors();
   closePopup(profilePopup);
 });
 
@@ -232,7 +232,6 @@ placePopup.addEventListener('submit', createCustomCard);
 
 // Закрытие попапа добавления нового места
 placePopupCloseButton.addEventListener('click', () => {
-  clearInputErrors();
   closePopup(placePopup);
 });
 
