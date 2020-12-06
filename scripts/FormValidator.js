@@ -40,7 +40,7 @@ export default class FormValidator {
   }
 
   // Эвентлисенеры
-  _addEventListeners() {
+  _setEventListeners() {
     const inputList = this._form.querySelectorAll(this._data.inputSelector);
     inputList.forEach((input) => {
       input.addEventListener('input', () => {
@@ -51,6 +51,6 @@ export default class FormValidator {
   }
 
   enableValidation() {
-    this._addEventListeners();
+    this._setEventListeners();
   }
 }
