@@ -50,6 +50,25 @@ export default class FormValidator {
     });
   }
 
+  clearPopupInputs() {
+    // Очистка текста
+    this._form.reset();
+
+    // Удаление красной полоски
+    const inputList = this._form.querySelectorAll(this._data.inputSelector);
+    inputList.forEach((input) => {
+      input.classList.remove(this._data.inputInvalidClass);
+    });
+
+    // Удаление сообщения об ошибке
+    const errorElement = this._form.querySelectorAll(
+      this._data.inputErrorSelector
+    );
+    errorElement.forEach((error) => {
+      error.textContent = '';
+    });
+  }
+
   enableValidation() {
     this._setEventListeners();
   }

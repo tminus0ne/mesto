@@ -36,13 +36,6 @@ const placesList = document.querySelector('.places');
 const imagePopup = document.querySelector('.popup_image');
 const imagePopupCloseButton = imagePopup.querySelector('.popup__close-button');
 
-// Очистка ошибок валидации
-const errorMessages = document.querySelectorAll('.popup__input-error');
-const popupInputs = document.querySelectorAll('.popup__input');
-
-//Очистка инпутов
-const popupForm = document.querySelectorAll('.popup__container');
-
 // Тоггл состояния кнопки
 const buttons = document.querySelectorAll('.popup__submit-button');
 
@@ -58,6 +51,7 @@ const cardClassData = {
   placeTitleSelector: '.place__title',
   placeImageSelector: '.place__image',
 
+  // formSelector: '.popup__container',
   popupClass: 'popup',
   imagePopupSelector: '.popup_image',
   imagePopupOpenedClass: 'popup_opened',
@@ -72,6 +66,7 @@ const formValidationData = {
   submitButtonSelector: '.popup__submit-button',
   inactiveButtonClass: 'popup__submit-button_disabled',
   inputInvalidClass: 'popup__input_invalid',
+  inputErrorSelector: '.popup__input-error',
 };
 
 //! Формы попапов для валидации
@@ -92,34 +87,6 @@ const placeAddFormValidator = new FormValidator(
   placeAddForm
 );
 placeAddFormValidator.enableValidation();
-
-//! Функции очистки инпутов попапов
-function clearPopupInputs(popup) {
-  popup.reset();
-}
-
-//! Функции очистки ошибок валидации
-function clearErrorMessage(popup) {
-  popup.textContent = '';
-}
-
-function removeInvalidInputClass(popup) {
-  popup.classList.remove('popup__input_invalid');
-}
-
-function clearInputErrors() {
-  popupForm.forEach((popup) => {
-    clearPopupInputs(popup);
-  });
-
-  errorMessages.forEach((popup) => {
-    clearErrorMessage(popup);
-  });
-
-  popupInputs.forEach((popup) => {
-    removeInvalidInputClass(popup);
-  });
-}
 
 //! Функция переключения активной кнопки сабмита
 function toggleButtonActivity(popup) {
@@ -204,8 +171,7 @@ function closePopupOnWindowClick(event) {
 
 // Открытие попапа редактирования профиля
 profilePopupOpenButton.addEventListener('click', () => {
-  toggleCurrentButtons();
-  clearInputErrors();
+  profileEditFormValidator.clearPopupInputs();
   openProfilePopup();
 });
 
@@ -219,8 +185,7 @@ profilePopupCloseButton.addEventListener('click', () => {
 
 // Открытие попапа добавления нового места
 placePopupOpenButton.addEventListener('click', () => {
-  toggleCurrentButtons();
-  clearInputErrors();
+  placeAddFormValidator.clearPopupInputs();
   openPopup(placePopup);
 });
 
