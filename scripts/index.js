@@ -113,6 +113,7 @@ function toggleButtonActivity(popup) {
 function openPopup(popup) {
   popup.classList.add('popup_opened');
   document.addEventListener('keydown', closePopupOnEsc);
+  document.addEventListener('mousedown', closePopupOnWindowClick);
 
   buttons.forEach((popup) => {
     toggleButtonActivity(popup);
@@ -122,6 +123,7 @@ function openPopup(popup) {
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
   document.removeEventListener('keydown', closePopupOnEsc);
+  document.removeEventListener('mousedown', closePopupOnWindowClick);
 
   popupForm.forEach((popup) => {
     clearPopupInputs(popup);
@@ -208,7 +210,6 @@ profilePopup.addEventListener('submit', profileEditFormSubmitHandler);
 profilePopupCloseButton.addEventListener('click', () => {
   closePopup(profilePopup);
 });
-profilePopup.addEventListener('mousedown', closePopupOnWindowClick);
 
 // Открытие попапа добавления нового места
 placePopupOpenButton.addEventListener('click', () => {
@@ -222,10 +223,8 @@ placePopup.addEventListener('submit', createCustomCard);
 placePopupCloseButton.addEventListener('click', () => {
   closePopup(placePopup);
 });
-placePopup.addEventListener('mousedown', closePopupOnWindowClick);
 
 // Закрытие попапа с картинкой
 imagePopupCloseButton.addEventListener('click', () => {
   closePopup(imagePopup);
 });
-imagePopup.addEventListener('mousedown', closePopupOnWindowClick);

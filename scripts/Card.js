@@ -35,15 +35,28 @@ export default class Card {
     popupImageElement.classList.add(this._data.imagePopupOpenedClass);
   }
 
+  _handleClosePopup() {
+    const popupImageElement = document.querySelector(
+      this._data.imagePopupSelector
+    );
+    popupImageElement.classList.remove(this._data.imagePopupOpenedClass);
+  }
+
   // Закрытие по нажатию Esc
   _handleEscClick() {
     document.addEventListener('keydown', (event) => {
       const escapeKey = 'Escape';
       if (event.key === escapeKey) {
-        const popupImageElement = document.querySelector(
-          this._data.imagePopupSelector
-        );
-        popupImageElement.classList.remove(this._data.imagePopupOpenedClass);
+        this._handleClosePopup();
+      }
+    });
+  }
+
+  // Закрытие при клике по окну
+  _handleWindowClick() {
+    document.addEventListener('mousedown', (event) => {
+      if (event.target.classList.contains('popup')) {
+        this._handleClosePopup();
       }
     });
   }
@@ -72,6 +85,7 @@ export default class Card {
     imagePopup.addEventListener('click', () => {
       this._handleOpenPopup();
       this._handleEscClick();
+      this._handleWindowClick();
     });
   }
 
