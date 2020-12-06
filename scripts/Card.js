@@ -30,7 +30,7 @@ export default class Card {
     );
     popupImage.src = this._image;
     popupImageTitle.textContent = this._title;
-    popupImage.alt = this._title;
+    popupImage.alt = `Изображение на фотографии: ${this._title}`;
 
     popupImageElement.classList.add(this._data.imagePopupOpenedClass);
   }
@@ -85,7 +85,7 @@ export default class Card {
     this._place.querySelector(this._data.placeImageSelector).src = this._image;
     this._place
       .querySelector(this._data.placeImageSelector)
-      .setAttribute('alt', `'Изображение на фотографии:' ${this._title}`);
+      .setAttribute('alt', `Изображение на фотографии: ${this._title}`);
 
     return this._place;
   }
