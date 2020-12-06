@@ -51,7 +51,6 @@ const cardClassData = {
   placeTitleSelector: '.place__title',
   placeImageSelector: '.place__image',
 
-  // formSelector: '.popup__container',
   popupClass: 'popup',
   imagePopupSelector: '.popup_image',
   imagePopupOpenedClass: 'popup_opened',
@@ -87,18 +86,6 @@ const placeAddFormValidator = new FormValidator(
   placeAddForm
 );
 placeAddFormValidator.enableValidation();
-
-//! Функция переключения активной кнопки сабмита
-// function toggleButtonActivity(popup) {
-//   popup.classList.add('popup__submit-button_disabled');
-//   popup.disabled = true;
-// }
-
-function toggleCurrentButtons() {
-  buttons.forEach((event) => {
-    toggleButtonActivity(event);
-  });
-}
 
 //! Общие функции для открытия и закрытия попапов
 function openPopup(popup) {
