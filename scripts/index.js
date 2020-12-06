@@ -64,7 +64,6 @@ const cardClassData = {
   imagePopupPhotoSelector: '.popup__photo',
   imagePopupTitleSelector: '.popup__place-title',
 };
-// Сделал по аналогии с валидацией
 
 //! Объект с классами форм
 const formValidationData = {
@@ -191,7 +190,6 @@ function closePopupOnEsc(event) {
   if (event.key === escapeKey) {
     const openedPopup = document.querySelector('.popup_opened');
     closePopup(openedPopup);
-    clearInputErrors();
   }
 }
 
@@ -199,7 +197,6 @@ function closePopupOnEsc(event) {
 function closePopupOnWindowClick(event) {
   if (event.target.classList.contains('popup')) {
     closePopup(event.target);
-    clearInputErrors();
   }
 }
 
