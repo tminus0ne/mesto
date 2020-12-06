@@ -89,10 +89,10 @@ const placeAddFormValidator = new FormValidator(
 placeAddFormValidator.enableValidation();
 
 //! Функция переключения активной кнопки сабмита
-function toggleButtonActivity(popup) {
-  popup.classList.add('popup__submit-button_disabled');
-  popup.disabled = true;
-}
+// function toggleButtonActivity(popup) {
+//   popup.classList.add('popup__submit-button_disabled');
+//   popup.disabled = true;
+// }
 
 function toggleCurrentButtons() {
   buttons.forEach((event) => {
@@ -172,6 +172,7 @@ function closePopupOnWindowClick(event) {
 // Открытие попапа редактирования профиля
 profilePopupOpenButton.addEventListener('click', () => {
   profileEditFormValidator.clearPopupInputs();
+  profileEditFormValidator.disableActiveButton();
   openProfilePopup();
 });
 
@@ -186,6 +187,7 @@ profilePopupCloseButton.addEventListener('click', () => {
 // Открытие попапа добавления нового места
 placePopupOpenButton.addEventListener('click', () => {
   placeAddFormValidator.clearPopupInputs();
+  placeAddFormValidator.disableActiveButton();
   openPopup(placePopup);
 });
 

@@ -50,6 +50,7 @@ export default class FormValidator {
     });
   }
 
+  // Очистка полей и ошибок попапа
   clearPopupInputs() {
     // Очистка текста
     this._form.reset();
@@ -69,6 +70,15 @@ export default class FormValidator {
     });
   }
 
+  // Неактивная кнопка при открытии попапа
+  // Придумал только так, по аналогии с инпутами
+  disableActiveButton() {
+    const button = this._form.querySelector(this._data.submitButtonSelector);
+    button.classList.add(this._data.inactiveButtonClass);
+    button.disabled = true;
+  }
+
+  // Основная функция валидации
   enableValidation() {
     this._setEventListeners();
   }
