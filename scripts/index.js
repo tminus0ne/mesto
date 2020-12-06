@@ -46,9 +46,20 @@ const buttons = document.querySelectorAll('.popup__submit-button');
 const escapeKey = 'Escape';
 
 //! Объект с классами карточки
-// const cardClassData = {
+const cardClassData = {
+  placeSelector: '.place',
+  placeLikeButtonSelector: '.place__like-button',
+  placeActiveLikeClass: 'place__like-button_active',
+  placeRmoveButtonSelector: '.place__remove-button',
+  placeTitleSelector: '.place__title',
+  placeImageSelector: '.place__image',
 
-// }
+  imagePopupSelector: '.popup_image',
+  imagePopupOpenedClass: 'popup_opened',
+  imagePopupPhotoSelector: '.popup__photo',
+  imagePopupTitleSelector: '.popup__place-title',
+};
+// Сделал по аналогии с валидацией
 
 //! Объект с классами форм
 const formValidationData = {
@@ -131,7 +142,12 @@ function profileEditFormSubmitHandler(event) {
 
 //! Функция создания исходного массива карточек
 initialCards.forEach((card) => {
-  const place = new Card(card.name, card.link, '.place-template');
+  const place = new Card(
+    cardClassData,
+    card.name,
+    card.link,
+    '.place-template'
+  );
   const placeElement = place.generatePlace();
 
   placesList.append(placeElement);
@@ -143,7 +159,12 @@ function createCustomCard(event) {
 
   const placeTitle = placePopup.querySelector('.popup__input_type_title').value;
   const placeUrl = placePopup.querySelector('.popup__input_type_url').value;
-  const place = new Card(placeTitle, placeUrl, '.place-template');
+  const place = new Card(
+    cardClassData,
+    placeTitle,
+    placeUrl,
+    '.place-template'
+  );
 
   placesList.prepend(place.generatePlace());
   closePopup(placePopup);
