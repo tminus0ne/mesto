@@ -58,6 +58,7 @@ const cardClassData = {
   placeTitleSelector: '.place__title',
   placeImageSelector: '.place__image',
 
+  popupClass: 'popup',
   imagePopupSelector: '.popup_image',
   imagePopupOpenedClass: 'popup_opened',
   imagePopupPhotoSelector: '.popup__photo',

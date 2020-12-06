@@ -56,7 +56,7 @@ export default class Card {
   // Закрытие при клике по окну
   _handleWindowClick() {
     document.addEventListener('mousedown', (event) => {
-      if (event.target.classList.contains('popup')) {
+      if (event.target.classList.contains(this._data.popupClass)) {
         this._handleClosePopup();
       }
     });
