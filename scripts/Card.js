@@ -78,6 +78,7 @@ export default class Card {
     removeButton.addEventListener('click', () => {
       if (this._place) {
         this._place.remove();
+        this._place = null;
       }
     });
 
