@@ -9,12 +9,12 @@ export default class Card {
   }
 
   _getTemplate() {
-    const placeElement = document
+    const cardElement = document
       .querySelector(this._template)
-      .content.querySelector(this._data.placeSelector)
+      .content.querySelector(this._data.cardSelector)
       .cloneNode(true);
 
-    return placeElement;
+    return cardElement;
   }
 
   // Функция открытия попапа с картинкой
@@ -64,26 +64,26 @@ export default class Card {
 
   _setEventListeners() {
     // Лайк
-    const likeButton = this._place.querySelector(
-      this._data.placeLikeButtonSelector
+    const likeButton = this._card.querySelector(
+      this._data.cardLikeButtonSelector
     );
     likeButton.addEventListener('click', () => {
-      likeButton.classList.toggle(this._data.placeActiveLikeClass);
+      likeButton.classList.toggle(this._data.cardActiveLikeClass);
     });
 
     // Удаление карточки
-    const removeButton = this._place.querySelector(
-      this._data.placeRmoveButtonSelector
+    const removeButton = this._card.querySelector(
+      this._data.cardRmoveButtonSelector
     );
     removeButton.addEventListener('click', () => {
-      if (this._place) {
-        this._place.remove();
-        this._place = null;
+      if (this._card) {
+        this._card.remove();
+        this._card = null;
       }
     });
 
     // Открытие попапа с картинкой
-    const imagePopup = this._place.querySelector(this._data.placeImageSelector);
+    const imagePopup = this._card.querySelector(this._data.cardImageSelector);
     imagePopup.addEventListener('click', () => {
       this._handleOpenPopup();
       this._handleEscClick();
@@ -91,18 +91,18 @@ export default class Card {
     });
   }
 
-  generatePlace() {
-    this._place = this._getTemplate();
+  generateCardLayout() {
+    this._card = this._getTemplate();
     this._setEventListeners();
 
-    this._place.querySelector(
-      this._data.placeTitleSelector
+    this._card.querySelector(
+      this._data.cardTitleSelector
     ).textContent = this._title;
-    this._place.querySelector(this._data.placeImageSelector).src = this._image;
-    this._place
-      .querySelector(this._data.placeImageSelector)
+    this._card.querySelector(this._data.cardImageSelector).src = this._image;
+    this._card
+      .querySelector(this._data.cardImageSelector)
       .setAttribute('alt', `Изображение на фотографии: ${this._title}`);
 
-    return this._place;
+    return this._card;
   }
 }

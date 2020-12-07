@@ -21,16 +21,16 @@ const profileName = profile.querySelector('.profile__name');
 const profileOccupation = profile.querySelector('.profile__occupation');
 
 // Открытие и закрытие попапа нового места
-const placePopup = document.querySelector('.popup_place');
-const placePopupOpenButton = profile.querySelector('.profile__add-button');
-const placePopupCloseButton = placePopup.querySelector('.popup__close-button');
+const cardPopup = document.querySelector('.popup_card');
+const cardPopupOpenButton = profile.querySelector('.profile__add-button');
+const cardPopupCloseButton = cardPopup.querySelector('.popup__close-button');
 
 // Инпуты добавления нового места
-const placeTitle = placePopup.querySelector('.popup__input_type_title');
-const placeUrl = placePopup.querySelector('.popup__input_type_url');
+const cardTitle = cardPopup.querySelector('.popup__input_type_title');
+const cardUrl = cardPopup.querySelector('.popup__input_type_url');
 
 // Список карточек
-const placesList = document.querySelector('.places');
+const cardsList = document.querySelector('.cards');
 
 // Попап с выбранной картинкой
 const imagePopup = document.querySelector('.popup_image');
@@ -44,18 +44,18 @@ const escapeKey = 'Escape';
 
 //! Объект с классами карточки
 const cardClassData = {
-  placeSelector: '.place',
-  placeLikeButtonSelector: '.place__like-button',
-  placeActiveLikeClass: 'place__like-button_active',
-  placeRmoveButtonSelector: '.place__remove-button',
-  placeTitleSelector: '.place__title',
-  placeImageSelector: '.place__image',
+  cardSelector: '.card',
+  cardLikeButtonSelector: '.card__like-button',
+  cardActiveLikeClass: 'card__like-button_active',
+  cardRmoveButtonSelector: '.card__remove-button',
+  cardTitleSelector: '.card__title',
+  cardImageSelector: '.card__image',
 
   popupClass: 'popup',
   imagePopupSelector: '.popup_image',
   imagePopupOpenedClass: 'popup_opened',
   imagePopupPhotoSelector: '.popup__photo',
-  imagePopupTitleSelector: '.popup__place-title',
+  imagePopupTitleSelector: '.popup__card-title',
 };
 
 //! Объект с классами форм
@@ -70,7 +70,7 @@ const formValidationData = {
 
 //! Формы попапов для валидации
 const profileEditForm = document.querySelector('.popup__container_profile');
-const placeAddForm = document.querySelector('.popup__container_place');
+const cardAddForm = document.querySelector('.popup__container_card');
 
 //! Вызов валидации для каждой формы
 // Профиль
@@ -81,11 +81,8 @@ const profileEditFormValidator = new FormValidator(
 profileEditFormValidator.enableValidation();
 
 // Новое место
-const placeAddFormValidator = new FormValidator(
-  formValidationData,
-  placeAddForm
-);
-placeAddFormValidator.enableValidation();
+const cardAddFormValidator = new FormValidator(formValidationData, cardAddForm);
+cardAddFormValidator.enableValidation();
 
 //! Общие функции для открытия и закрытия попапов
 function openPopup(popup) {
@@ -117,26 +114,26 @@ function profileEditFormSubmitHandler(event) {
 
 //! Функция создания карточки
 function createCard(name, link) {
-  const placeElement = new Card(
+  const cardElement = new Card(
     cardClassData,
     name,
     link,
-    '.place-template'
-  ).generatePlace();
+    '.card-template'
+  ).generateCardLayout();
 
-  return placeElement;
+  return cardElement;
 }
 
 //! Функция создания исходного массива карточек
 initialCards.forEach((card) => {
-  placesList.append(createCard(card.name, card.link));
+  cardsList.append(createCard(card.name, card.link));
 });
 
 //! Функция добавленяи карточки пользователем
 function createCustomCard(event) {
   event.preventDefault();
-  placesList.prepend(createCard(placeTitle.value, placeUrl.value));
-  closePopup(placePopup);
+  cardsList.prepend(createCard(cardTitle.value, cardUrl.value));
+  closePopup(cardPopup);
 }
 
 //! Функция закрытия попапа при нажатии на Esc
@@ -172,18 +169,18 @@ profilePopupCloseButton.addEventListener('click', () => {
 });
 
 // Открытие попапа добавления нового места
-placePopupOpenButton.addEventListener('click', () => {
-  placeAddFormValidator.clearPopupInputs();
-  placeAddFormValidator.disableActiveButton();
-  openPopup(placePopup);
+cardPopupOpenButton.addEventListener('click', () => {
+  cardAddFormValidator.clearPopupInputs();
+  cardAddFormValidator.disableActiveButton();
+  openPopup(cardPopup);
 });
 
 // Сабмит попапа нового места
-placePopup.addEventListener('submit', createCustomCard);
+cardPopup.addEventListener('submit', createCustomCard);
 
 // Закрытие попапа добавления нового места
-placePopupCloseButton.addEventListener('click', () => {
-  closePopup(placePopup);
+cardPopupCloseButton.addEventListener('click', () => {
+  closePopup(cardPopup);
 });
 
 // Закрытие попапа с картинкой
