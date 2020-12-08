@@ -71,7 +71,6 @@ export default class FormValidator {
   }
 
   // Неактивная кнопка при открытии попапа
-  // Придумал только так, по аналогии с инпутами
   disableActiveButton() {
     const button = this._form.querySelector(this._data.submitButtonSelector);
     button.classList.add(this._data.inactiveButtonClass);

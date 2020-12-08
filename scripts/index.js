@@ -68,7 +68,7 @@ const formValidationData = {
   inputErrorSelector: '.popup__input-error',
 };
 
-//! Формы попапов для валидации
+// Формы попапов для валидации
 const profileEditForm = document.querySelector('.popup__container_profile');
 const cardAddForm = document.querySelector('.popup__container_card');
 
@@ -97,14 +97,14 @@ function closePopup(popup) {
   document.removeEventListener('mousedown', closePopupOnWindowClick);
 }
 
-//! Функция открытия попапа редактированяи профиля
+// Функция открытия попапа редактированяи профиля
 function openProfilePopup() {
   nameInput.value = profileName.textContent;
   jobInput.value = profileOccupation.textContent;
   openPopup(profilePopup);
 }
 
-//! Функция сохранения новых данных профиля
+// Функция сохранения новых данных профиля
 function profileEditFormSubmitHandler(event) {
   event.preventDefault();
   profileName.textContent = nameInput.value;
@@ -136,7 +136,7 @@ function createCustomCard(event) {
   closePopup(cardPopup);
 }
 
-//! Функция закрытия попапа при нажатии на Esc
+// Функция закрытия попапа при нажатии на Esc
 function closePopupOnEsc(event) {
   if (event.key === escapeKey) {
     const openedPopup = document.querySelector('.popup_opened');
@@ -144,7 +144,7 @@ function closePopupOnEsc(event) {
   }
 }
 
-//! Функция закрытия попапа при нажатии на любое место окна просмотра
+// Функция закрытия попапа при нажатии на любое место окна просмотра
 function closePopupOnWindowClick(event) {
   if (event.target.classList.contains('popup')) {
     closePopup(event.target);
