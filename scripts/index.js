@@ -1,7 +1,7 @@
 'use strict';
 
-import Card from './Card.js';
-import FormValidator from './FormValidator.js';
+import { Card } from './Card.js';
+import { FormValidator } from './FormValidator.js';
 
 //! Объявление переменных
 // Открытие и закрытие попапа

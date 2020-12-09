@@ -1,6 +1,6 @@
 'use strict';
 
-export default class FormValidator {
+export class FormValidator {
   constructor(data, form) {
     this._data = data;
     this._form = form;
