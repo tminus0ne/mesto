@@ -1,5 +1,8 @@
 'use strict';
 
+import '../vendor/normalize.css';
+import '../pages/index.css';
+import { initialCards } from './initialCards.js';
 import { Card } from './Card.js';
 import { FormValidator } from './FormValidator.js';
 
@@ -10,7 +13,7 @@ const profilePopup = document.querySelector('.popup_profile');
 
 const profilePopupOpenButton = profile.querySelector('.profile__edit-button');
 const profilePopupCloseButton = profilePopup.querySelector(
-  '.popup__close-button'
+  '.popup__close-button',
 );
 
 // Редактирование
@@ -76,7 +79,7 @@ const cardAddForm = document.querySelector('.popup__container_card');
 // Профиль
 const profileEditFormValidator = new FormValidator(
   formValidationData,
-  profileEditForm
+  profileEditForm,
 );
 profileEditFormValidator.enableValidation();
 
@@ -118,7 +121,7 @@ function createCard(name, link) {
     cardClassData,
     name,
     link,
-    '.card-template'
+    '.card-template',
   ).generateCardLayout();
 
   return cardElement;

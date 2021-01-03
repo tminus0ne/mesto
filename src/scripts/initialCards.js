@@ -1,7 +1,7 @@
 'use strict';
 
 //! Исходный массив карточек
-const initialCards = [
+export const initialCards = [
   {
     name: 'Ольхон',
     link:
