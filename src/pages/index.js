@@ -1,11 +1,23 @@
 'use strict';
 
+//! Импорт css
 import '../vendor/normalize.css';
 import '../pages/index.css';
-import { initialCards } from '../utils/constants.js';
+
+//! Импорт компонентов
 import Card from '../components/Card.js';
 import FormValidator from '../components/FormValidator.js';
 import Section from '../components/Section.js';
+
+//! Импорт переменных
+import {
+  // Карточки
+  initialCards,
+
+  // Валидация
+  cardClassData,
+  formValidationData,
+} from '../utils/constants.js';
 
 //! Объявление переменных
 // Открытие и закрытие попапа
@@ -42,32 +54,6 @@ const imagePopupCloseButton = imagePopup.querySelector('.popup__close-button');
 
 // Переменная для кнопки Escape
 const escapeKey = 'Escape';
-
-//! Объект с классами карточки
-const cardClassData = {
-  cardSelector: '.card',
-  cardLikeButtonSelector: '.card__like-button',
-  cardActiveLikeClass: 'card__like-button_active',
-  cardRmoveButtonSelector: '.card__remove-button',
-  cardTitleSelector: '.card__title',
-  cardImageSelector: '.card__image',
-
-  popupClass: 'popup',
-  imagePopupSelector: '.popup_image',
-  imagePopupOpenedClass: 'popup_opened',
-  imagePopupPhotoSelector: '.popup__photo',
-  imagePopupTitleSelector: '.popup__card-title',
-};
-
-//! Объект с классами форм
-const formValidationData = {
-  formSelector: '.popup__container',
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__submit-button',
-  inactiveButtonClass: 'popup__submit-button_disabled',
-  inputInvalidClass: 'popup__input_invalid',
-  inputErrorSelector: '.popup__input-error',
-};
 
 // Формы попапов для валидации
 const profileEditForm = document.querySelector('.popup__container_profile');

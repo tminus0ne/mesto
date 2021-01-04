@@ -33,3 +33,29 @@ export const initialCards = [
       'https://images.unsplash.com/photo-1543699936-c901ddbf0c05?ixlib=rb-1.2.1&auto=format&fit=crop&w=633&q=80',
   },
 ];
+
+//! Объект с классами карточки
+export const cardClassData = {
+  cardSelector: '.card',
+  cardLikeButtonSelector: '.card__like-button',
+  cardActiveLikeClass: 'card__like-button_active',
+  cardRmoveButtonSelector: '.card__remove-button',
+  cardTitleSelector: '.card__title',
+  cardImageSelector: '.card__image',
+
+  popupClass: 'popup',
+  imagePopupSelector: '.popup_image',
+  imagePopupOpenedClass: 'popup_opened',
+  imagePopupPhotoSelector: '.popup__photo',
+  imagePopupTitleSelector: '.popup__card-title',
+};
+
+//! Объект с классами форм
+export const formValidationData = {
+  formSelector: '.popup__container',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__submit-button',
+  inactiveButtonClass: 'popup__submit-button_disabled',
+  inputInvalidClass: 'popup__input_invalid',
+  inputErrorSelector: '.popup__input-error',
+};
