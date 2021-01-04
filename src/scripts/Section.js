@@ -8,7 +8,9 @@ export default class Section {
     this._container = container;
   }
 
+  // Отрисовка всех карточек
   renderItems() {}
 
+  // Добавление карточки в контейнер
   addItem() {}
 }
