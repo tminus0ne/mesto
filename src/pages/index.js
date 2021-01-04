@@ -100,21 +100,29 @@ function profileEditFormSubmitHandler(event) {
 }
 
 //! Функция создания карточки
-function createCard(name, link) {
+function createCard(card) {
   const cardElement = new Card(
     cardClassData,
-    name,
-    link,
+    card.name,
+    card.link,
     '.card-template',
   ).generateCardLayout();
 
   return cardElement;
 }
 
-//! Функция создания исходного массива карточек
-initialCards.forEach((card) => {
-  cardsList.append(createCard(card.name, card.link));
-});
+//! Класс с исходным массивом карточек
+const cardListSection = new Section(
+  {
+    items: initialCards,
+    renderer: (card) => {
+      cardListSection.addItem(createCard(card));
+    },
+  },
+  cardsList,
+);
+
+cardListSection.renderItems();
 
 //! Функция добавленяи карточки пользователем
 function createCustomCard(event) {
