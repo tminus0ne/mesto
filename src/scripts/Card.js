@@ -1,6 +1,6 @@
 'use strict';
 
-export class Card {
+export default class Card {
   constructor(data, name, link, template) {
     this._data = data;
     this._title = name;

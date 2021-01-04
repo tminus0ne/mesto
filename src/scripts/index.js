@@ -3,8 +3,9 @@
 import '../vendor/normalize.css';
 import '../pages/index.css';
 import { initialCards } from './initialCards.js';
-import { Card } from './Card.js';
-import { FormValidator } from './FormValidator.js';
+import Card from './Card.js';
+import FormValidator from './FormValidator.js';
+import Section from './Section.js';
 
 //! Объявление переменных
 // Открытие и закрытие попапа
