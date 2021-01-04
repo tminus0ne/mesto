@@ -40,9 +40,6 @@ const cardsList = document.querySelector('.cards');
 const imagePopup = document.querySelector('.popup_image');
 const imagePopupCloseButton = imagePopup.querySelector('.popup__close-button');
 
-// Тоггл состояния кнопки
-const buttons = document.querySelectorAll('.popup__submit-button');
-
 // Переменная для кнопки Escape
 const escapeKey = 'Escape';
 
