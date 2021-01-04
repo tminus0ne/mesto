@@ -8,6 +8,7 @@ import '../pages/index.css';
 import Card from '../components/Card.js';
 import FormValidator from '../components/FormValidator.js';
 import Section from '../components/Section.js';
+import UserInfo from '../components/UserInfo.js';
 
 //! Импорт переменных
 import {
@@ -17,6 +18,7 @@ import {
   // Валидация
   cardClassData,
   formValidationData,
+  profileData,
 } from '../utils/constants.js';
 
 //! Объявление переменных
@@ -32,9 +34,6 @@ const profilePopupCloseButton = profilePopup.querySelector(
 // Редактирование
 const nameInput = profilePopup.querySelector('.popup__input_type_name');
 const jobInput = profilePopup.querySelector('.popup__input_type_occupation');
-
-const profileName = profile.querySelector('.profile__name');
-const profileOccupation = profile.querySelector('.profile__occupation');
 
 // Открытие и закрытие попапа нового места
 const cardPopup = document.querySelector('.popup_card');
@@ -84,20 +83,25 @@ function closePopup(popup) {
   document.removeEventListener('mousedown', closePopupOnWindowClick);
 }
 
-// Функция открытия попапа редактированяи профиля
-function openProfilePopup() {
-  nameInput.value = profileName.textContent;
-  jobInput.value = profileOccupation.textContent;
-  openPopup(profilePopup);
-}
+const profileInfo = new UserInfo({
+  nameSelector: '.profile__name',
+  jobSelector: '.profile__occupation',
+});
 
-// Функция сохранения новых данных профиля
-function profileEditFormSubmitHandler(event) {
-  event.preventDefault();
-  profileName.textContent = nameInput.value;
-  profileOccupation.textContent = jobInput.value;
-  closePopup(profilePopup);
-}
+// // Функция открытия попапа редактированяи профиля
+// function openProfilePopup() {
+//   nameInput.value = profileName.textContent;
+//   jobInput.value = profileOccupation.textContent;
+//   openPopup(profilePopup);
+// }
+
+// // Функция сохранения новых данных профиля
+// function profileEditFormSubmitHandler(event) {
+//   event.preventDefault();
+//   profileName.textContent = nameInput.value;
+//   profileOccupation.textContent = jobInput.value;
+//   closePopup(profilePopup);
+// }
 
 //! Функция создания карточки
 function createCard(card) {
@@ -156,7 +160,7 @@ profilePopupOpenButton.addEventListener('click', () => {
 });
 
 // Сабмит попапа редактирования профиля
-profilePopup.addEventListener('submit', profileEditFormSubmitHandler);
+// profilePopup.addEventListener('submit', profileEditFormSubmitHandler);
 
 // Закрытие попапа редактирования профиля
 profilePopupCloseButton.addEventListener('click', () => {
