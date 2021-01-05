@@ -59,3 +59,10 @@ export const formValidationData = {
   inputInvalidClass: 'popup__input_invalid',
   inputErrorSelector: '.popup__input-error',
 };
+
+// Объект с классами попапов
+export const popupSelectors = {
+  popupClass: 'popup',
+  openedPopupClass: 'popup_opened',
+  popupCloseButtonSelector: '.popup__close-button',
+};

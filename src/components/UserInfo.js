@@ -7,11 +7,9 @@ export default class UserInfo {
   }
 
   getUserInfo() {
-    this._data.profileNameSelector = this._name.textContent;
-    this._data.profileOccupationSelector = this._job.textContent;
     return {
-      name: profileName,
-      job: profileOccupation,
+      name: this._name.textContent,
+      job: this._job.textContent,
     };
   }
 
