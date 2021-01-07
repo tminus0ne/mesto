@@ -20,28 +20,22 @@ import {
   // Валидация
   cardClassData,
   formValidationData,
+
+  // Кнопки открытия попапов
+  profilePopupOpenButton,
+  cardAddPopupOpenButton,
+
+  // Формы попапов
+  profileEditForm,
+  cardAddForm,
+
+  //Инпуты попапа редактирования профиля
+  nameInput,
+  jobInput,
+
+  // Секция карточек
+  cardsList,
 } from '../utils/constants.js';
-
-//! Объявление переменных
-// Открытие и закрытие попапа
-const profile = document.querySelector('.profile');
-const profilePopup = document.querySelector('.popup_profile');
-
-const profilePopupOpenButton = profile.querySelector('.profile__edit-button');
-
-// Редактирование
-const nameInput = profilePopup.querySelector('.popup__input_type_name');
-const jobInput = profilePopup.querySelector('.popup__input_type_occupation');
-
-// Открытие и закрытие попапа нового места
-const cardAddPopupOpenButton = profile.querySelector('.profile__add-button');
-
-// Список карточек
-const cardsList = document.querySelector('.cards');
-
-// Формы попапов для валидации
-const profileEditForm = document.querySelector('.popup__container_profile');
-const cardAddForm = document.querySelector('.popup__container_card');
 
 //! Вызов валидации для каждой формы
 // Профиль
@@ -55,14 +49,13 @@ profileEditFormValidator.enableValidation();
 const cardAddFormValidator = new FormValidator(formValidationData, cardAddForm);
 cardAddFormValidator.enableValidation();
 
-// Класс с информацией профиля
+//! Класс с информацией профиля
 const profileInfo = new UserInfo({
   nameSelector: '.profile__name',
   jobSelector: '.profile__occupation',
 });
 
-//! Функции попапов
-// Редактирование профиля
+//! Фопап редактирования профиля
 const profileEditPopup = new PopupWithForm(
   {
     popupSelector: '.popup_profile',

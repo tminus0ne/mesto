@@ -60,10 +60,30 @@ export const formValidationData = {
   inputErrorSelector: '.popup__input-error',
 };
 
-// Объект с классами попапов
-export const popupSelectorsData = {
-  popupClass: 'popup',
-  openedPopupClass: 'popup_opened',
-  popupCloseButtonSelector: '.popup__close-button',
-  inputSelector: '.popup__input',
-};
+// Открытие и закрытие попапа
+export const profile = document.querySelector('.profile');
+export const profilePopup = document.querySelector('.popup_profile');
+
+export const profilePopupOpenButton = profile.querySelector(
+  '.profile__edit-button',
+);
+
+// Редактирование
+export const nameInput = profilePopup.querySelector('.popup__input_type_name');
+export const jobInput = profilePopup.querySelector(
+  '.popup__input_type_occupation',
+);
+
+// Открытие и закрытие попапа нового места
+export const cardAddPopupOpenButton = profile.querySelector(
+  '.profile__add-button',
+);
+
+// Список карточек
+export const cardsList = document.querySelector('.cards');
+
+// Формы попапов для валидации
+export const profileEditForm = document.querySelector(
+  '.popup__container_profile',
+);
+export const cardAddForm = document.querySelector('.popup__container_card');
