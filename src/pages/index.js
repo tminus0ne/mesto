@@ -34,22 +34,13 @@ const jobInput = profilePopup.querySelector('.popup__input_type_occupation');
 
 // Открытие и закрытие попапа нового места
 const cardPopup = document.querySelector('.popup_card');
-const cardPopupOpenButton = profile.querySelector('.profile__add-button');
-const cardPopupCloseButton = cardPopup.querySelector('.popup__close-button');
-
-// Инпуты добавления нового места
-const cardTitle = cardPopup.querySelector('.popup__input_type_title');
-const cardUrl = cardPopup.querySelector('.popup__input_type_url');
+const cardAddPopupOpenButton = profile.querySelector('.profile__add-button');
 
 // Список карточек
 const cardsList = document.querySelector('.cards');
 
 // Попап с выбранной картинкой
 const imagePopup = document.querySelector('.popup_image');
-const imagePopupCloseButton = imagePopup.querySelector('.popup__close-button');
-
-// Переменная для кнопки Escape
-const escapeKey = 'Escape';
 
 // Формы попапов для валидации
 const profileEditForm = document.querySelector('.popup__container_profile');
@@ -67,27 +58,13 @@ profileEditFormValidator.enableValidation();
 const cardAddFormValidator = new FormValidator(formValidationData, cardAddForm);
 cardAddFormValidator.enableValidation();
 
+// Класс с информацией профиля
 const profileInfo = new UserInfo({
   nameSelector: '.profile__name',
   jobSelector: '.profile__occupation',
 });
 
-console.log(profileInfo);
-
-// Функция открытия попапа редактированяи профиля
-//? Работает
-function openProfilePopup() {
-  profileEditFormValidator.clearPopupInputs();
-  profileEditFormValidator.disableActiveButton();
-
-  const user = profileInfo.getUserInfo();
-
-  nameInput.value = user.name;
-  jobInput.value = user.job;
-
-  profileEditPopup.open();
-}
-
+//! Функции попапов
 // Редактирование профиля
 const profileEditPopup = new PopupWithForm(
   {
@@ -100,17 +77,20 @@ const profileEditPopup = new PopupWithForm(
   profileEditForm,
 );
 
-console.log(profileEditPopup);
+// Функция открытия попапа редактированяи профиля
+function openProfilePopup() {
+  profileEditFormValidator.clearPopupInputs();
+  profileEditFormValidator.disableActiveButton();
 
-// // Функция сохранения новых данных профиля
-// function profileEditFormSubmitHandler(event) {
-//   event.preventDefault();
-//   profileName.textContent = nameInput.value;
-//   profileOccupation.textContent = jobInput.value;
-//   closePopup(profilePopup);
-// }
+  const user = profileInfo.getUserInfo();
 
-//! Функция создания карточки
+  nameInput.value = user.name;
+  jobInput.value = user.job;
+
+  profileEditPopup.open();
+}
+
+//! Функция создания темплейта карточки
 function createCard(card) {
   const cardElement = new Card(
     cardClassData,
@@ -122,7 +102,7 @@ function createCard(card) {
   return cardElement;
 }
 
-//! Класс с исходным массивом карточек
+//! Секция с исходным массивом карточек
 const cardListSection = new Section(
   {
     items: initialCards,
@@ -135,47 +115,24 @@ const cardListSection = new Section(
 
 cardListSection.renderItems();
 
-//! Функция добавленяи карточки пользователем
-// function createCustomCard(event) {
-//   event.preventDefault();
-//   cardsList.prepend(createCard(cardTitle.value, cardUrl.value));
-//   closePopup(cardPopup);
-// }
+//! Добавление карточки пользователем
+const cardAddPopup = new PopupWithForm(
+  {
+    popupSelector: '.popup_card',
+    handleFormSubmit: (card) => {
+      cardListSection.addCustomItem(createCard(card));
+      cardAddPopup.close();
+    },
+  },
+  cardAddForm,
+);
 
-// TODO const cardAddPopup = new PopupWithForm(
-//   {
-//     popupSelector: '.popup_card',
-//     handleFormSubmit: (formData) => {
-//       // cardListSection.addCustomItem(
-//       //   createCard({ link: formData.link, name: formData.title }),
-//       // );
+// Функция открытия попапа добавления нового места
+function openCardAddPopup() {
+  cardAddFormValidator.clearPopupInputs();
+  cardAddFormValidator.disableActiveButton();
 
-//       // cardAddPopup.close();
-
-//       const card = new Card(formData.title, formData.url);
-//       const cardElement = card.generateCardLayout();
-
-//       cardListSection.addCustomItem(cardElement);
-//     },
-//   },
-//   '.popup__container_card',
-//   popupSelectorsData,
-// );
-// TODO
-
-// Функция закрытия попапа при нажатии на Esc
-// function closePopupOnEsc(event) {
-//   if (event.key === escapeKey) {
-//     const openedPopup = document.querySelector('.popup_opened');
-//     closePopup(openedPopup);
-//   }
-// }
-
-// Функция закрытия попапа при нажатии на любое место окна просмотра
-function closePopupOnWindowClick(event) {
-  if (event.target.classList.contains('popup')) {
-    closePopup(event.target);
-  }
+  cardAddPopup.open();
 }
 
 //! Эвентлисенеры
@@ -183,30 +140,5 @@ function closePopupOnWindowClick(event) {
 // Открытие попапа редактирования профиля
 profilePopupOpenButton.addEventListener('click', openProfilePopup);
 
-// Сабмит попапа редактирования профиля
-// profilePopup.addEventListener('submit', profileEditFormSubmitHandler);
-
-// Закрытие попапа редактирования профиля
-// profilePopupCloseButton.addEventListener('click', () => {
-//   closePopup(profilePopup);
-// });
-
 // Открытие попапа добавления нового места
-cardPopupOpenButton.addEventListener('click', () => {
-  cardAddFormValidator.clearPopupInputs();
-  cardAddFormValidator.disableActiveButton();
-  cardAddPopup.open();
-});
-
-// Сабмит попапа нового места
-// cardPopup.addEventListener('submit', createCustomCard);
-
-// Закрытие попапа добавления нового места
-// cardPopupCloseButton.addEventListener('click', () => {
-//   closePopup(cardPopup);
-// });
-
-// Закрытие попапа с картинкой
-// imagePopupCloseButton.addEventListener('click', () => {
-//   closePopup(imagePopup);
-// });
+cardAddPopupOpenButton.addEventListener('click', openCardAddPopup);

@@ -16,9 +16,9 @@ export default class Popup {
     });
   }
 
-  // Закрытие пр инажатии вне формы
+  // Закрытие при нажатии вне формы
   _windowClick() {
-    this._popupSelector.addEventListener('click', (event) => {
+    this._popupSelector.addEventListener('mousedown', (event) => {
       if (event.target.classList.contains('popup')) {
         this.close();
       }
@@ -43,7 +43,7 @@ export default class Popup {
   close() {
     this._popupSelector.classList.remove('popup_opened');
     document.removeEventListener('keydown', this._handleEscClose);
-    this._popupSelector.removeEventListener('click', this._windowClick);
+    this._popupSelector.removeEventListener('mousedown', this._windowClick);
   }
 
   setEventListeners() {
