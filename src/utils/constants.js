@@ -61,8 +61,9 @@ export const formValidationData = {
 };
 
 // Объект с классами попапов
-export const popupSelectors = {
+export const popupSelectorsData = {
   popupClass: 'popup',
   openedPopupClass: 'popup_opened',
   popupCloseButtonSelector: '.popup__close-button',
+  inputSelector: '.popup__input',
 };
