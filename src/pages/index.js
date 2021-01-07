@@ -10,6 +10,7 @@ import FormValidator from '../components/FormValidator.js';
 import Section from '../components/Section.js';
 import UserInfo from '../components/UserInfo.js';
 import PopupWithForm from '../components/PopupWithForm.js';
+import PopupWithImage from '../components/PopupWithImage.js';
 
 //! Импорт переменных
 import {
@@ -33,14 +34,10 @@ const nameInput = profilePopup.querySelector('.popup__input_type_name');
 const jobInput = profilePopup.querySelector('.popup__input_type_occupation');
 
 // Открытие и закрытие попапа нового места
-const cardPopup = document.querySelector('.popup_card');
 const cardAddPopupOpenButton = profile.querySelector('.profile__add-button');
 
 // Список карточек
 const cardsList = document.querySelector('.cards');
-
-// Попап с выбранной картинкой
-const imagePopup = document.querySelector('.popup_image');
 
 // Формы попапов для валидации
 const profileEditForm = document.querySelector('.popup__container_profile');
@@ -97,6 +94,7 @@ function createCard(card) {
     card.name,
     card.link,
     '.card-template',
+    openImagePopup,
   ).generateCardLayout();
 
   return cardElement;
@@ -135,8 +133,20 @@ function openCardAddPopup() {
   cardAddPopup.open();
 }
 
-//! Эвентлисенеры
+//! Функция открытия попапа с картинкой
+const imagePopup = new PopupWithImage('.popup_image');
 
+function openImagePopup(event) {
+  const imageValues = {};
+  imageValues.src = event.target.src;
+  imageValues.textContent = event.target
+    .closest('.card')
+    .querySelector('.card__title').textContent;
+
+  imagePopup.open(imageValues);
+}
+
+//! Эвентлисенеры
 // Открытие попапа редактирования профиля
 profilePopupOpenButton.addEventListener('click', openProfilePopup);
 

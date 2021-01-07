@@ -6,6 +6,7 @@ export default class UserInfo {
     this._job = document.querySelector(jobSelector);
   }
 
+  // Заполнение инпутов попапа при открытии из полей профиля
   getUserInfo() {
     return {
       name: this._name.textContent,
@@ -13,6 +14,7 @@ export default class UserInfo {
     };
   }
 
+  // Заполнение полей профиля при сабмите формы
   setUserInfo(profileName, profileOccupation) {
     this._name.textContent = profileName;
     this._job.textContent = profileOccupation;
