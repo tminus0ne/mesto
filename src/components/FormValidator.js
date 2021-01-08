@@ -28,11 +28,16 @@ export default class FormValidator {
     }
   }
 
+  // Неактивная кнопка при открытии попапа
+  disableActiveButton() {
+    this._button.classList.add(this._data.inactiveButtonClass);
+    this._button.disabled = true;
+  }
+
   // Переключение состояния кнопки
   _toggleButtonState() {
     if (!this._form.checkValidity()) {
-      this._button.classList.add(this._data.inactiveButtonClass);
-      this._button.disabled = true;
+      this.disableActiveButton();
     } else {
       this._button.classList.remove(this._data.inactiveButtonClass);
       this._button.disabled = false;
@@ -68,12 +73,6 @@ export default class FormValidator {
     errorElement.forEach((error) => {
       error.textContent = '';
     });
-  }
-
-  // Неактивная кнопка при открытии попапа
-  disableActiveButton() {
-    this._button.classList.add(this._data.inactiveButtonClass);
-    this._button.disabled = true;
   }
 
   // Основная функция валидации
