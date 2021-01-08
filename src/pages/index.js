@@ -57,7 +57,7 @@ const profileInfo = new UserInfo({
 //! Фопап редактирования профиля
 const profileEditPopup = new PopupWithForm(
   {
-    popupSelector: '.popup_profile',
+    popupElement: '.popup_profile',
     handleFormSubmit: (user) => {
       profileInfo.setUserInfo(user.name, user.job);
       profileEditPopup.close();
@@ -108,7 +108,7 @@ cardListSection.renderItems();
 //! Добавление карточки пользователем
 const cardAddPopup = new PopupWithForm(
   {
-    popupSelector: '.popup_card',
+    popupElement: '.popup_card',
     handleFormSubmit: (card) => {
       cardListSection.addCustomItem(createCard(card));
       cardAddPopup.close();

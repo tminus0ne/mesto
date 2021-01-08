@@ -3,8 +3,8 @@
 import Popup from './Popup.js';
 
 export default class PopupWithForm extends Popup {
-  constructor({ popupSelector, handleFormSubmit }, formSelector) {
-    super(popupSelector);
+  constructor({ popupElement, handleFormSubmit }, formSelector) {
+    super(popupElement);
     this._handleFormSubmit = handleFormSubmit;
     this._formSelector = formSelector;
     this._setEventListeners();
@@ -12,7 +12,7 @@ export default class PopupWithForm extends Popup {
 
   // Получение значений инпутов
   _getInputValues() {
-    this._inputList = this._popupSelector.querySelectorAll('.popup__input');
+    this._inputList = this._popupElement.querySelectorAll('.popup__input');
     this._formValues = {};
 
     this._inputList.forEach((input) => {
@@ -23,7 +23,7 @@ export default class PopupWithForm extends Popup {
   }
 
   _setEventListeners() {
-    this._popupSelector.addEventListener('submit', (event) => {
+    this._popupElement.addEventListener('submit', (event) => {
       event.preventDefault();
       this._handleFormSubmit(this._getInputValues());
     });
