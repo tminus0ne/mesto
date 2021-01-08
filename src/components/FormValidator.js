@@ -5,6 +5,7 @@ export default class FormValidator {
     this._data = data;
     this._form = form;
     this._button = this._form.querySelector(this._data.submitButtonSelector);
+    this._inputList = this._form.querySelectorAll(this._data.inputSelector);
   }
 
   _showInputError(input) {
@@ -46,8 +47,7 @@ export default class FormValidator {
 
   // Эвентлисенеры
   _setEventListeners() {
-    const inputList = this._form.querySelectorAll(this._data.inputSelector);
-    inputList.forEach((input) => {
+    this._inputList.forEach((input) => {
       input.addEventListener('input', () => {
         this._checkInputValidity(input);
         this._toggleButtonState();
@@ -61,8 +61,7 @@ export default class FormValidator {
     this._form.reset();
 
     // Удаление красной полоски
-    const inputList = this._form.querySelectorAll(this._data.inputSelector);
-    inputList.forEach((input) => {
+    this._inputList.forEach((input) => {
       input.classList.remove(this._data.inputInvalidClass);
     });
 
