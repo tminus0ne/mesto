@@ -54,7 +54,7 @@ const profileInfo = new UserInfo({
   jobSelector: '.profile__occupation',
 });
 
-//! Фопап редактирования профиля
+//! Попап редактирования профиля
 const profileEditPopup = new PopupWithForm(
   {
     popupElement: '.popup_profile',
