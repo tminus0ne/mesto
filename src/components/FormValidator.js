@@ -62,7 +62,7 @@ export default class FormValidator {
 
     // Удаление красной полоски
     this._inputList.forEach((input) => {
-      input.classList.remove(this._data.inputInvalidClass);
+      this._hideInputError(input);
     });
 
     // Удаление сообщения об ошибке
