@@ -1,7 +1,6 @@
 'use strict';
 
 //! Импорт css
-import '../vendor/normalize.css';
 import '../pages/index.css';
 
 //! Импорт компонентов
