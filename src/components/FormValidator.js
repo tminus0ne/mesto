@@ -4,6 +4,7 @@ export default class FormValidator {
   constructor(data, form) {
     this._data = data;
     this._form = form;
+    this._button = this._form.querySelector(this._data.submitButtonSelector);
   }
 
   _showInputError(input) {
@@ -29,13 +30,12 @@ export default class FormValidator {
 
   // Переключение состояния кнопки
   _toggleButtonState() {
-    const button = this._form.querySelector(this._data.submitButtonSelector);
     if (!this._form.checkValidity()) {
-      button.classList.add(this._data.inactiveButtonClass);
-      button.disabled = true;
+      this._button.classList.add(this._data.inactiveButtonClass);
+      this._button.disabled = true;
     } else {
-      button.classList.remove(this._data.inactiveButtonClass);
-      button.disabled = false;
+      this._button.classList.remove(this._data.inactiveButtonClass);
+      this._button.disabled = false;
     }
   }
 
@@ -72,9 +72,8 @@ export default class FormValidator {
 
   // Неактивная кнопка при открытии попапа
   disableActiveButton() {
-    const button = this._form.querySelector(this._data.submitButtonSelector);
-    button.classList.add(this._data.inactiveButtonClass);
-    button.disabled = true;
+    this._button.classList.add(this._data.inactiveButtonClass);
+    this._button.disabled = true;
   }
 
   // Основная функция валидации
