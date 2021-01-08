@@ -42,12 +42,6 @@ export const cardClassData = {
   cardRmoveButtonSelector: '.card__remove-button',
   cardTitleSelector: '.card__title',
   cardImageSelector: '.card__image',
-
-  popupClass: 'popup',
-  imagePopupSelector: '.popup_image',
-  imagePopupOpenedClass: 'popup_opened',
-  imagePopupPhotoSelector: '.popup__photo',
-  imagePopupTitleSelector: '.popup__card-title',
 };
 
 //! Объект с классами форм
