@@ -79,6 +79,19 @@ function openProfilePopup() {
   profileEditPopup.open();
 }
 
+//! Функция открытия попапа с картинкой
+const imagePopup = new PopupWithImage('.popup_image');
+
+function openImagePopup(event) {
+  const imageValues = {};
+  imageValues.src = event.target.src;
+  imageValues.textContent = event.target
+    .closest('.card')
+    .querySelector('.card__title').textContent;
+
+  imagePopup.open(imageValues);
+}
+
 //! Функция создания темплейта карточки
 function createCard(card) {
   const cardElement = new Card(
@@ -123,19 +136,6 @@ function openCardAddPopup() {
   cardAddFormValidator.disableActiveButton();
 
   cardAddPopup.open();
-}
-
-//! Функция открытия попапа с картинкой
-const imagePopup = new PopupWithImage('.popup_image');
-
-function openImagePopup(event) {
-  const imageValues = {};
-  imageValues.src = event.target.src;
-  imageValues.textContent = event.target
-    .closest('.card')
-    .querySelector('.card__title').textContent;
-
-  imagePopup.open(imageValues);
 }
 
 //! Эвентлисенеры
