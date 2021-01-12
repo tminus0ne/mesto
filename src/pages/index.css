@@ -14,6 +14,7 @@
 @import url('../blocks/profile/__occupation/profile__occupation.css');
 @import url('../blocks/profile/__main/profile__main.css');
 @import url('../blocks/profile/__user/profile__user.css');
+@import url('../blocks/profile/__avatar-edit/profile__avatar-edit.css');
 
 @import url('../blocks/cards/cards.css');
 
