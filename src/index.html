@@ -143,7 +143,7 @@
       </div>
     </section>
 
-    <section class="popup popup_confirm">
+    <section class="popup popup_remove">
       <div class="popup__container">
         <h2 class="popup__title popup__title_remove">Вы уверены?</h2>
         <button class="popup__submit-button popup__submit-button_remove">
@@ -155,6 +155,33 @@
           class="popup__close-button"
         ></button>
       </div>
+    </section>
+
+    <section class="popup popup_avatar">
+      <form
+        name="change-avatar"
+        class="popup__container popup__container_avatar"
+        novalidate
+      >
+        <button
+          type="button"
+          aria-label="Закрыть"
+          class="popup__close-button"
+        ></button>
+        <h2 class="popup__title">Обновить аватар</h2>
+        <fieldset name="avatar" class="popup__info">
+          <input
+            type="url"
+            placeholder="Ссылка на изображение"
+            name="link"
+            required=""
+            class="popup__input popup__input_avatar popup__input_type_url"
+            id="avatar-url-input"
+          />
+          <span class="popup__input-error" id="avatar-url-input-error"></span>
+        </fieldset>
+        <button class="popup__submit-button">Сохранить</button>
+      </form>
     </section>
 
     <template class="card-template">
