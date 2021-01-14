@@ -37,6 +37,14 @@ import {
   cardsList,
 } from '../utils/constants.js';
 
+//! API
+const api = new Api({
+  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-19',
+  headers: {
+    authorization: '0317c846-fa90-4414-9658-7dd1e3d83b45',
+    'Content-Type': 'application/json',
+  },
+});
 
 //! Вызов валидации для каждой формы
 // Профиль
