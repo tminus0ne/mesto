@@ -62,11 +62,11 @@ cardAddFormValidator.enableValidation();
 const profileInfo = new UserInfo({
   nameSelector: '.profile__name',
   jobSelector: '.profile__occupation',
+  avatarSelector: '.profile__avatar'
 });
 
 //! Попап редактирования профиля
-const profileEditPopup = new PopupWithForm(
-  {
+const profileEditPopup = new PopupWithForm({
     popupElement: '.popup_profile',
     handleFormSubmit: (user) => {
       profileInfo.setUserInfo(user.name, user.job);
@@ -116,8 +116,7 @@ function createCard(card) {
 }
 
 //! Секция с исходным массивом карточек
-const cardListSection = new Section(
-  {
+const cardListSection = new Section({
     items: initialCards,
     renderer: (card) => {
       cardListSection.addItem(createCard(card));
@@ -129,8 +128,7 @@ const cardListSection = new Section(
 cardListSection.renderItems();
 
 //! Добавление карточки пользователем
-const cardAddPopup = new PopupWithForm(
-  {
+const cardAddPopup = new PopupWithForm({
     popupElement: '.popup_card',
     handleFormSubmit: (card) => {
       cardListSection.addCustomItem(createCard(card));
