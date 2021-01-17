@@ -116,42 +116,47 @@ function createCard(card) {
   return cardElement;
 }
 
-//! Секция с исходным массивом карточек
-const cardListSection = new Section(
-  {
-    items: initialCards,
-    renderer: (card) => {
-      cardListSection.addItem(createCard(card));
+// Получение карточек с сервера и добавление своей карточки
+api.getInitialCards().then((res) => {
+  // Секция с исходным массивом карточек
+  const cardListSection = new Section(
+    {
+      items: res,
+      renderer: (card) => {
+        cardListSection.addItem(createCard(card));
+      },
     },
-  },
-  cardsList,
-);
+    cardsList,
+  );
 
-cardListSection.renderItems();
+  cardListSection.renderItems();
 
-//! Добавление карточки пользователем
-const cardAddPopup = new PopupWithForm(
-  {
-    popupElement: '.popup_card',
-    handleFormSubmit: (card) => {
-      cardListSection.addCustomItem(createCard(card));
-      cardAddPopup.close();
+  // Добавление карточки пользователем
+  const cardAddPopup = new PopupWithForm(
+    {
+      popupElement: '.popup_card',
+      handleFormSubmit: (card) => {
+        api.addCustomCard(card).then((res) => {
+          cardListSection.addCustomItem(createCard(res));
+          cardAddPopup.close();
+        });
+      },
     },
-  },
-  cardAddForm,
-);
+    cardAddForm,
+  );
 
-// Функция открытия попапа добавления нового места
-function openCardAddPopup() {
-  cardAddFormValidator.clearPopupInputs();
-  cardAddFormValidator.disableActiveButton();
+  // Функция открытия попапа добавления нового места
+  function openCardAddPopup() {
+    cardAddFormValidator.clearPopupInputs();
+    cardAddFormValidator.disableActiveButton();
 
-  cardAddPopup.open();
-}
+    cardAddPopup.open();
+  }
+
+  // Открытие попапа добавления нового места
+  cardAddPopupOpenButton.addEventListener('click', openCardAddPopup);
+});
 
 //! Эвентлисенеры
 // Открытие попапа редактирования профиля
 profilePopupOpenButton.addEventListener('click', openProfilePopup);
-
-// Открытие попапа добавления нового места
-cardAddPopupOpenButton.addEventListener('click', openCardAddPopup);

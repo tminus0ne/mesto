@@ -4,6 +4,7 @@ export default class Api {
     this._headers = headers;
   }
 
+  // Получение информации о польтзователе
   getUserInfo() {
     return fetch(`${this._baseUrl}/users/me`, {
       heders: {
@@ -16,13 +17,11 @@ export default class Api {
       .catch((err) => console.log(err));
   }
 
+  // Редактирование информации о пользователе
   editUserInfo(user) {
     return fetch(`${this._baseUrl}/users/me`, {
       method: 'PATCH',
-      heders: {
-        authorization: this._headers,
-        'Content-Type': 'application/json',
-      },
+      headers: this._headers,
       body: JSON.stringify({
         name: user.name,
         about: user.job,
@@ -34,11 +33,10 @@ export default class Api {
       .catch((err) => console.log(err));
   }
 
+  // Получение карточек с сервера
   getInitialCards() {
     return fetch(`${this._baseUrl}/cards`, {
-      headers: {
-        authorization: this._headers,
-      },
+      headers: this._headers,
     })
       .then((res) =>
         res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`),
@@ -46,14 +44,15 @@ export default class Api {
       .catch((err) => console.log(err));
   }
 
+  // Добавление своей карточки
   addCustomCard(data) {
     return fetch(`${this._baseUrl}/cards`, {
       method: 'POST',
-      headers: {
-        authorization: this._headers,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
+      headers: this._headers,
+      body: JSON.stringify({
+        name: data.name,
+        link: data.link,
+      }),
     })
       .then((res) =>
         res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`),
@@ -61,12 +60,11 @@ export default class Api {
       .catch((err) => console.log(err));
   }
 
-  removeCard(id) {
-    return fetch(`${this._baseUrl}/cards/`, {
+  // Удаление своей картчоки
+  removeCard(cardId) {
+    return fetch(`${this._baseUrl}/cards/${cardId}`, {
       method: 'DELETE',
-      headers: {
-        authorization: this._headers,
-      },
+      headers: this._headers,
     })
       .then((res) =>
         res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`),
@@ -74,12 +72,11 @@ export default class Api {
       .catch((err) => console.log(err));
   }
 
-  addCardLike() {
-    return fetch(`${this._baseUrl}/cards/likes/`, {
+  // Посатвить лайк
+  addCardLike(cardId) {
+    return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
       method: 'PUT',
-      headers: {
-        authorization: this._headers,
-      },
+      headers: this._headers,
     })
       .then((res) =>
         res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`),
@@ -87,12 +84,11 @@ export default class Api {
       .catch((err) => console.log(err));
   }
 
-  removeCardLike() {
-    return fetch(`${this._baseUrl}/cards/likes/`, {
+  // Убрать лайк
+  removeCardLike(cardId) {
+    return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
       method: 'DELETE',
-      headers: {
-        authorization: this._headers,
-      },
+      headers: this._headers,
     })
       .then((res) =>
         res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`),
@@ -100,12 +96,11 @@ export default class Api {
       .catch((err) => console.log(err));
   }
 
+  // Установить новый аватар
   setNewAvatar() {
     return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: 'PATCH',
-      headers: {
-        authorization: this._headers,
-      },
+      headers: this._headers,
     })
       .then((res) =>
         res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`),
