@@ -20,7 +20,7 @@ export const formValidationData = {
   inputErrorSelector: '.popup__input-error',
 };
 
-// Открытие и закрытие попапа
+// Открытие и закрытие попапа профиля
 export const profile = document.querySelector('.profile');
 export const profilePopup = document.querySelector('.popup_profile');
 
@@ -34,9 +34,14 @@ export const jobInput = profilePopup.querySelector(
   '.popup__input_type_occupation',
 );
 
-// Открытие и закрытие попапа нового места
+// Открытие попапа нового места
 export const cardAddPopupOpenButton = profile.querySelector(
   '.profile__add-button',
+);
+
+// Открытие попапа смены аватара
+export const avatarEditPopupOpenButton = profile.querySelector(
+  '.profile__avatar-edit',
 );
 
 // Список карточек
@@ -47,3 +52,6 @@ export const profileEditForm = document.querySelector(
   '.popup__container_profile',
 );
 export const cardAddForm = document.querySelector('.popup__container_card');
+export const avatarEditForm = document.querySelector(
+  '.popup__container_avatar',
+);

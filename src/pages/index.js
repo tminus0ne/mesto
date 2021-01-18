@@ -32,6 +32,10 @@ import {
 
   // Секция карточек
   cardsList,
+
+  // Аватар
+  avatarEditPopupOpenButton,
+  avatarEditForm,
 } from '../utils/constants.js';
 
 //! API
@@ -54,6 +58,13 @@ profileEditFormValidator.enableValidation();
 // Новое место
 const cardAddFormValidator = new FormValidator(formValidationData, cardAddForm);
 cardAddFormValidator.enableValidation();
+
+// Аватар
+const avatarEditFormValidator = new FormValidator(
+  formValidationData,
+  avatarEditForm,
+);
+avatarEditFormValidator.enableValidation();
 
 //! Класс с информацией профиля
 const profileInfo = new UserInfo({
@@ -133,11 +144,16 @@ api.getInitialCards().then((res) => {
     {
       popupElement: '.popup_card',
       handleFormSubmit: (card) => {
-        api.addCustomCard(card).then((res) => {
-          cardListSection.addCustomItem(createCard(res));
-          cardAddPopup.close();
-        });
         cardAddPopup.setSubmitButtonText('Создание...');
+        api
+          .addCustomCard(card)
+          .then((res) => {
+            cardListSection.addCustomItem(createCard(res));
+            cardAddPopup.close();
+          })
+          .finally(
+            setTimeout(() => cardAddPopup.setSubmitButtonText('Создать'), 1500),
+          );
       },
     },
     cardAddForm,
@@ -155,6 +171,38 @@ api.getInitialCards().then((res) => {
   cardAddPopupOpenButton.addEventListener('click', openCardAddPopup);
 });
 
+// Открытие попапа изменения аватара
+const avatarEditPopup = new PopupWithForm({
+  popupElement: '.popup_avatar',
+  handleFormSubmit: (user) => {
+    avatarEditPopup.setSubmitButtonText('Сохранение...');
+    api
+      .setNewAvatar(user.avatar)
+      .then((res) => {
+        profileInfo.setUserAvatar(res.avatar);
+        avatarEditPopup.close();
+      })
+      .finally(
+        setTimeout(
+          () => avatarEditPopup.setSubmitButtonText('Сохранить'),
+          1500,
+        ),
+      );
+  },
+  avatarEditForm,
+});
+
+// Функция открытия попапа изменения аватара
+function openAvatarEditPopup() {
+  avatarEditFormValidator.clearPopupInputs();
+  avatarEditFormValidator.disableActiveButton();
+
+  avatarEditPopup.open();
+}
+
 //! Эвентлисенеры
 // Открытие попапа редактирования профиля
 profilePopupOpenButton.addEventListener('click', openProfilePopup);
+
+// Открытие поапап изменения аватара
+avatarEditPopupOpenButton.addEventListener('click', openAvatarEditPopup);

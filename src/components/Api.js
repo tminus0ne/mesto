@@ -97,10 +97,13 @@ export default class Api {
   }
 
   // Установить новый аватар
-  setNewAvatar() {
+  setNewAvatar(avatar) {
     return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: 'PATCH',
       headers: this._headers,
+      body: JSON.stringify({
+        avatar: avatar,
+      }),
     })
       .then((res) =>
         res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`),
