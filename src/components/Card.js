@@ -25,6 +25,8 @@ export default class Card {
     this._handleLikeClick = handleLikeClick;
     this._handleRemoveClick = handleRemoveClick;
     this._data = data;
+
+    console.log(data);
   }
 
   _getTemplate() {
@@ -64,7 +66,7 @@ export default class Card {
 
     // Удаление карточки
     const removeButton = this._card.querySelector(
-      this._data.cardRmoveButtonSelector,
+      this._data.cardRemoveButtonSelector,
     );
     removeButton.addEventListener('click', () => {
       if (this._card) {
@@ -91,8 +93,10 @@ export default class Card {
       .querySelector(this._data.cardImageSelector)
       .setAttribute('alt', `Изображение на фотографии: ${this._title}`);
 
-    if (this._owner === this._userId) {
-      this.this._data.cardRmoveButtonSelector.setAttribute('display', 'block');
+    if (this._ownerId === this._userId) {
+      this._card.querySelector(
+        this._data.cardRemoveButtonSelector,
+      ).style.display = 'block';
     }
 
     return this._card;

@@ -5,7 +5,7 @@ export const cardClassData = {
   cardSelector: '.card',
   cardLikeButtonSelector: '.card__like-button',
   cardActiveLikeClass: 'card__like-button_active',
-  cardRmoveButtonSelector: '.card__remove-button',
+  cardRemoveButtonSelector: '.card__remove-button',
   cardTitleSelector: '.card__title',
   cardImageSelector: '.card__image',
   cardLikesCount: '.card__like-count',
