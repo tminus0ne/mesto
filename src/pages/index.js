@@ -137,6 +137,7 @@ api.getInitialCards().then((res) => {
           cardListSection.addCustomItem(createCard(res));
           cardAddPopup.close();
         });
+        cardAddPopup.setSubmitButtonText('Создание...');
       },
     },
     cardAddForm,
