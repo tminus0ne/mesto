@@ -16,9 +16,10 @@ export default class UserInfo {
   }
 
   // Заполнение полей профиля при сабмите формы
-  setUserInfo(profileName, profileOccupation) {
+  setUserInfo(profileName, profileOccupation, profileAvatar) {
     this._name.textContent = profileName;
     this._job.textContent = profileOccupation;
+    this._avatar.src = profileAvatar;
   }
 
   setUserAvatar(profileAvatar) {

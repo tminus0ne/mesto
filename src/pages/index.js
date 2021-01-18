@@ -124,7 +124,7 @@ function createCard(card) {
   return cardElement;
 }
 
-// Получение карточек с сервера и добавление своей карточки
+//! Получение карточек с сервера и добавление своей карточки
 api.getInitialCards().then((res) => {
   // Секция с исходным массивом карточек
   const cardListSection = new Section(

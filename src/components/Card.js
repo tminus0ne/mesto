@@ -1,12 +1,20 @@
 'use strict';
 
 export default class Card {
-  constructor(data, name, link, template, handleCardClick) {
+  constructor(
+    data,
+    userId,
+    template,
+    handleCardClick,
+    handleLikeClick,
+    handleRemoveClick,
+  ) {
     this._data = data;
-    this._title = name;
-    this._image = link;
+    this._userId = userId;
     this._template = template;
     this._handleCardClick = handleCardClick;
+    this._handleLikeClick = handleLikeClick;
+    this._handleRemoveClick = handleRemoveClick;
   }
 
   _getTemplate() {
