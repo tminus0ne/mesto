@@ -126,7 +126,9 @@ function openImagePopup(event) {
   imagePopup.open(imageValues);
 }
 
-function handleLikeClick() {}
+function handleLikeClick() {
+
+}
 
 function handleRemoveClick() {}
 
@@ -218,18 +220,20 @@ function openAvatarEditPopup() {
 }
 
 const apiData = [api.getUserInfo(), api.getInitialCards()];
-Promise.all(apiData).then(([data, cards]) => {
-  userId = data._id;
+Promise.all(apiData)
+  .then(([user, cards]) => {
+    userId = user._id;
 
-  profileInfo.setUserInfo({
-    profileName: data.name,
-    profileOccupation: data.about,
-  });
+    profileInfo.setUserInfo({
+      profileName: user.name,
+      profileOccupation: user.about,
+    });
 
-  profileInfo.setUserAvatar(data.avatar);
+    profileInfo.setUserAvatar(user.avatar);
 
-  cardListSection.renderItems(cards);
-});
+    cardListSection.renderItems(cards);
+  })
+  .catch((err) => console.log(`Ошибка: ${err}`));
 
 //! Эвентлисенеры
 // Открытие попапа редактирования профиля
