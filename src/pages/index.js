@@ -79,7 +79,7 @@ const profileEditPopup = new PopupWithForm(
   {
     popupElement: '.popup_profile',
     handleFormSubmit: (user) => {
-      profileEditPopup.setSubmitButtonText('Создание...');
+      profileEditPopup.setSubmitButtonText('Сохранение...');
       api
         .editUserInfo(user)
         .then((res) => {
@@ -126,9 +126,7 @@ function openImagePopup(event) {
   imagePopup.open(imageValues);
 }
 
-function handleLikeClick() {
-
-}
+function handleLikeClick() {}
 
 function handleRemoveClick() {}
 
