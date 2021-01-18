@@ -91,7 +91,7 @@ const profileEditPopup = new PopupWithForm(
         })
         .finally(
           setTimeout(
-            () => avatarEditPopup.setSubmitButtonText('Сохранить'),
+            () => profileEditPopup.setSubmitButtonText('Сохранить'),
             1500,
           ),
         );
