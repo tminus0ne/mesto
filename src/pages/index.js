@@ -78,8 +78,19 @@ const profileEditPopup = new PopupWithForm(
   {
     popupElement: '.popup_profile',
     handleFormSubmit: (user) => {
-      profileInfo.setUserInfo(user.name, user.job);
-      profileEditPopup.close();
+      profileEditPopup.setSubmitButtonText('Создание...');
+      api
+        .editUserInfo(user)
+        .then((res) => {
+          profileInfo.setUserInfo(res);
+          profileEditPopup.close();
+        })
+        .finally(
+          setTimeout(
+            () => avatarEditPopup.setSubmitButtonText('Сохранить'),
+            1500,
+          ),
+        );
     },
   },
   profileEditForm,
@@ -113,63 +124,55 @@ function openImagePopup(event) {
 
 //! Функция создания темплейта карточки
 function createCard(card) {
-  const cardElement = new Card(
-    cardClassData,
-    card.name,
-    card.link,
-    '.card-template',
-    openImagePopup,
-  ).generateCardLayout();
+  const cardElement = new Card({
+    card: card,
+    data: cardClassData,
+    userID: userId,
+    template: '.card-template',
+    handleCardClick: openImagePopup(),
+  }).generateCardLayout();
 
   return cardElement;
 }
 
 //! Получение карточек с сервера и добавление своей карточки
-api.getInitialCards().then((res) => {
-  // Секция с исходным массивом карточек
-  const cardListSection = new Section(
-    {
-      items: res,
-      renderer: (card) => {
-        cardListSection.addItem(createCard(card));
-      },
+// Секция с исходным массивом карточек
+const cardListSection = new Section(
+  {
+    renderer: (card) => {
+      cardListSection.addItem(createCard(card));
     },
-    cardsList,
-  );
+  },
+  cardsList,
+);
 
-  cardListSection.renderItems();
+// Функция открытия попапа добавления нового места
+function openCardAddPopup() {
+  cardAddFormValidator.clearPopupInputs();
+  cardAddFormValidator.disableActiveButton();
 
-  // Добавление карточки пользователем
-  const cardAddPopup = new PopupWithForm(
-    {
-      popupElement: '.popup_card',
-      handleFormSubmit: (card) => {
-        cardAddPopup.setSubmitButtonText('Создание...');
-        api
-          .addCustomCard(card)
-          .then((res) => {
-            cardListSection.addCustomItem(createCard(res));
-            cardAddPopup.close();
-          })
-          .finally(
-            setTimeout(() => cardAddPopup.setSubmitButtonText('Создать'), 1500),
-          );
-      },
+  cardAddPopup.open();
+}
+
+// Добавление карточки пользователем
+const cardAddPopup = new PopupWithForm(
+  {
+    popupElement: '.popup_card',
+    handleFormSubmit: (card) => {
+      cardAddPopup.setSubmitButtonText('Создание...');
+      api
+        .addCustomCard(card)
+        .then((res) => {
+          cardListSection.addCustomItem(createCard(res));
+          cardAddPopup.close();
+        })
+        .finally(
+          setTimeout(() => cardAddPopup.setSubmitButtonText('Создать'), 1500),
+        );
     },
-    cardAddForm,
-  );
-
-  // Функция открытия попапа добавления нового места
-  function openCardAddPopup() {
-    cardAddFormValidator.clearPopupInputs();
-    cardAddFormValidator.disableActiveButton();
-
-    cardAddPopup.open();
-  }
-
-  // Открытие попапа добавления нового места
-  cardAddPopupOpenButton.addEventListener('click', openCardAddPopup);
-});
+  },
+  cardAddForm,
+);
 
 // Открытие попапа изменения аватара
 const avatarEditPopup = new PopupWithForm({
@@ -200,9 +203,21 @@ function openAvatarEditPopup() {
   avatarEditPopup.open();
 }
 
+const apiData = [api.getUserInfo(), api.getInitialCards()];
+Promise.all(apiData).then(([data, items]) => {
+  userId = data._id;
+  profileInfo.setUserInfo(data);
+  profileInfo.setUserAvatar(data);
+
+  cardListSection.renderItems(items);
+});
+
 //! Эвентлисенеры
 // Открытие попапа редактирования профиля
 profilePopupOpenButton.addEventListener('click', openProfilePopup);
+
+// Открытие попапа добавления нового места
+cardAddPopupOpenButton.addEventListener('click', openCardAddPopup);
 
 // Открытие поапап изменения аватара
 avatarEditPopupOpenButton.addEventListener('click', openAvatarEditPopup);

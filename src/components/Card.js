@@ -1,14 +1,16 @@
 'use strict';
 
 export default class Card {
-  constructor(
+  constructor({
+    card,
     data,
     userId,
     template,
     handleCardClick,
     handleLikeClick,
     handleRemoveClick,
-  ) {
+  }) {
+    this._card = card;
     this._data = data;
     this._userId = userId;
     this._template = template;

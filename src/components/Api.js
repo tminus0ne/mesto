@@ -7,9 +7,7 @@ export default class Api {
   // Получение информации о польтзователе
   getUserInfo() {
     return fetch(`${this._baseUrl}/users/me`, {
-      heders: {
-        authorization: this._headers,
-      },
+      headers: this._headers,
     })
       .then((res) =>
         res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`),
