@@ -14,9 +14,6 @@ import Api from '../components/Api.js';
 
 //! Импорт переменных
 import {
-  // Карточки
-  initialCards,
-
   // Валидация
   cardClassData,
   formValidationData,
