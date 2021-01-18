@@ -38,6 +38,7 @@ import {
   avatarEditForm,
 } from '../utils/constants.js';
 
+let userId;
 //! API
 const api = new Api({
   baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-19',
@@ -82,7 +83,10 @@ const profileEditPopup = new PopupWithForm(
       api
         .editUserInfo(user)
         .then((res) => {
-          profileInfo.setUserInfo(res);
+          profileInfo.setUserInfo({
+            profileName: res.name,
+            profileOccupation: res.about,
+          });
           profileEditPopup.close();
         })
         .finally(
@@ -122,15 +126,25 @@ function openImagePopup(event) {
   imagePopup.open(imageValues);
 }
 
+function handleLikeClick() {}
+
+function handleRemoveClick() {}
+
 //! Функция создания темплейта карточки
 function createCard(card) {
-  const cardElement = new Card({
-    card: card,
-    data: cardClassData,
-    userID: userId,
-    template: '.card-template',
-    handleCardClick: openImagePopup(),
-  }).generateCardLayout();
+  const cardElement = new Card(
+    card.name,
+    card.link,
+    card._id,
+    userId,
+    card.owner._id,
+    card.likes,
+    '.card-template',
+    openImagePopup,
+    handleLikeClick,
+    handleRemoveClick,
+    cardClassData,
+  ).generateCardLayout();
 
   return cardElement;
 }
@@ -180,7 +194,7 @@ const avatarEditPopup = new PopupWithForm({
   handleFormSubmit: (user) => {
     avatarEditPopup.setSubmitButtonText('Сохранение...');
     api
-      .setNewAvatar(user.avatar)
+      .setNewAvatar(user)
       .then((res) => {
         profileInfo.setUserAvatar(res.avatar);
         avatarEditPopup.close();
@@ -204,12 +218,17 @@ function openAvatarEditPopup() {
 }
 
 const apiData = [api.getUserInfo(), api.getInitialCards()];
-Promise.all(apiData).then(([data, items]) => {
+Promise.all(apiData).then(([data, cards]) => {
   userId = data._id;
-  profileInfo.setUserInfo(data);
-  profileInfo.setUserAvatar(data);
 
-  cardListSection.renderItems(items);
+  profileInfo.setUserInfo({
+    profileName: data.name,
+    profileOccupation: data.about,
+  });
+
+  profileInfo.setUserAvatar(data.avatar);
+
+  cardListSection.renderItems(cards);
 });
 
 //! Эвентлисенеры

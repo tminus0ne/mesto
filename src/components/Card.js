@@ -1,22 +1,30 @@
 'use strict';
 
 export default class Card {
-  constructor({
-    card,
-    data,
+  constructor(
+    name,
+    link,
+    cardId,
     userId,
+    ownerId,
+    likes,
     template,
     handleCardClick,
     handleLikeClick,
     handleRemoveClick,
-  }) {
-    this._card = card;
-    this._data = data;
+    data,
+  ) {
+    this._title = name;
+    this._image = link;
+    this._cardId = cardId;
     this._userId = userId;
+    this._ownerId = ownerId;
+    this._likes = likes;
     this._template = template;
     this._handleCardClick = handleCardClick;
     this._handleLikeClick = handleLikeClick;
     this._handleRemoveClick = handleRemoveClick;
+    this._data = data;
   }
 
   _getTemplate() {
@@ -28,13 +36,30 @@ export default class Card {
     return cardElement;
   }
 
+  _toggleCardLike() {
+    // Счетчик лайков
+    this._card.querySelector(
+      this._data.cardLikesCount,
+    ).textContent = this._likes.length;
+
+    const likeState = this._likes.findIndex(
+      (card) => card._id === this._userId,
+    );
+    if (likeState === -1) {
+      this._likeButton.classList.add(this._data.cardActiveLikeClass);
+    } else {
+      this._likeButton.classList.remove(this._data.cardActiveLikeClass);
+    }
+  }
+
   _setEventListeners() {
     // Лайк
     const likeButton = this._card.querySelector(
       this._data.cardLikeButtonSelector,
     );
+
     likeButton.addEventListener('click', () => {
-      likeButton.classList.toggle(this._data.cardActiveLikeClass);
+      this._toggleCardLike();
     });
 
     // Удаление карточки
@@ -57,15 +82,18 @@ export default class Card {
     this._card = this._getTemplate();
     this._setEventListeners();
 
+    // Данные для попапа с картинкой
     this._card.querySelector(
       this._data.cardTitleSelector,
     ).textContent = this._title;
-
     this._card.querySelector(this._data.cardImageSelector).src = this._image;
-
     this._card
       .querySelector(this._data.cardImageSelector)
       .setAttribute('alt', `Изображение на фотографии: ${this._title}`);
+
+    if (this._owner === this._userId) {
+      this.this._data.cardRmoveButtonSelector.setAttribute('display', 'block');
+    }
 
     return this._card;
   }

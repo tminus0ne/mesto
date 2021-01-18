@@ -8,6 +8,7 @@ export const cardClassData = {
   cardRmoveButtonSelector: '.card__remove-button',
   cardTitleSelector: '.card__title',
   cardImageSelector: '.card__image',
+  cardLikesCount: '.card__like-count',
 };
 
 //! Объект с классами форм
