@@ -41,6 +41,9 @@ export default class Card {
   }
 
   setCardLike() {
+    this._likeButton = this._card.querySelector(
+      this._data.cardLikeButtonSelector,
+    );
     // Счетчик лайков
     this._card.querySelector(
       this._data.cardLikesCount,
@@ -49,7 +52,7 @@ export default class Card {
     const likeState = this._likes.findIndex(
       (card) => card._id === this._userId,
     );
-    if (likeState === -1) {
+    if (likeState !== -1) {
       this._likeButton.classList.add(this._data.cardActiveLikeClass);
     } else {
       this._likeButton.classList.remove(this._data.cardActiveLikeClass);
@@ -70,13 +73,13 @@ export default class Card {
     this._card = null;
   }
 
-  
-
   _setEventListeners() {
     // Лайк
-    // this._likeButton.addEventListener('click', () => {
-    //   this._handleLikeClick();
-    // });
+    this._card
+      .querySelector(this._data.cardLikeButtonSelector)
+      .addEventListener('click', () => {
+        this._handleLikeClick();
+      });
 
     // Удаление карточки
     this._card
@@ -105,10 +108,13 @@ export default class Card {
       .setAttribute('alt', `Изображение на фотографии: ${this._title}`);
 
     // Лайк
-    // this._likeButton = this._card.querySelector(
-    //   this._data.cardLikeButtonSelector,
-    // );
+    this._likeButton = this._card.querySelector(
+      this._data.cardLikeButtonSelector,
+    );
 
+    this.setCardLike(this._card.likes);
+
+    // Отрисовка корзины на своих карточках
     if (this._ownerId === this._userId) {
       this._card.querySelector(
         this._data.cardRemoveButtonSelector,

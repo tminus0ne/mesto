@@ -150,7 +150,7 @@ function createCard(card) {
     card.likes,
     '.card-template',
     openImagePopup,
-    handleLikeClick,
+    toggleCardLike,
     openRemoveCardPopup,
     cardClassData,
   ).generateCardLayout();
@@ -158,6 +158,19 @@ function createCard(card) {
   return cardElement;
 }
 
+// function toggleCardLike(card) {
+//   if (card.getCardLike()) {
+//     api
+//       .removeCardLike(card._id)
+//       .then((res) => card.setCardLike(res.likes))
+//       .catch((err) => console.log(err));
+//   } else {
+//     api
+//       .addCardLike(card._id)
+//       .then((res) => card.setCardLiek(res.likes))
+//       .catch((err) => console.log(err));
+//   }
+// }
 //! Получение карточек с сервера и добавление своей карточки
 // Секция с исходным массивом карточек
 const cardListSection = new Section(
@@ -226,24 +239,7 @@ function openAvatarEditPopup() {
   avatarEditPopup.open();
 }
 
-//! Попап удаления карточки
-// const cardRemovePopup = new PopupWithForm({
-//   popupElement: '.popup_remove',
-//   handleFormSubmit: (card) => {
-//     cardRemovePopup.setSubmitButtonText('Удаление...');
-//     api
-//       .removeCard(cardRemovePopup.cardId)
-//       .then((res) => {
-//         cardRemovePopup.cardId.deleteCard();
-//         cardRemovePopup.close();
-//       })
-//       .finally(
-//         setTimeout(() => cardRemovePopup.setSubmitButtonText('Да'), 1500),
-//       );
-//   },
-//   cardRemoveForm,
-// });
-
+//! TODO
 const cardRemovePopup = new PopupWithForm({
   popupElement: '.popup_remove',
   handleFormSubmit: (card) => {
@@ -267,6 +263,7 @@ const cardRemovePopup = new PopupWithForm({
 function openRemoveCardPopup() {
   cardRemovePopup.open();
 }
+// TODO
 
 const apiData = [api.getUserInfo(), api.getInitialCards()];
 Promise.all(apiData)
