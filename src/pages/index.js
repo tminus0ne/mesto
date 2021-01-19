@@ -36,6 +36,9 @@ import {
   // Аватар
   avatarEditPopupOpenButton,
   avatarEditForm,
+
+  // Удаление
+  cardRemoveForm,
 } from '../utils/constants.js';
 
 let userId;
@@ -126,7 +129,13 @@ function openImagePopup(event) {
   imagePopup.open(imageValues);
 }
 
-function handleLikeClick() {}
+function handleLikeClick() {
+  if (card.getCardLike()) {
+    api.removeCardLike(card._id).then((res) => card.setCardLike(res.likes));
+  } else {
+    api.addCardLike(card._id).then((res) => card.setCardLike(res.likes));
+  }
+}
 
 function handleRemoveClick() {}
 
@@ -142,7 +151,7 @@ function createCard(card) {
     '.card-template',
     openImagePopup,
     handleLikeClick,
-    handleRemoveClick,
+    openRemoveCardPopup,
     cardClassData,
   ).generateCardLayout();
 
@@ -188,7 +197,7 @@ const cardAddPopup = new PopupWithForm(
   cardAddForm,
 );
 
-// Открытие попапа изменения аватара
+//! Попап изменения аватара
 const avatarEditPopup = new PopupWithForm({
   popupElement: '.popup_avatar',
   handleFormSubmit: (user) => {
@@ -215,6 +224,48 @@ function openAvatarEditPopup() {
   avatarEditFormValidator.disableActiveButton();
 
   avatarEditPopup.open();
+}
+
+//! Попап удаления карточки
+// const cardRemovePopup = new PopupWithForm({
+//   popupElement: '.popup_remove',
+//   handleFormSubmit: (card) => {
+//     cardRemovePopup.setSubmitButtonText('Удаление...');
+//     api
+//       .removeCard(cardRemovePopup.cardId)
+//       .then((res) => {
+//         cardRemovePopup.cardId.deleteCard();
+//         cardRemovePopup.close();
+//       })
+//       .finally(
+//         setTimeout(() => cardRemovePopup.setSubmitButtonText('Да'), 1500),
+//       );
+//   },
+//   cardRemoveForm,
+// });
+
+const cardRemovePopup = new PopupWithForm({
+  popupElement: '.popup_remove',
+  handleFormSubmit: (card) => {
+    cardRemovePopup.setSubmitButtonText('Удаление...');
+    api
+      .removeCard(card.cardId)
+      .then(() => {
+        card.deleteCard();
+        cardRemovePopup.close();
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(
+        setTimeout(() => cardRemovePopup.setSubmitButtonText('Да'), 1500),
+      );
+  },
+  cardRemoveForm,
+});
+
+function openRemoveCardPopup() {
+  cardRemovePopup.open();
 }
 
 const apiData = [api.getUserInfo(), api.getInitialCards()];

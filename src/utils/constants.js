@@ -56,3 +56,6 @@ export const cardAddForm = document.querySelector('.popup__container_card');
 export const avatarEditForm = document.querySelector(
   '.popup__container_avatar',
 );
+export const cardRemoveForm = document.querySelector(
+  '.popup__container_remove',
+);

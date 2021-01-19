@@ -25,8 +25,6 @@ export default class Card {
     this._handleLikeClick = handleLikeClick;
     this._handleRemoveClick = handleRemoveClick;
     this._data = data;
-
-    console.log(data);
   }
 
   _getTemplate() {
@@ -38,7 +36,11 @@ export default class Card {
     return cardElement;
   }
 
-  _toggleCardLike() {
+  getCardLike() {
+    return this._likeButton.classList.contains(this._data.cardActiveLikeClass);
+  }
+
+  setCardLike() {
     // Счетчик лайков
     this._card.querySelector(
       this._data.cardLikesCount,
@@ -54,26 +56,35 @@ export default class Card {
     }
   }
 
+  // TODO if (this._card) {
+  //   this._card.remove();
+  //   this._card = null;
+  // }
+
+  _removeClick() {
+    this._handleRemoveClick();
+  }
+
+  deleteCard() {
+    this._card.remove();
+    this._card = null;
+  }
+
+  
+
   _setEventListeners() {
     // Лайк
-    const likeButton = this._card.querySelector(
-      this._data.cardLikeButtonSelector,
-    );
-
-    likeButton.addEventListener('click', () => {
-      this._toggleCardLike();
-    });
+    // this._likeButton.addEventListener('click', () => {
+    //   this._handleLikeClick();
+    // });
 
     // Удаление карточки
-    const removeButton = this._card.querySelector(
-      this._data.cardRemoveButtonSelector,
-    );
-    removeButton.addEventListener('click', () => {
-      if (this._card) {
-        this._card.remove();
-        this._card = null;
-      }
-    });
+    this._card
+      .querySelector(this._data.cardRemoveButtonSelector)
+      .addEventListener('click', () => {
+        this._removeClick();
+        console.log(123);
+      });
 
     this._card
       .querySelector(this._data.cardImageSelector)
@@ -92,6 +103,11 @@ export default class Card {
     this._card
       .querySelector(this._data.cardImageSelector)
       .setAttribute('alt', `Изображение на фотографии: ${this._title}`);
+
+    // Лайк
+    // this._likeButton = this._card.querySelector(
+    //   this._data.cardLikeButtonSelector,
+    // );
 
     if (this._ownerId === this._userId) {
       this._card.querySelector(
