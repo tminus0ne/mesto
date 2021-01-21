@@ -129,16 +129,6 @@ function openImagePopup(event) {
   imagePopup.open(imageValues);
 }
 
-function handleLikeClick() {
-  if (card.getCardLike()) {
-    api.removeCardLike(card._id).then((res) => card.setCardLike(res.likes));
-  } else {
-    api.addCardLike(card._id).then((res) => card.setCardLike(res.likes));
-  }
-}
-
-function handleRemoveClick() {}
-
 //! Функция создания темплейта карточки
 function createCard(card) {
   const cardElement = new Card(
@@ -148,29 +138,30 @@ function createCard(card) {
     userId,
     card.owner._id,
     card.likes,
-    '.card-template',
     openImagePopup,
     toggleCardLike,
     openRemoveCardPopup,
+    '.card-template',
     cardClassData,
   ).generateCardLayout();
 
   return cardElement;
 }
 
-// function toggleCardLike(card) {
-//   if (card.getCardLike()) {
-//     api
-//       .removeCardLike(card._id)
-//       .then((res) => card.setCardLike(res.likes))
-//       .catch((err) => console.log(err));
-//   } else {
-//     api
-//       .addCardLike(card._id)
-//       .then((res) => card.setCardLiek(res.likes))
-//       .catch((err) => console.log(err));
-//   }
-// }
+function toggleCardLike() {
+  if (card.getCardLike()) {
+    api
+      .removeCardLike(card._id)
+      .then((res) => card.setCardLike(res.likes))
+      .catch((err) => console.log(err));
+  } else {
+    api
+      .addCardLike(card._id)
+      .then((res) => card.setCardLike(res.likes))
+      .catch((err) => console.log(err));
+  }
+}
+
 //! Получение карточек с сервера и добавление своей карточки
 // Секция с исходным массивом карточек
 const cardListSection = new Section(
@@ -240,14 +231,15 @@ function openAvatarEditPopup() {
 }
 
 //! TODO
+
 const cardRemovePopup = new PopupWithForm({
   popupElement: '.popup_remove',
-  handleFormSubmit: (card) => {
+  handleFormSubmit: () => {
     cardRemovePopup.setSubmitButtonText('Удаление...');
     api
-      .removeCard(card.cardId)
+      .removeCard(cardRemovePopup.card)
       .then(() => {
-        card.deleteCard();
+        cardRemovePopup.card.deleteCard();
         cardRemovePopup.close();
       })
       .catch((err) => {
@@ -260,7 +252,8 @@ const cardRemovePopup = new PopupWithForm({
   cardRemoveForm,
 });
 
-function openRemoveCardPopup() {
+function openRemoveCardPopup(card) {
+  cardRemovePopup.card = card;
   cardRemovePopup.open();
 }
 // TODO

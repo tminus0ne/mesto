@@ -59,8 +59,8 @@ export default class Api {
   }
 
   // Удаление своей картчоки
-  removeCard(cardId) {
-    return fetch(`${this._baseUrl}/cards/${cardId}`, {
+  removeCard(card) {
+    return fetch(`${this._baseUrl}/cards/${card._cardId}`, {
       method: 'DELETE',
       headers: this._headers,
     })
@@ -71,8 +71,8 @@ export default class Api {
   }
 
   // Посатвить лайк
-  addCardLike(cardId) {
-    return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
+  addCardLike(card) {
+    return fetch(`${this._baseUrl}/cards/likes/${card}`, {
       method: 'PUT',
       headers: this._headers,
     })
@@ -83,8 +83,8 @@ export default class Api {
   }
 
   // Убрать лайк
-  removeCardLike(cardId) {
-    return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
+  removeCardLike(card) {
+    return fetch(`${this._baseUrl}/cards/likes/${card}`, {
       method: 'DELETE',
       headers: this._headers,
     })

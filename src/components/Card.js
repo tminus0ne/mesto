@@ -8,10 +8,10 @@ export default class Card {
     userId,
     ownerId,
     likes,
-    template,
     handleCardClick,
     handleLikeClick,
     handleRemoveClick,
+    template,
     data,
   ) {
     this._title = name;
@@ -20,10 +20,10 @@ export default class Card {
     this._userId = userId;
     this._ownerId = ownerId;
     this._likes = likes;
-    this._template = template;
     this._handleCardClick = handleCardClick;
     this._handleLikeClick = handleLikeClick;
     this._handleRemoveClick = handleRemoveClick;
+    this._template = template;
     this._data = data;
   }
 
@@ -44,6 +44,7 @@ export default class Card {
     this._likeButton = this._card.querySelector(
       this._data.cardLikeButtonSelector,
     );
+
     // Счетчик лайков
     this._card.querySelector(
       this._data.cardLikesCount,
@@ -59,15 +60,6 @@ export default class Card {
     }
   }
 
-  // TODO if (this._card) {
-  //   this._card.remove();
-  //   this._card = null;
-  // }
-
-  _removeClick() {
-    this._handleRemoveClick();
-  }
-
   deleteCard() {
     this._card.remove();
     this._card = null;
@@ -75,18 +67,17 @@ export default class Card {
 
   _setEventListeners() {
     // Лайк
-    this._card
-      .querySelector(this._data.cardLikeButtonSelector)
-      .addEventListener('click', () => {
-        this._handleLikeClick();
-      });
+    // this._card
+    //   .querySelector(this._data.cardLikeButtonSelector)
+    //   .addEventListener('click', () => {
+    //     this._deleteButtonClick();
+    //   });
 
     // Удаление карточки
     this._card
       .querySelector(this._data.cardRemoveButtonSelector)
       .addEventListener('click', () => {
-        this._removeClick();
-        console.log(123);
+        this._handleRemoveClick(this);
       });
 
     this._card
