@@ -75,23 +75,23 @@ export default class Card {
         this._handleRemoveClick(this);
       });
 
-    this._card
-      .querySelector(this._data.cardImageSelector)
-      .addEventListener('click', this._handleCardClick);
+    this._cardImage.addEventListener('click', this._handleCardClick);
   }
 
   generateCardLayout() {
     this._card = this._getTemplate();
+    this._cardImage = this._card.querySelector(this._data.cardImageSelector);
     this._setEventListeners();
 
     // Данные для попапа с картинкой
     this._card.querySelector(
       this._data.cardTitleSelector,
     ).textContent = this._title;
-    this._card.querySelector(this._data.cardImageSelector).src = this._image;
-    this._card
-      .querySelector(this._data.cardImageSelector)
-      .setAttribute('alt', `Изображение на фотографии: ${this._title}`);
+    this._cardImage.src = this._image;
+    this._cardImage.setAttribute(
+      'alt',
+      `Изображение на фотографии: ${this._title}`,
+    );
 
     // Данные для лайка
     this._likeButton = this._card.querySelector(
