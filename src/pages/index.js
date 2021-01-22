@@ -42,7 +42,8 @@ import {
 } from '../utils/constants.js';
 
 let userId;
-//! API
+
+//! Информация из API
 const api = new Api({
   baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-19',
   headers: {
@@ -70,14 +71,28 @@ const avatarEditFormValidator = new FormValidator(
 );
 avatarEditFormValidator.enableValidation();
 
-//! Класс с информацией профиля
+//! Редактирование профиля
+// Класс с информацией профиля
 const profileInfo = new UserInfo({
   nameSelector: '.profile__name',
   jobSelector: '.profile__occupation',
   avatarSelector: '.profile__avatar',
 });
 
-//! Попап редактирования профиля
+// Функция открытия попапа редактированяи профиля
+function openProfilePopup() {
+  profileEditFormValidator.clearPopupInputs();
+  profileEditFormValidator.disableActiveButton();
+
+  const user = profileInfo.getUserInfo();
+
+  nameInput.value = user.name;
+  jobInput.value = user.job;
+
+  profileEditPopup.open();
+}
+
+// Попап редактирования профиля
 const profileEditPopup = new PopupWithForm(
   {
     popupElement: '.popup_profile',
@@ -103,105 +118,16 @@ const profileEditPopup = new PopupWithForm(
   profileEditForm,
 );
 
-// Функция открытия попапа редактированяи профиля
-function openProfilePopup() {
-  profileEditFormValidator.clearPopupInputs();
-  profileEditFormValidator.disableActiveButton();
+//! Изменение аватара
+// Функция открытия попапа изменения аватара
+function openAvatarEditPopup() {
+  avatarEditFormValidator.clearPopupInputs();
+  avatarEditFormValidator.disableActiveButton();
 
-  const user = profileInfo.getUserInfo();
-
-  nameInput.value = user.name;
-  jobInput.value = user.job;
-
-  profileEditPopup.open();
+  avatarEditPopup.open();
 }
 
-//! Функция открытия попапа с картинкой
-const imagePopup = new PopupWithImage('.popup_image');
-
-function openImagePopup(event) {
-  const imageValues = {};
-  imageValues.src = event.target.src;
-  imageValues.textContent = event.target
-    .closest('.card')
-    .querySelector('.card__title').textContent;
-
-  imagePopup.open(imageValues);
-}
-
-//! Функция создания темплейта карточки
-function createCard(card) {
-  const cardElement = new Card(
-    card.name,
-    card.link,
-    card._id,
-    userId,
-    card.owner._id,
-    card.likes,
-    openImagePopup,
-    toggleCardLike,
-    openRemoveCardPopup,
-    '.card-template',
-    cardClassData,
-  ).generateCardLayout();
-
-  return cardElement;
-}
-
-function toggleCardLike() {
-  if (card.getCardLike()) {
-    api
-      .removeCardLike(card._id)
-      .then((res) => card.setCardLike(res.likes))
-      .catch((err) => console.log(err));
-  } else {
-    api
-      .addCardLike(card._id)
-      .then((res) => card.setCardLike(res.likes))
-      .catch((err) => console.log(err));
-  }
-}
-
-//! Получение карточек с сервера и добавление своей карточки
-// Секция с исходным массивом карточек
-const cardListSection = new Section(
-  {
-    renderer: (card) => {
-      cardListSection.addItem(createCard(card));
-    },
-  },
-  cardsList,
-);
-
-// Функция открытия попапа добавления нового места
-function openCardAddPopup() {
-  cardAddFormValidator.clearPopupInputs();
-  cardAddFormValidator.disableActiveButton();
-
-  cardAddPopup.open();
-}
-
-// Добавление карточки пользователем
-const cardAddPopup = new PopupWithForm(
-  {
-    popupElement: '.popup_card',
-    handleFormSubmit: (card) => {
-      cardAddPopup.setSubmitButtonText('Создание...');
-      api
-        .addCustomCard(card)
-        .then((res) => {
-          cardListSection.addCustomItem(createCard(res));
-          cardAddPopup.close();
-        })
-        .finally(
-          setTimeout(() => cardAddPopup.setSubmitButtonText('Создать'), 1500),
-        );
-    },
-  },
-  cardAddForm,
-);
-
-//! Попап изменения аватара
+// Попап изменения аватара
 const avatarEditPopup = new PopupWithForm({
   popupElement: '.popup_avatar',
   handleFormSubmit: (user) => {
@@ -222,16 +148,72 @@ const avatarEditPopup = new PopupWithForm({
   avatarEditForm,
 });
 
-// Функция открытия попапа изменения аватара
-function openAvatarEditPopup() {
-  avatarEditFormValidator.clearPopupInputs();
-  avatarEditFormValidator.disableActiveButton();
+//! Добавление карточки пользователем
+// Функция открытия попапа добавления новой карточки
+function openCardAddPopup() {
+  cardAddFormValidator.clearPopupInputs();
+  cardAddFormValidator.disableActiveButton();
 
-  avatarEditPopup.open();
+  cardAddPopup.open();
 }
 
-//! TODO
+// Попап добавления новой карточки
+const cardAddPopup = new PopupWithForm(
+  {
+    popupElement: '.popup_card',
+    handleFormSubmit: (card) => {
+      cardAddPopup.setSubmitButtonText('Создание...');
+      api
+        .addCustomCard(card)
+        .then((res) => {
+          cardListSection.addCustomItem(createCard(res));
+          cardAddPopup.close();
+        })
+        .finally(
+          setTimeout(() => cardAddPopup.setSubmitButtonText('Создать'), 1500),
+        );
+    },
+  },
+  cardAddForm,
+);
 
+//! Попап с картинкой
+const imagePopup = new PopupWithImage('.popup_image');
+
+// Функция открытия попапа с картинкой
+function openImagePopup(event) {
+  const imageValues = {};
+  imageValues.src = event.target.src;
+  imageValues.textContent = event.target
+    .closest('.card')
+    .querySelector('.card__title').textContent;
+
+  imagePopup.open(imageValues);
+}
+
+//! Функция переключения лайков
+function toggleCardLike() {
+  if (card.getCardLike()) {
+    api
+      .removeCardLike(card._id)
+      .then((res) => card.setCardLike(res.likes))
+      .catch((err) => console.log(err));
+  } else {
+    api
+      .addCardLike(card._id)
+      .then((res) => card.setCardLike(res.likes))
+      .catch((err) => console.log(err));
+  }
+}
+
+//! Удаление карточки
+// Функция открытия попапа удаления карточки
+function openRemoveCardPopup(card) {
+  cardRemovePopup.card = card;
+  cardRemovePopup.open();
+}
+
+// Попап удаления карточки
 const cardRemovePopup = new PopupWithForm({
   popupElement: '.popup_remove',
   handleFormSubmit: () => {
@@ -252,12 +234,36 @@ const cardRemovePopup = new PopupWithForm({
   cardRemoveForm,
 });
 
-function openRemoveCardPopup(card) {
-  cardRemovePopup.card = card;
-  cardRemovePopup.open();
-}
-// TODO
+//! Функция создания темплейта карточки
+function createCard(card) {
+  const cardElement = new Card(
+    card.name,
+    card.link,
+    card._id,
+    userId,
+    card.owner._id,
+    card.likes,
+    openImagePopup,
+    toggleCardLike,
+    openRemoveCardPopup,
+    '.card-template',
+    cardClassData,
+  ).generateCardLayout();
 
+  return cardElement;
+}
+
+//! Секция с исходным массивом карточек
+const cardListSection = new Section(
+  {
+    renderer: (card) => {
+      cardListSection.addItem(createCard(card));
+    },
+  },
+  cardsList,
+);
+
+//! Информация о пользователе и секция с карточками
 const apiData = [api.getUserInfo(), api.getInitialCards()];
 Promise.all(apiData)
   .then(([user, cards]) => {
