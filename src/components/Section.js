@@ -1,15 +1,14 @@
 'use strict';
 
 export default class Section {
-  constructor({ items, renderer }, containerSelector) {
-    this._items = items;
+  constructor({ renderer }, containerSelector) {
     this._renderer = renderer;
     this._container = containerSelector;
   }
 
   // Отрисовка всех карточек
-  renderItems() {
-    this._items.forEach((card) => {
+  renderItems(items) {
+    items.forEach((card) => {
       this._renderer(card);
     });
   }

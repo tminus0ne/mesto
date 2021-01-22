@@ -29,14 +29,14 @@ export default class PopupWithForm extends Popup {
     });
   }
 
-  close() {
-    // По заданию работы форму надо ресетить при закрытии
-    // не совсем понял, надо ли ресетить здесь, если ресет уже есть в валидаторе
-    // и там это у меня сделано при открытии, потому что при закрытии заметен ресет инпутов и сброс ошибок
-    // и это выглядит странно на сой взгляд, как пользователя
-    // у нас в слаке был тред на эту тему https://yandex-students.slack.com/archives/G018NEU0QAH/p1607185226278800
+  setSubmitButtonText(text) {
+    this._submitButton = this._popupElement.querySelector(
+      '.popup__submit-button',
+    );
+    this._submitButton.textContent = text;
+  }
 
-    // this._formSelector.reset();
+  close() {
     super.close();
   }
 }

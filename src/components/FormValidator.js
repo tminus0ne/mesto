@@ -60,17 +60,9 @@ export default class FormValidator {
     // Очистка текста
     this._form.reset();
 
-    // Удаление красной полоски
+    // Удаление красной полоски и сообщения об ошибке
     this._inputList.forEach((input) => {
       this._hideInputError(input);
-    });
-
-    // Удаление сообщения об ошибке
-    const errorElement = this._form.querySelectorAll(
-      this._data.inputErrorSelector,
-    );
-    errorElement.forEach((error) => {
-      error.textContent = '';
     });
   }
 
