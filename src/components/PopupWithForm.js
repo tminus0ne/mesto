@@ -10,6 +10,9 @@ export default class PopupWithForm extends Popup {
     this._setEventListeners();
 
     this._inputList = this._popupElement.querySelectorAll('.popup__input');
+    this._submitButton = this._popupElement.querySelector(
+      '.popup__submit-button',
+    );
   }
 
   // Получение значений инпутов
@@ -31,9 +34,6 @@ export default class PopupWithForm extends Popup {
   }
 
   setSubmitButtonText(text) {
-    this._submitButton = this._popupElement.querySelector(
-      '.popup__submit-button',
-    );
     this._submitButton.textContent = text;
   }
 
