@@ -58,7 +58,7 @@ export default class Api {
       .catch((err) => console.log(err));
   }
 
-  // Удаление своей картчоки
+  // Удаление своей карточки
   removeCard(card) {
     return fetch(`${this._baseUrl}/cards/${card._cardId}`, {
       method: 'DELETE',
@@ -72,7 +72,7 @@ export default class Api {
 
   // Посатвить лайк
   addCardLike(card) {
-    return fetch(`${this._baseUrl}/cards/likes/${card}`, {
+    return fetch(`${this._baseUrl}/cards/likes/${card._cardId}`, {
       method: 'PUT',
       headers: this._headers,
     })
@@ -84,7 +84,7 @@ export default class Api {
 
   // Убрать лайк
   removeCardLike(card) {
-    return fetch(`${this._baseUrl}/cards/likes/${card}`, {
+    return fetch(`${this._baseUrl}/cards/likes/${card._cardId}`, {
       method: 'DELETE',
       headers: this._headers,
     })

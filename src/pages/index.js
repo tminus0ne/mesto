@@ -148,6 +148,35 @@ const avatarEditPopup = new PopupWithForm({
   avatarEditForm,
 });
 
+//! Функция создания темплейта карточки
+function createCard(card) {
+  const cardElement = new Card(
+    card.name,
+    card.link,
+    card._id,
+    userId,
+    card.owner._id,
+    card.likes,
+    openImagePopup,
+    toggleCardLike,
+    openRemoveCardPopup,
+    '.card-template',
+    cardClassData,
+  ).generateCardLayout();
+
+  return cardElement;
+}
+
+//! Секция с исходным массивом карточек
+const cardListSection = new Section(
+  {
+    renderer: (card) => {
+      cardListSection.addItem(createCard(card));
+    },
+  },
+  cardsList,
+);
+
 //! Добавление карточки пользователем
 // Функция открытия попапа добавления новой карточки
 function openCardAddPopup() {
@@ -192,15 +221,15 @@ function openImagePopup(event) {
 }
 
 //! Функция переключения лайков
-function toggleCardLike() {
+function toggleCardLike(card) {
   if (card.getCardLike()) {
     api
-      .removeCardLike(card._id)
+      .removeCardLike(card)
       .then((res) => card.setCardLike(res.likes))
       .catch((err) => console.log(err));
   } else {
     api
-      .addCardLike(card._id)
+      .addCardLike(card)
       .then((res) => card.setCardLike(res.likes))
       .catch((err) => console.log(err));
   }
@@ -233,35 +262,6 @@ const cardRemovePopup = new PopupWithForm({
   },
   cardRemoveForm,
 });
-
-//! Функция создания темплейта карточки
-function createCard(card) {
-  const cardElement = new Card(
-    card.name,
-    card.link,
-    card._id,
-    userId,
-    card.owner._id,
-    card.likes,
-    openImagePopup,
-    toggleCardLike,
-    openRemoveCardPopup,
-    '.card-template',
-    cardClassData,
-  ).generateCardLayout();
-
-  return cardElement;
-}
-
-//! Секция с исходным массивом карточек
-const cardListSection = new Section(
-  {
-    renderer: (card) => {
-      cardListSection.addItem(createCard(card));
-    },
-  },
-  cardsList,
-);
 
 //! Информация о пользователе и секция с карточками
 const apiData = [api.getUserInfo(), api.getInitialCards()];
