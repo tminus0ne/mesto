@@ -93,30 +93,27 @@ function openProfilePopup() {
 }
 
 // Попап редактирования профиля
-const profileEditPopup = new PopupWithForm(
-  {
-    popupElement: '.popup_profile',
-    handleFormSubmit: (user) => {
-      profileEditPopup.setSubmitButtonText('Сохранение...');
-      api
-        .editUserInfo(user)
-        .then((res) => {
-          profileInfo.setUserInfo({
-            profileName: res.name,
-            profileOccupation: res.about,
-          });
-          profileEditPopup.close();
-        })
-        .finally(
-          setTimeout(
-            () => profileEditPopup.setSubmitButtonText('Сохранить'),
-            1500,
-          ),
-        );
-    },
+const profileEditPopup = new PopupWithForm({
+  popupElement: '.popup_profile',
+  handleFormSubmit: (user) => {
+    profileEditPopup.setSubmitButtonText('Сохранение...');
+    api
+      .editUserInfo(user)
+      .then((res) => {
+        profileInfo.setUserInfo({
+          profileName: res.name,
+          profileOccupation: res.about,
+        });
+        profileEditPopup.close();
+      })
+      .finally(
+        setTimeout(
+          () => profileEditPopup.setSubmitButtonText('Сохранить'),
+          1500,
+        ),
+      );
   },
-  profileEditForm,
-);
+});
 
 //! Изменение аватара
 // Функция открытия попапа изменения аватара
@@ -145,7 +142,6 @@ const avatarEditPopup = new PopupWithForm({
         ),
       );
   },
-  avatarEditForm,
 });
 
 //! Функция создания темплейта карточки
@@ -187,24 +183,21 @@ function openCardAddPopup() {
 }
 
 // Попап добавления новой карточки
-const cardAddPopup = new PopupWithForm(
-  {
-    popupElement: '.popup_card',
-    handleFormSubmit: (card) => {
-      cardAddPopup.setSubmitButtonText('Создание...');
-      api
-        .addCustomCard(card)
-        .then((res) => {
-          cardListSection.addCustomItem(createCard(res));
-          cardAddPopup.close();
-        })
-        .finally(
-          setTimeout(() => cardAddPopup.setSubmitButtonText('Создать'), 1500),
-        );
-    },
+const cardAddPopup = new PopupWithForm({
+  popupElement: '.popup_card',
+  handleFormSubmit: (card) => {
+    cardAddPopup.setSubmitButtonText('Создание...');
+    api
+      .addCustomCard(card)
+      .then((res) => {
+        cardListSection.addCustomItem(createCard(res));
+        cardAddPopup.close();
+      })
+      .finally(
+        setTimeout(() => cardAddPopup.setSubmitButtonText('Создать'), 1500),
+      );
   },
-  cardAddForm,
-);
+});
 
 //! Попап с картинкой
 const imagePopup = new PopupWithImage('.popup_image');
@@ -260,7 +253,6 @@ const cardRemovePopup = new PopupWithForm({
         setTimeout(() => cardRemovePopup.setSubmitButtonText('Да'), 1500),
       );
   },
-  cardRemoveForm,
 });
 
 //! Информация о пользователе и секция с карточками
