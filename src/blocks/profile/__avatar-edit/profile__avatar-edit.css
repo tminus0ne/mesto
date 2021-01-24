@@ -1,5 +1,10 @@
 .profile__avatar-edit {
   transition: background-image 0.3s ease-in-out;
+  background-color: inherit;
+  border: none;
+  border-radius: 50%;
+  outline: none;
+  padding: 0;
 }
 
 .profile__avatar-edit:hover {
